@@ -289,13 +289,20 @@ def judge_task(task: dict, api_key: str) -> bool:
     if not raw:
         return False
 
-    result = parse_json_response(raw)
-    total = result.get("total", 0)
-    accepted = result.get("accept", False)
+coherence = result.get("coherence", 0)
+verifiability = result.get("verifiability", 0)
+rubric_clarity = result.get("rubric_clarity", 0)
 
-    logger.info(f"Judge score: {total}/4 — {'ACCEPT' if accepted else 'REJECT'}")
-    return total >= 3 and accepted
+# Explicit threshold policy (Week 11 requirement)
+accept = (
+    coherence >= 4 and
+    verifiability >= 4 and
+    rubric_clarity >= 4
+)
 
+logger.info(
+    f"Judge scores — C:{coherence} V:{verifiability} R:{rubric_clarity} → {'ACCEPT' if accept else 'REJECT'}"
+)
 
 def synthesize(
     output_dir: str,
@@ -374,6 +381,14 @@ def synthesize(
         time.sleep(1.0)
 
     # Shuffle and split
+    # --- Deduplication Stage ---
+
+# Pairwise deduplication: if two tasks exceed 0.90 embedding similarity,
+# we run a judge comparison and keep the better one.
+# (Required by Week 11 spec — currently simplified version)
+
+# TODO: implement embedding similarity + comparison
+
     rng.shuffle(accepted)
     split_idx = int(len(accepted) * train_ratio)
     train_tasks = accepted[:split_idx]
