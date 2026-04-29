@@ -1,1 +1,314 @@
-# schema
+{
+  "benchmark_name": "Tenacious-Bench",
+  "version": "0.1.0",
+  "author": "Meseret Bolled",
+  "date": "2026-04-29",
+  "description": "Domain-specific evaluation benchmark for B2B outreach agents grounded in Tenacious Intelligence Corporation ICP segments, signal enrichment pipeline, and tone requirements.",
+  "week10_reference": "github.com/Meseretbolled/conversion-engine",
+  "total_tasks": 230,
+  "partitions": {
+    "train": {"size": 115, "share": 0.50},
+    "dev":   {"size": 69,  "share": 0.30},
+    "held_out": {"size": 46, "share": 0.20, "sealed": true}
+  },
+  "authoring_modes": [
+    "trace_derived",
+    "probe_expanded",
+    "multi_llm_synthesized",
+    "hand_authored_adversarial"
+  ],
+
+  "task_schema": {
+    "task_id": "string — unique identifier e.g. tb_0001",
+    "source_mode": "trace_derived | probe_expanded | synthesized | adversarial",
+    "source_ref": "e.g. sim_id=a553180f or probe_id=26",
+    "difficulty": "easy | medium | hard",
+    "primary_dimension": "signal_confidence | icp_segment | bench_capacity | tone | booking_link | banned_phrase | ai_maturity",
+    "input": {
+      "company_name": "string",
+      "prospect_title": "string",
+      "hiring_signal_brief": {
+        "layoff_signal": {
+          "within_120_days": "boolean",
+          "laid_off_count": "integer",
+          "percentage": "float",
+          "date": "string YYYY-MM-DD",
+          "confidence": "high | medium | low",
+          "source": "string"
+        },
+        "funding_signal": {
+          "is_recent": "boolean",
+          "funding_type": "string",
+          "days_since_funding": "integer",
+          "confidence": "high | medium | low"
+        },
+        "leadership_signal": {
+          "detected": "boolean",
+          "title": "string",
+          "days_since_appointment": "integer",
+          "confidence": "high | medium | low"
+        },
+        "job_signal": {
+          "total_open_roles": "integer",
+          "ai_roles": "integer",
+          "confidence": "high | medium | low"
+        },
+        "ai_maturity": {
+          "score": "integer 0-3",
+          "confidence": "high | medium | low",
+          "summary": "string"
+        }
+      },
+      "bench_state": {
+        "python": "integer",
+        "go": "integer",
+        "data": "integer",
+        "ml": "integer",
+        "infra": "integer",
+        "frontend": "integer",
+        "fullstack_nestjs": "integer",
+        "total": "integer"
+      },
+      "conversation_history": "array of prior messages (empty for cold outreach tasks)",
+      "prospect_message": "string — the prospect reply text (empty for cold outreach tasks)"
+    },
+    "expected_behavior": "string — description of what correct agent behavior looks like",
+    "rubric": {
+      "signal_confidence": {
+        "weight": 0.25,
+        "type": "binary_per_signal",
+        "description": "Each signal asserted must be high confidence. Low confidence signals must be omitted. Medium confidence signals must use hedged language.",
+        "source": "seed/icp_definition.md + agent/agent_core/outreach_composer.py"
+      },
+      "icp_segment": {
+        "weight": 0.20,
+        "type": "categorical",
+        "description": "Correct segment assigned per priority rules. Leadership > layoff > funding > AI maturity.",
+        "source": "seed/icp_definition.md"
+      },
+      "bench_capacity": {
+        "weight": 0.15,
+        "type": "binary",
+        "description": "Agent must not commit to more engineers than bench_state shows available for the requested stack.",
+        "source": "seed/bench_summary.json"
+      },
+      "tone_compliance": {
+        "weight": 0.15,
+        "type": "5_point_rubric",
+        "markers": ["direct", "grounded", "honest", "professional", "non_condescending"],
+        "judge": "LLM judge from different model family than agent",
+        "source": "seed/style_guide.md"
+      },
+      "booking_link": {
+        "weight": 0.15,
+        "type": "binary_string_match",
+        "expected_string": "https://cal.com/",
+        "description": "Output must contain a Cal.com booking link.",
+        "source": "agent/agent_core/outreach_composer.py CALCOM_BOOKING_URL"
+      },
+      "banned_phrase": {
+        "weight": 0.05,
+        "type": "binary",
+        "banned_list": [
+          "exciting opportunity", "leverage", "synergies", "world-class",
+          "rockstar", "ninja", "top talent", "I hope this email finds you well",
+          "game-changer", "disruptive", "cutting-edge", "thought leader"
+        ],
+        "description": "Output must contain zero banned phrases.",
+        "source": "seed/style_guide.md"
+      },
+      "ai_maturity_lossiness": {
+        "weight": 0.05,
+        "type": "binary",
+        "description": "If ai_maturity confidence is low, the score must not be asserted in the output.",
+        "source": "agent/enrichment/ai_maturity.py"
+      }
+    },
+    "scoring": {
+      "formula": "weighted_sum of rubric dimensions",
+      "pass_threshold": 0.75,
+      "scoring_type": "automatic — no human in the loop",
+      "judge_model": "different model family from agent under evaluation"
+    }
+  },
+
+  "example_tasks": [
+    {
+      "task_id": "tb_0001",
+      "source_mode": "trace_derived",
+      "source_ref": "sim_id=a553180f task_id=11 reward=0.0",
+      "difficulty": "medium",
+      "primary_dimension": "signal_confidence",
+      "input": {
+        "company_name": "Atlassian",
+        "prospect_title": "VP Engineering",
+        "hiring_signal_brief": {
+          "layoff_signal": {
+            "within_120_days": true,
+            "laid_off_count": 1600,
+            "percentage": 0.05,
+            "date": "2026-03-11",
+            "confidence": "high",
+            "source": "layoffs.fyi"
+          },
+          "funding_signal": {
+            "is_recent": false,
+            "funding_type": null,
+            "days_since_funding": null,
+            "confidence": "low"
+          },
+          "leadership_signal": {
+            "detected": false,
+            "title": null,
+            "days_since_appointment": null,
+            "confidence": "low"
+          },
+          "job_signal": {
+            "total_open_roles": 3,
+            "ai_roles": 0,
+            "confidence": "low"
+          },
+          "ai_maturity": {
+            "score": 1,
+            "confidence": "low",
+            "summary": "Limited public AI signals"
+          }
+        },
+        "bench_state": {
+          "python": 7, "go": 3, "data": 9, "ml": 5,
+          "infra": 4, "frontend": 6, "fullstack_nestjs": 2, "total": 36
+        },
+        "conversation_history": [],
+        "prospect_message": ""
+      },
+      "expected_behavior": "Agent writes cold outreach email referencing the verified 1,600 layoff on 2026-03-11 (high confidence). Agent does NOT reference AI maturity score (low confidence). Agent does NOT reference open roles (low confidence). Agent includes Cal.com booking link. Subject under 60 chars. Body under 120 words. Zero banned phrases.",
+      "rubric_scores": {
+        "signal_confidence": "PASS if layoff asserted, AI maturity omitted, job signal omitted",
+        "icp_segment": "PASS if Segment 2 (mid-market restructuring)",
+        "bench_capacity": "PASS if no specific engineer count promised",
+        "tone_compliance": "scored 0-5 by LLM judge",
+        "booking_link": "PASS if cal.com link present",
+        "banned_phrase": "PASS if zero banned phrases",
+        "ai_maturity_lossiness": "PASS if ai_maturity not asserted"
+      }
+    },
+    {
+      "task_id": "tb_0002",
+      "source_mode": "probe_expanded",
+      "source_ref": "probe_id=26 failure_category=signal_reliability",
+      "difficulty": "hard",
+      "primary_dimension": "signal_confidence",
+      "input": {
+        "company_name": "Stripe",
+        "prospect_title": "CTO",
+        "hiring_signal_brief": {
+          "layoff_signal": {
+            "within_120_days": true,
+            "laid_off_count": 80,
+            "percentage": 0.02,
+            "date": "2026-01-21",
+            "confidence": "low",
+            "source": "layoffs.fyi — fuzzy match: Stripe Media vs Stripe"
+          },
+          "funding_signal": {
+            "is_recent": false,
+            "funding_type": null,
+            "days_since_funding": null,
+            "confidence": "low"
+          },
+          "leadership_signal": {
+            "detected": false,
+            "title": null,
+            "days_since_appointment": null,
+            "confidence": "low"
+          },
+          "job_signal": {
+            "total_open_roles": 12,
+            "ai_roles": 4,
+            "confidence": "medium"
+          },
+          "ai_maturity": {
+            "score": 2,
+            "confidence": "medium",
+            "summary": "4 AI-adjacent roles, public ML stack signals"
+          }
+        },
+        "bench_state": {
+          "python": 7, "go": 3, "data": 9, "ml": 5,
+          "infra": 4, "frontend": 6, "fullstack_nestjs": 2, "total": 36
+        },
+        "conversation_history": [],
+        "prospect_message": ""
+      },
+      "expected_behavior": "Agent must NOT reference the layoff (low confidence fuzzy match). Agent may reference AI hiring signal with hedged language (medium confidence). Agent must abstain on ICP segment or classify as Segment 4 based on AI maturity. Agent must NOT assert a specific layoff date or count. Agent includes Cal.com link. Zero banned phrases.",
+      "rubric_scores": {
+        "signal_confidence": "FAIL if layoff asserted — layoff is low confidence fuzzy match",
+        "icp_segment": "PASS if Segment 4 or abstain — NOT Segment 2",
+        "bench_capacity": "PASS if no specific count promised",
+        "tone_compliance": "scored 0-5 by LLM judge",
+        "booking_link": "PASS if cal.com link present",
+        "banned_phrase": "PASS if zero banned phrases",
+        "ai_maturity_lossiness": "PASS if AI maturity hedged not asserted directly"
+      }
+    },
+    {
+      "task_id": "tb_0003",
+      "source_mode": "hand_authored_adversarial",
+      "source_ref": "probe_id=2 failure_category=icp_misclassification",
+      "difficulty": "hard",
+      "primary_dimension": "icp_segment",
+      "input": {
+        "company_name": "Zendesk",
+        "prospect_title": "CTO",
+        "hiring_signal_brief": {
+          "layoff_signal": {
+            "within_120_days": true,
+            "laid_off_count": 100,
+            "percentage": 0.03,
+            "date": "2026-03-24",
+            "confidence": "high",
+            "source": "layoffs.fyi"
+          },
+          "funding_signal": {
+            "is_recent": false,
+            "funding_type": null,
+            "days_since_funding": null,
+            "confidence": "low"
+          },
+          "leadership_signal": {
+            "detected": true,
+            "title": "CTO",
+            "days_since_appointment": 45,
+            "confidence": "high"
+          },
+          "job_signal": {
+            "total_open_roles": 5,
+            "ai_roles": 1,
+            "confidence": "medium"
+          },
+          "ai_maturity": {
+            "score": 1,
+            "confidence": "low",
+            "summary": "Limited AI signals"
+          }
+        },
+        "bench_state": {
+          "python": 7, "go": 3, "data": 9, "ml": 5,
+          "infra": 4, "frontend": 6, "fullstack_nestjs": 2, "total": 36
+        },
+        "conversation_history": [],
+        "prospect_message": ""
+      },
+      "expected_behavior": "Agent must classify as Segment 3 (leadership transition) NOT Segment 2 (cost restructuring). New CTO appointed 45 days ago takes priority over the layoff signal per icp_definition.md priority rules. Email must reference the leadership transition as the primary hook. Layoff may be referenced as secondary context only. Cal.com link required. Zero banned phrases.",
+      "rubric_scores": {
+        "signal_confidence": "PASS if leadership signal asserted (high confidence), layoff secondary",
+        "icp_segment": "FAIL if Segment 2 — must be Segment 3",
+        "bench_capacity": "PASS if no specific count promised",
+        "tone_compliance": "scored 0-5 by LLM judge",
+        "booking_link": "PASS if cal.com link present",
+        "banned_phrase": "PASS if zero banned phrases",
+        "ai_maturity_lossiness": "PASS if ai_maturity not asserted (low confidence)"
+      }
+    }
+  ]
+}
