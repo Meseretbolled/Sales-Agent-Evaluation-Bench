@@ -36,25 +36,26 @@ WEEK10_CUTOFF    = "2026-04-01"  # Week 10 ended April 2026
 # ── Text extraction ───────────────────────────────────────────────────────────
 
 def task_to_text(task: dict) -> str:
-    """Extract all text from a task for contamination checking."""
+    """Extract only meaningful text from a task — skip JSON structural tokens."""
     parts = []
-    parts.append(task.get("task_id", ""))
+    # Only use human-readable narrative fields
     parts.append(task.get("authoring_notes", ""))
     parts.append(task.get("scoring_notes", ""))
 
     brief = task.get("input", {}).get("hiring_signal_brief", {})
     parts.append(brief.get("company", ""))
-    parts.append(str(brief.get("layoff_signal", {})))
-    parts.append(str(brief.get("ai_maturity", {}).get("summary", "")))
+    parts.append(brief.get("ai_maturity", {}).get("summary", ""))
+    ls = brief.get("layoff_signal", {})
+    if ls.get("date"):
+        parts.append(f"layoff {ls.get('laid_off_count')} on {ls.get('date')}")
 
     prospect = task.get("input", {}).get("prospect_context", {})
     parts.append(prospect.get("name", ""))
-    parts.append(prospect.get("company", ""))
 
     for turn in task.get("input", {}).get("conversation_history", []):
         parts.append(turn.get("content", ""))
 
-    return " ".join(str(p) for p in parts).lower()
+    return " ".join(str(p) for p in parts if p).lower()
 
 
 def get_ngrams(text: str, n: int) -> Counter:

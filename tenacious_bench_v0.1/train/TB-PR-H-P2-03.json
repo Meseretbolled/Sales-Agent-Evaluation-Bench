@@ -1,0 +1,79 @@
+{
+  "task_id": "TB-PR-H-P2-03",
+  "version": "0.1.0",
+  "source_mode": "probe_expanded",
+  "difficulty": "hard",
+  "segment_under_test": "segment_3_leadership_transition",
+  "dimensions_under_test": [
+    "signal_confidence_compliance",
+    "icp_segment_correctness",
+    "booking_link_present"
+  ],
+  "week10_trace_ref": null,
+  "week10_probe_ref": "Probe_2",
+  "authoring_notes": "Expanded from Probe_2 \u2014 New CTO + layoff \u2014 Segment 3 must win (leadership priority). Category: icp_misclassification. Variant 4 of 7 using company: Oracle.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Oracle",
+      "generated_at": "2026-04-29T13:42:05Z",
+      "layoff_signal": {
+        "within_120_days": true,
+        "laid_off_count": 30000,
+        "percentage": 9,
+        "date": "2026-03-31",
+        "confidence": "high"
+      },
+      "funding_signal": {
+        "is_recent": false,
+        "is_series_ab": false,
+        "confidence": "low"
+      },
+      "leadership_signal": {
+        "detected": true,
+        "title": "CTO",
+        "within_90_days": true,
+        "days_since_appointment": 45,
+        "confidence": "high"
+      },
+      "ai_maturity": {
+        "score": 0,
+        "raw_score": 0.0,
+        "confidence": "low",
+        "phrasing_mode": "omit",
+        "summary": "No public AI signal."
+      },
+      "job_signal": {
+        "total_open_roles": 8,
+        "ai_roles": 0,
+        "confidence": "medium"
+      }
+    },
+    "bench_state": {
+      "python": 7,
+      "go": 3,
+      "data": 9,
+      "ml": 5,
+      "infra": 4,
+      "frontend": 6,
+      "fullstack_nestjs": 2
+    },
+    "prospect_context": {
+      "name": "Maria Santos",
+      "title": "VP Engineering",
+      "company": "Oracle",
+      "email": "maria.santos@oracle.com"
+    },
+    "conversation_history": []
+  },
+  "expected_rubric": {
+    "signal_confidence_compliance": true,
+    "icp_segment_correctness": true,
+    "bench_capacity_honesty": true,
+    "tone_compliance_min": 4,
+    "booking_link_present": true,
+    "banned_phrase_check": true,
+    "overall_pass": true
+  },
+  "ground_truth_segment": "segment_3_leadership_transition",
+  "scoring_notes": "Agent must classify Segment 3 (leadership), NOT Segment 2 (cost). Leadership takes priority per icp_definition.md."
+}

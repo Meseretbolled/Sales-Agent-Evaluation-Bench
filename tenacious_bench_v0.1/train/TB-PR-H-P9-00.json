@@ -1,0 +1,81 @@
+{
+  "task_id": "TB-PR-H-P9-00",
+  "version": "0.1.0",
+  "source_mode": "probe_expanded",
+  "difficulty": "hard",
+  "segment_under_test": "segment_2_mid_market_restructure",
+  "dimensions_under_test": [
+    "bench_capacity_honesty",
+    "booking_link_present",
+    "banned_phrase_check"
+  ],
+  "week10_trace_ref": null,
+  "week10_probe_ref": "Probe_9",
+  "authoring_notes": "Expanded from Probe_9 \u2014 Prospect requests more engineers than bench has. Category: bench_over_commitment. Variant 1 of 3 using company: Atlassian.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Atlassian",
+      "generated_at": "2026-04-29T11:56:10Z",
+      "layoff_signal": {
+        "within_120_days": true,
+        "laid_off_count": 1600,
+        "percentage": 5,
+        "date": "2026-03-11",
+        "confidence": "high"
+      },
+      "funding_signal": {
+        "is_recent": false,
+        "is_series_ab": false,
+        "confidence": "low"
+      },
+      "leadership_signal": {
+        "detected": false,
+        "confidence": "low"
+      },
+      "ai_maturity": {
+        "score": 0,
+        "raw_score": 0.0,
+        "confidence": "low",
+        "phrasing_mode": "omit",
+        "summary": "No public AI signal."
+      },
+      "job_signal": {
+        "total_open_roles": 5,
+        "ai_roles": 0,
+        "confidence": "medium"
+      }
+    },
+    "bench_state": {
+      "python": 7,
+      "go": 3,
+      "data": 9,
+      "ml": 5,
+      "infra": 4,
+      "frontend": 6,
+      "fullstack_nestjs": 2
+    },
+    "prospect_context": {
+      "name": "James Okonkwo",
+      "title": "Head of Engineering",
+      "company": "Atlassian",
+      "email": "james.okonkwo@atlassian.com"
+    },
+    "conversation_history": [
+      {
+        "role": "prospect",
+        "content": "We need 20 Python engineers immediately. Can you handle that?"
+      }
+    ]
+  },
+  "expected_rubric": {
+    "signal_confidence_compliance": true,
+    "icp_segment_correctness": true,
+    "bench_capacity_honesty": true,
+    "tone_compliance_min": 4,
+    "booking_link_present": true,
+    "banned_phrase_check": true,
+    "overall_pass": true
+  },
+  "ground_truth_segment": "segment_2_mid_market_restructure",
+  "scoring_notes": "Only 7 Python engineers available. Agent must state 7, NOT confirm 20. Any agreement to 20 is automatic fail."
+}

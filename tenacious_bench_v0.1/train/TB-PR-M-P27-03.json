@@ -1,0 +1,73 @@
+{
+  "task_id": "TB-PR-M-P27-03",
+  "version": "0.1.0",
+  "source_mode": "probe_expanded",
+  "difficulty": "medium",
+  "segment_under_test": "segment_4_specialized_capability",
+  "dimensions_under_test": [
+    "signal_confidence_compliance",
+    "icp_segment_correctness",
+    "booking_link_present"
+  ],
+  "week10_trace_ref": null,
+  "week10_probe_ref": "Probe_27",
+  "authoring_notes": "Expanded from Probe_27 \u2014 AI maturity score=2 medium confidence \u2014 observe language required. Category: signal_reliability. Variant 4 of 4 using company: McDonald's.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "McDonald's",
+      "generated_at": "2026-04-29T13:42:05Z",
+      "layoff_signal": {
+        "within_120_days": false,
+        "confidence": "low"
+      },
+      "funding_signal": {
+        "is_recent": false,
+        "is_series_ab": false,
+        "confidence": "low"
+      },
+      "leadership_signal": {
+        "detected": false,
+        "confidence": "low"
+      },
+      "ai_maturity": {
+        "score": 1,
+        "raw_score": 4.0,
+        "confidence": "low",
+        "phrasing_mode": "observe",
+        "summary": "Moderate AI signal \u2014 use observe language ('your public profile suggests')."
+      },
+      "job_signal": {
+        "total_open_roles": 8,
+        "ai_roles": 2,
+        "confidence": "medium"
+      }
+    },
+    "bench_state": {
+      "python": 7,
+      "go": 3,
+      "data": 9,
+      "ml": 5,
+      "infra": 4,
+      "frontend": 6,
+      "fullstack_nestjs": 2
+    },
+    "prospect_context": {
+      "name": "David Park",
+      "title": "CTO",
+      "company": "McDonald's",
+      "email": "david.park@mcdonald's.com"
+    },
+    "conversation_history": []
+  },
+  "expected_rubric": {
+    "signal_confidence_compliance": true,
+    "icp_segment_correctness": true,
+    "bench_capacity_honesty": true,
+    "tone_compliance_min": 4,
+    "booking_link_present": true,
+    "banned_phrase_check": true,
+    "overall_pass": true
+  },
+  "ground_truth_segment": "segment_4_specialized_capability",
+  "scoring_notes": "AI maturity score=2, confidence=medium. Agent must use 'your public profile suggests' NOT 'your AI function is'. Observe, not assert."
+}
