@@ -1,0 +1,213 @@
+{
+  "train_count": 76,
+  "dev_count": 40,
+  "held_out_count": 51,
+  "checks": [
+    {
+      "check": "ngram_overlap",
+      "n": 8,
+      "passed": false,
+      "violations": 1193,
+      "details": [
+        {
+          "check_task": "TB-HA-E-000",
+          "train_task": "TB-HA-E-000",
+          "overlapping_ngrams": 19,
+          "examples": [
+            "15 2026. single high-confidence signal. easy difficulty. snap",
+            "snap layoff 1,000 on april 15 2026. single",
+            "layoff 1,000 on april 15 2026. single high-confidence"
+          ]
+        },
+        {
+          "check_task": "TB-HA-E-000",
+          "train_task": "TB-PR-E-P7-01",
+          "overlapping_ngrams": 1,
+          "examples": [
+            "snap no public ai signal. layoff 1000 on"
+          ]
+        },
+        {
+          "check_task": "TB-HA-E-000",
+          "train_task": "TB-PR-H-P9-01",
+          "overlapping_ngrams": 2,
+          "examples": [
+            "snap no public ai signal. layoff 1000 on",
+            "no public ai signal. layoff 1000 on 2026-04-15"
+          ]
+        },
+        {
+          "check_task": "TB-HA-E-000",
+          "train_task": "TB-PR-M-P1-01",
+          "overlapping_ngrams": 2,
+          "examples": [
+            "snap no public ai signal. layoff 1000 on",
+            "no public ai signal. layoff 1000 on 2026-04-15"
+          ]
+        },
+        {
+          "check_task": "TB-HA-E-000",
+          "train_task": "TB-PR-M-P5-01",
+          "overlapping_ngrams": 2,
+          "examples": [
+            "snap no public ai signal. layoff 1000 on",
+            "no public ai signal. layoff 1000 on 2026-04-15"
+          ]
+        },
+        {
+          "check_task": "TB-HA-E-000",
+          "train_task": "TB-PR-M-P8-01",
+          "overlapping_ngrams": 2,
+          "examples": [
+            "snap no public ai signal. layoff 1000 on",
+            "no public ai signal. layoff 1000 on 2026-04-15"
+          ]
+        },
+        {
+          "check_task": "TB-HA-E-000",
+          "train_task": "TB-TR-H-010",
+          "overlapping_ngrams": 3,
+          "examples": [
+            "public ai signal. layoff 1000 on 2026-04-15 alex",
+            "snap no public ai signal. layoff 1000 on",
+            "no public ai signal. layoff 1000 on 2026-04-15"
+          ]
+        },
+        {
+          "check_task": "TB-HA-E-000",
+          "train_task": "TB-TR-H-025",
+          "overlapping_ngrams": 3,
+          "examples": [
+            "public ai signal. layoff 1000 on 2026-04-15 alex",
+            "snap no public ai signal. layoff 1000 on",
+            "no public ai signal. layoff 1000 on 2026-04-15"
+          ]
+        },
+        {
+          "check_task": "TB-HA-E-000",
+          "train_task": "TB-TR-H-040",
+          "overlapping_ngrams": 3,
+          "examples": [
+            "public ai signal. layoff 1000 on 2026-04-15 alex",
+            "snap no public ai signal. layoff 1000 on",
+            "no public ai signal. layoff 1000 on 2026-04-15"
+          ]
+        },
+        {
+          "check_task": "TB-HA-E-000",
+          "train_task": "TB-TR-H-055",
+          "overlapping_ngrams": 3,
+          "examples": [
+            "public ai signal. layoff 1000 on 2026-04-15 alex",
+            "snap no public ai signal. layoff 1000 on",
+            "no public ai signal. layoff 1000 on 2026-04-15"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "embedding_similarity",
+      "method": "tfidf_cosine",
+      "limit": 0.85,
+      "passed": false,
+      "violations": 32,
+      "details": [
+        {
+          "check_task": "TB-HA-E-000",
+          "most_similar_train": "TB-HA-E-000",
+          "similarity": 1.0
+        },
+        {
+          "check_task": "TB-PR-E-P7-03",
+          "most_similar_train": "TB-PR-E-P7-02",
+          "similarity": 0.8715
+        },
+        {
+          "check_task": "TB-PR-H-P2-02",
+          "most_similar_train": "TB-PR-H-P2-02",
+          "similarity": 1.0
+        },
+        {
+          "check_task": "TB-PR-H-P26-01",
+          "most_similar_train": "TB-PR-H-P26-01",
+          "similarity": 0.9657
+        },
+        {
+          "check_task": "TB-PR-H-P26-02",
+          "most_similar_train": "TB-PR-H-P26-02",
+          "similarity": 1.0
+        },
+        {
+          "check_task": "TB-PR-H-P26-03",
+          "most_similar_train": "TB-PR-H-P26-03",
+          "similarity": 1.0
+        },
+        {
+          "check_task": "TB-PR-H-P9-00",
+          "most_similar_train": "TB-PR-H-P9-00",
+          "similarity": 1.0
+        },
+        {
+          "check_task": "TB-PR-M-P1-01",
+          "most_similar_train": "TB-PR-M-P1-01",
+          "similarity": 1.0
+        },
+        {
+          "check_task": "TB-PR-M-P27-02",
+          "most_similar_train": "TB-PR-M-P27-00",
+          "similarity": 0.8777
+        },
+        {
+          "check_task": "TB-TR-H-010",
+          "most_similar_train": "TB-TR-H-010",
+          "similarity": 1.0
+        }
+      ]
+    },
+    {
+      "check": "time_shift",
+      "cutoff": "2026-04-01",
+      "passed": false,
+      "warnings": 7,
+      "details": [
+        {
+          "task_id": "TB-HA-E-000",
+          "layoff_date": "2026-04-15",
+          "note": "Date 2026-04-15 is at or after Week 10 cutoff 2026-04-01"
+        },
+        {
+          "task_id": "TB-PR-H-P2-01",
+          "layoff_date": "2026-04-15",
+          "note": "Date 2026-04-15 is at or after Week 10 cutoff 2026-04-01"
+        },
+        {
+          "task_id": "TB-PR-H-P26-03",
+          "layoff_date": "2026-04-02",
+          "note": "Date 2026-04-02 is at or after Week 10 cutoff 2026-04-01"
+        },
+        {
+          "task_id": "TB-PR-M-P1-01",
+          "layoff_date": "2026-04-15",
+          "note": "Date 2026-04-15 is at or after Week 10 cutoff 2026-04-01"
+        },
+        {
+          "task_id": "TB-TR-H-010",
+          "layoff_date": "2026-04-15",
+          "note": "Date 2026-04-15 is at or after Week 10 cutoff 2026-04-01"
+        },
+        {
+          "task_id": "TB-PR-H-P2-01",
+          "layoff_date": "2026-04-15",
+          "note": "Date 2026-04-15 is at or after Week 10 cutoff 2026-04-01"
+        },
+        {
+          "task_id": "TB-TR-H-055",
+          "layoff_date": "2026-04-15",
+          "note": "Date 2026-04-15 is at or after Week 10 cutoff 2026-04-01"
+        }
+      ]
+    }
+  ],
+  "overall_pass": false,
+  "run_at": "2026-04-29T13:56:06.590686"
+}
