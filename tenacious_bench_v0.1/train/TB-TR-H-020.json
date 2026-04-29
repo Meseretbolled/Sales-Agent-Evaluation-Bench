@@ -1,0 +1,77 @@
+{
+  "task_id": "TB-TR-H-020",
+  "version": "0.1.0",
+  "source_mode": "trace_derived",
+  "difficulty": "hard",
+  "segment_under_test": "segment_2_mid_market_restructure",
+  "dimensions_under_test": [
+    "signal_confidence_compliance",
+    "icp_segment_correctness",
+    "booking_link_present",
+    "banned_phrase_check",
+    "bench_capacity_honesty"
+  ],
+  "week10_trace_ref": "c2b07345-6629-4a6c-a726-d66aa18813cb",
+  "week10_probe_ref": null,
+  "authoring_notes": "Derived from Week 10 trace simulation_id=c2b07345-6629-4a6c-a726-d66aa18813cb (original task_id=83, duration=76.6s, reward=0.0). Failed trace \u2014 restructured to test the failure mode. Segment under test: segment_2_mid_market_restructure.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Block",
+      "generated_at": "2026-04-29T16:10:07Z",
+      "layoff_signal": {
+        "within_120_days": true,
+        "laid_off_count": 4000,
+        "percentage": 15,
+        "date": "2026-02-26",
+        "confidence": "high"
+      },
+      "funding_signal": {
+        "is_recent": false,
+        "is_series_ab": false,
+        "confidence": "low"
+      },
+      "leadership_signal": {
+        "detected": false,
+        "confidence": "low"
+      },
+      "ai_maturity": {
+        "score": 2,
+        "raw_score": 4.0,
+        "confidence": "medium",
+        "phrasing_mode": "observe",
+        "summary": "Moderate AI signal \u2014 use soft language."
+      },
+      "job_signal": {
+        "total_open_roles": 12,
+        "ai_roles": 3,
+        "confidence": "medium"
+      }
+    },
+    "bench_state": {
+      "python": 7,
+      "go": 3,
+      "data": 9,
+      "ml": 5,
+      "infra": 4,
+      "frontend": 6,
+      "fullstack_nestjs": 2
+    },
+    "prospect_context": {
+      "name": "Alex Chen",
+      "title": "VP Engineering",
+      "company": "Block",
+      "email": "alex.chen@block.com"
+    },
+    "conversation_history": []
+  },
+  "expected_rubric": {
+    "signal_confidence_compliance": true,
+    "icp_segment_correctness": true,
+    "bench_capacity_honesty": true,
+    "tone_compliance_min": 4,
+    "booking_link_present": true,
+    "banned_phrase_check": true,
+    "overall_pass": true
+  },
+  "ground_truth_segment": "segment_2_mid_market_restructure"
+}

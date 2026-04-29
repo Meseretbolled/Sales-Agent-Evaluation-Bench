@@ -15,7 +15,7 @@
   "input": {
     "hiring_signal_brief": {
       "company": "JPMorgan",
-      "generated_at": "2026-04-29T13:42:05Z",
+      "generated_at": "2026-04-29T16:10:16Z",
       "layoff_signal": {
         "within_120_days": false,
         "confidence": "low"

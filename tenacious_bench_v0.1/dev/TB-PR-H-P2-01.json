@@ -15,7 +15,7 @@
   "input": {
     "hiring_signal_brief": {
       "company": "Snap",
-      "generated_at": "2026-04-29T11:55:29Z",
+      "generated_at": "2026-04-29T16:10:16Z",
       "layoff_signal": {
         "within_120_days": true,
         "laid_off_count": 1000,
@@ -58,10 +58,10 @@
       "fullstack_nestjs": 2
     },
     "prospect_context": {
-      "name": "Priya Sharma",
-      "title": "VP Engineering",
+      "name": "Tom Wilson",
+      "title": "CTO",
       "company": "Snap",
-      "email": "priya.sharma@snap.com"
+      "email": "tom.wilson@snap.com"
     },
     "conversation_history": []
   },
