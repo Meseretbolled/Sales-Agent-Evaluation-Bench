@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1018",
+  "authoring_notes": "Programmatic variation 18 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Vercel",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Vercel demonstrates moderate progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-17",
+        "laid_off_count": 491,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Smith",
+      "role": "Engineering Manager",
+      "email": "david@vercel.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 491 layoffs at Vercel by proposing support.",
+  "scoring_notes": "Verify Vercel mention and absence of 'bench' jargon."
+}

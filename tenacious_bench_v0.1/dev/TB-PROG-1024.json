@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1024",
+  "authoring_notes": "Programmatic variation 24 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Hashicorp",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Hashicorp demonstrates significant progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-13",
+        "laid_off_count": 416,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jordan Garcia",
+      "role": "CTO",
+      "email": "jordan@hashicorp.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 416 layoffs at Hashicorp by proposing support.",
+  "scoring_notes": "Verify Hashicorp mention and absence of 'bench' jargon."
+}

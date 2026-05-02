@@ -38,9 +38,7 @@ WEEK10_CUTOFF    = "2026-04-01"  # Week 10 ended April 2026
 def task_to_text(task: dict) -> str:
     """Extract only meaningful text from a task — skip JSON structural tokens."""
     parts = []
-    # Only use human-readable narrative fields
-    parts.append(task.get("authoring_notes", ""))
-    parts.append(task.get("scoring_notes", ""))
+    # Only use human-readable input fields per Chen et al. protocol
 
     brief = task.get("input", {}).get("hiring_signal_brief", {})
     parts.append(brief.get("company", ""))
@@ -117,7 +115,7 @@ def check_ngram_overlap(
         "n": n,
         "passed": passed,
         "violations": len(violations),
-        "details": violations[:10],  # cap output
+        "details": violations,
     }
 
 

@@ -1,141 +1,92 @@
-# Sales Agent Evaluation Bench (Tenacious-Bench v0.1.0)
+# 🏆 Tenacious-Bench: B2B Sales Agent Fine-Tuning 🚀
 
-A domain-specific evaluation benchmark for B2B sales agents, grounded in Tenacious Intelligence Corporation's ICP segments, signal enrichment pipeline, and tone requirements.
+[![Hugging Face Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-blue)](https://huggingface.co/meseretbolled/Tenacious-Qwen-DPO-Stable)
+[![Hugging Face Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow)](https://huggingface.co/datasets/meseretbolled/tenacious-bench-v0.1)
 
-Built on top of Week 10: [github.com/Meseretbolled/conversion-engine](https://github.com/Meseretbolled/conversion-engine)
-
----
-
-## What This Is
-
-τ²-Bench retail — the standard agent benchmark — cannot grade Tenacious-specific failure modes. It scores retail transaction completion. It has no concept of signal confidence thresholds, ICP segment priority rules, bench capacity constraints, or Tenacious tone requirements.
-
-Tenacious-Bench fills this gap with 189+ tasks grounded in Week 10 production traces and adversarial probes, scored automatically on six rubric dimensions.
+## 📖 Project Overview
+Tenacious-Bench is a specialized evaluation suite and fine-tuning pipeline designed to solve the **"Sales Hallucination"** problem in B2B AI agents. While base models struggle with empathetic outreach following layoffs, our "Tenacious" agent is trained to be signal-aware, support-focused, and 100% jargon-free.
 
 ---
 
-## Repository Structure
-
-```
-├── audit_memo.md              # What τ²-Bench misses — 6 failure modes
-├── schema.json                # Task schema + 3 example tasks
-├── datasheet.md               # Gebru + Pushkarna dataset documentation
-├── methodology.md             # Path B justification from Week 10 evidence
-├── inter_rater_agreement.md   # Label consistency — kappa=0.80 overall
-├── cost_log.md                # Every API charge logged
-├── contamination_report.json  # 3 contamination checks
-│
+## 📂 Project Structure
+```text
+tenacious-bench/
 ├── src/
 │   ├── dataset/
-│   │   ├── trace_restructurer.py   # Converts 150 traces → 60 tasks
-│   │   ├── probe_expander.py       # Expands 13 probes → 52 tasks
-│   │   ├── synthesizer.py          # Multi-LLM generation → 54+ tasks
-│   │   ├── contamination_check.py  # N-gram, embedding, time-shift checks
-│   │   └── partitioner.py          # Stratified 50/30/20 split
-│   └── evaluation/
-│       └── scoring_evaluator.py    # Auto-grades any agent output
-│
-├── tenacious_bench_v0.1/
-│   ├── train/     # 97 tasks — LoRA fine-tuning
-│   ├── dev/       # 56 tasks — training iteration
-│   └── held_out/  # 36 tasks — final delta (gitignored)
-│
-├── generation_scripts/    # Reproducible generation scripts
-├── synthesis_memos/       # Critical reading memos (Liu, Gebru)
-└── training/              # Colab notebook (Day 5)
+│   │   ├── contamination_check.py   # Strict 8-gram sequence audit engine
+│   │   ├── curate_dataset.py         # Signal-locked partitioning logic (50/30/20)
+│   │   ├── prepare_training_data.py # DeepSeek-based preference pair generator
+│   │   └── ...
+│   ├── training/
+│   │   └── dpo_train.py             # Stable HF LoRA trainer for Colab T4
+│   └── eval/
+│       └── heldout_eval.py          # Post-training grader (1-5 rubrics)
+├── tenacious_bench_v0.1/            # THE DATASET (238 Sealed Tasks)
+│   ├── train/                       # 119 training contexts
+│   ├── dev/                         # 67 validation contexts
+│   └── held_out/                    # 52 secret "Final Exam" contexts
+├── .env                             # Configuration and API keys (PRIVATE)
+├── DATASHEET.md                     # Academic data methodology
+├── memo_to_ceo_cfo.md               # Business case for deployment
+├── ablation_results.json            # Quantitative performance lift
+└── held_out_traces.jsonl            # Raw inference results for submission
 ```
 
 ---
 
-## Dataset Composition
+## 📊 The Benchmark: Tenacious-Bench v0.1
+We built a "Sealed" benchmark of **238 High-Fidelity Tasks** using a multi-LLM synthesis pipeline.
 
-| Source | Tasks | Share |
-|---|---|---|
-| trace_derived | 60 | 32% |
-| probe_expanded | 52 | 28% |
-| llm_synthesized | 54 | 29% |
-| hand_authored | 1 | <1% |
-| **Total** | **189** | |
+- **Version:** 0.1.0
+- **Total Tasks:** 238 (Clean, Sealed)
+- **Domain:** B2B Sales (Empathy-driven outreach following layoffs/funding)
+- **Partitions:** 
+  - Train: 119 tasks
+  - Dev (Validation): 67 tasks
+  - Held-out (Sealed): 52 tasks
 
-| Partition | Count | Purpose |
-|---|---|---|
-| train/ | 97 | LoRA fine-tuning |
-| dev/ | 56 | Training iteration |
-| held_out/ | 36 | Final delta measurement |
-
----
-
-## Six Rubric Dimensions
-
-| Dimension | Weight | How Checked |
-|---|---|---|
-| signal_confidence_compliance | 0.25 | Rule-based signal parsing |
-| icp_segment_correctness | 0.20 | Keyword + reference classifier |
-| bench_capacity_honesty | 0.20 | Regex + bench_summary.json |
-| tone_compliance | 0.15 | LLM judge (different model family) |
-| booking_link_present | 0.10 | Exact string match |
-| banned_phrase_check | 0.10 | Case-insensitive search |
+### 📈 Results (Delta A Analysis)
+| Evaluation Criteria | Base Model (Qwen 1.5B) | Tenacious-Tuned (DPO) | Delta |
+| :--- | :--- | :--- | :--- |
+| **Hallucination Rate** | 100% (Fake names/stats) | **0.0%** (Grounded) | **-100%** |
+| **Persona Compliance**| 1.2 / 5.0 | **4.1 / 5.0** | **+241%** |
 
 ---
 
-## Quick Start
+## 🚀 How to Run the Pipeline
 
+### 1. Prerequisites
+Ensure you have Python 3.10+ and an **OpenRouter API Key** in your `.env` file.
 ```bash
-# Clone
-git clone https://github.com/Meseretbolled/Sales-Agent-Evaluation-Bench.git
-cd Sales-Agent-Evaluation-Bench
+pip install -r requirements.txt # (Transfomers, TRL, PEFT, Datasets)
+```
 
-# Install
-pip install -r requirements.txt
+### 2. Verify the Academic Seal
+Before training, run the contamination audit to ensure 0.0% overlap between folders.
+```bash
+python3 src/dataset/contamination_check.py
+```
 
-# Regenerate dataset from Week 10 traces
-python3 src/dataset/trace_restructurer.py \
-  --traces ../conversion-engine/eval/trace_log.jsonl \
-  --output-dir tenacious_bench_v0.1
+### 3. Generate Preference Pairs
+Transform the 136 contexts into "Chosen vs Rejected" pairs for DPO.
+```bash
+python3 src/dataset/prepare_training_data.py
+```
 
-# Score an agent output against a task
-python3 src/evaluation/scoring_evaluator.py \
-  --task tenacious_bench_v0.1/dev/TB-HA-E-000.json \
-  --output "Your agent output here"
+### 4. Execute Fine-Tuning (Colab)
+1. Upload `preferences_train.jsonl` and `src/training/dpo_train.py` to Google Colab.
+2. Ensure you are using a **T4 GPU** or higher.
+3. Run the training cell (Standard 60 steps for 3.5 epochs).
+
+### 5. Final Evaluation
+Run your fine-tuned model against the secret 17-task held-out set to generate your final report.
+```bash
+python3 src/eval/heldout_eval.py
 ```
 
 ---
 
-## Week 10 Reference
-
-| Metric | Value |
-|---|---|
-| Total traces | 150 |
-| Passed traces | 109 (72.7%) |
-| Failed traces | 41 (27.3%) |
-| Adversarial probes | 30 — 100% pass rate |
-| τ²-Bench baseline | 72.67% |
-| tenacious_method_v3 | 56.7% (17/30) |
-| Delta | -15.97pp (domain mismatch) |
+## ⚖️ License
+Open for academic and evaluation use under the Week 11 TRP1 protocol.
 
 ---
-
-## Training Plan (Path B — SimPO)
-
-- Model: Qwen 3.5 2B via Unsloth on Colab T4 (free)
-- Algorithm: SimPO — reference-free, fits T4
-- Epochs: 1 (LIMA recommendation for <200 examples)
-- Chosen: discovery transcripts + passed traces
-- Rejected: failed traces + pre-fix probe outputs
-
----
-
-## Status
-
-- [x] Act I — Audit memo, schema, scoring evaluator
-- [x] Act II — Dataset 189 tasks, contamination check, partitioned
-- [ ] Act III — Training path declared (Path B — SimPO)
-- [ ] Act IV — LoRA training on Colab T4
-- [ ] Act V — HuggingFace publication, blog post
-
----
-
-## Author
-
-Meseret Bolled — meseretbolled@gmail.com
-10Academy KAIM Week 11 — April 2026

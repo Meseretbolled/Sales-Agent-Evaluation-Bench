@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1060",
+  "authoring_notes": "Programmatic variation 60 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Crowdstrike",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Crowdstrike demonstrates moderate progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-12",
+        "laid_off_count": 171,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Alex Chen",
+      "role": "VP of Engineering",
+      "email": "alex@crowdstrike.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 171 layoffs at Crowdstrike by proposing support.",
+  "scoring_notes": "Verify Crowdstrike mention and absence of 'bench' jargon."
+}

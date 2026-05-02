@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1025",
+  "authoring_notes": "Programmatic variation 25 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "MongoDB",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "MongoDB demonstrates significant progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-17",
+        "laid_off_count": 243,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Taylor Garcia",
+      "role": "Director of IT",
+      "email": "taylor@mongodb.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 243 layoffs at MongoDB by proposing support.",
+  "scoring_notes": "Verify MongoDB mention and absence of 'bench' jargon."
+}

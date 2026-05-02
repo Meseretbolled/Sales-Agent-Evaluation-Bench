@@ -16,7 +16,7 @@
   "input": {
     "hiring_signal_brief": {
       "company": "Google Cloud",
-      "generated_at": "2026-04-29T13:42:05Z",
+      "generated_at": "2026-05-01T18:56:36Z",
       "layoff_signal": {
         "within_120_days": true,
         "laid_off_count": 200,
@@ -57,10 +57,10 @@
       "fullstack_nestjs": 2
     },
     "prospect_context": {
-      "name": "Maria Santos",
+      "name": "Alex Chen",
       "title": "VP Engineering",
       "company": "Google Cloud",
-      "email": "maria.santos@googlecloud.com"
+      "email": "alex.chen@googlecloud.com"
     },
     "conversation_history": []
   },

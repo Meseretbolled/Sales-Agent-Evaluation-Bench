@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1069",
+  "authoring_notes": "Programmatic variation 69 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Deel",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Deel demonstrates advanced progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-14",
+        "laid_off_count": 131,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jessica Smith",
+      "role": "Engineering Manager",
+      "email": "jessica@deel.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 131 layoffs at Deel by proposing support.",
+  "scoring_notes": "Verify Deel mention and absence of 'bench' jargon."
+}

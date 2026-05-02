@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1064",
+  "authoring_notes": "Programmatic variation 64 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Checkr",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Checkr demonstrates early-stage progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-25",
+        "laid_off_count": 384,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Sarah Lee",
+      "role": "Head of Platform",
+      "email": "sarah@checkr.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 384 layoffs at Checkr by proposing support.",
+  "scoring_notes": "Verify Checkr mention and absence of 'bench' jargon."
+}

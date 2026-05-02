@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1001",
+  "authoring_notes": "Programmatic variation 1 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Rippling",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Rippling demonstrates early-stage progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-23",
+        "laid_off_count": 223,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Sarah Lee",
+      "role": "CTO",
+      "email": "sarah@rippling.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 223 layoffs at Rippling by proposing support.",
+  "scoring_notes": "Verify Rippling mention and absence of 'bench' jargon."
+}

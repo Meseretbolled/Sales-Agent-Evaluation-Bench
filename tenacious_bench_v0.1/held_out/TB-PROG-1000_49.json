@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1000",
+  "authoring_notes": "Programmatic variation 0 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Zoom",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Zoom demonstrates advanced progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-25",
+        "laid_off_count": 485,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "James Garcia",
+      "role": "VP of Engineering",
+      "email": "james@zoom.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 485 layoffs at Zoom by proposing support.",
+  "scoring_notes": "Verify Zoom mention and absence of 'bench' jargon."
+}

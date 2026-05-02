@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1036",
+  "authoring_notes": "Programmatic variation 36 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Lattice",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Lattice demonstrates limited progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-21",
+        "laid_off_count": 494,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Sarah Lee",
+      "role": "Head of Platform",
+      "email": "sarah@lattice.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 494 layoffs at Lattice by proposing support.",
+  "scoring_notes": "Verify Lattice mention and absence of 'bench' jargon."
+}

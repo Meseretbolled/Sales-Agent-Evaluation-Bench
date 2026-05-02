@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1027",
+  "authoring_notes": "Programmatic variation 27 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Gusto",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Gusto demonstrates moderate progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-25",
+        "laid_off_count": 109,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Elena Garcia",
+      "role": "Head of Platform",
+      "email": "elena@gusto.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 109 layoffs at Gusto by proposing support.",
+  "scoring_notes": "Verify Gusto mention and absence of 'bench' jargon."
+}

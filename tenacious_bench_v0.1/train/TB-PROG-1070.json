@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1070",
+  "authoring_notes": "Programmatic variation 70 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Slack",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Slack demonstrates early-stage progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-24",
+        "laid_off_count": 357,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Smith",
+      "role": "Head of Platform",
+      "email": "chris@slack.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 357 layoffs at Slack by proposing support.",
+  "scoring_notes": "Verify Slack mention and absence of 'bench' jargon."
+}

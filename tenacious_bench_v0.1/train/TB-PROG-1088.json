@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1088",
+  "authoring_notes": "Programmatic variation 88 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Deel",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Deel demonstrates advanced progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-18",
+        "laid_off_count": 401,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jessica Smith",
+      "role": "Head of Platform",
+      "email": "jessica@deel.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 401 layoffs at Deel by proposing support.",
+  "scoring_notes": "Verify Deel mention and absence of 'bench' jargon."
+}

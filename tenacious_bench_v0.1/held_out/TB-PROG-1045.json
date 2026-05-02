@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1045",
+  "authoring_notes": "Programmatic variation 45 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Notion",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Notion demonstrates limited progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-21",
+        "laid_off_count": 467,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Lee",
+      "role": "VP of Engineering",
+      "email": "david@notion.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 467 layoffs at Notion by proposing support.",
+  "scoring_notes": "Verify Notion mention and absence of 'bench' jargon."
+}

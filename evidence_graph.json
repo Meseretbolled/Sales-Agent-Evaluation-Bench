@@ -1,0 +1,26 @@
+{
+  "project": "Tenacious-Bench",
+  "evidence_base": "Week 11 Signal Scrape",
+  "nodes": [
+    {
+      "signal_id": "SIG-LAY-001",
+      "company": "Figma",
+      "type": "layoff",
+      "tasks": ["TB-HA-H-1008", "TB-PROG-1012"]
+    },
+    {
+      "signal_id": "SIG-LAY-002",
+      "company": "Atlassian",
+      "type": "layoff",
+      "tasks": ["TB-PR-H-P9-02", "TB-HA-H-1001"]
+    },
+    {
+      "signal_id": "SIG-LAY-003",
+      "company": "Snap",
+      "type": "layoff",
+      "tasks": ["TB-PROG-1045", "TB-PR-H-P4-01"]
+    }
+  ],
+  "calibration_integrity": "high",
+  "graph_version": "1.0.0"
+}

@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1087",
+  "authoring_notes": "Programmatic variation 87 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Retool",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Retool demonstrates advanced progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-19",
+        "laid_off_count": 270,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Taylor Doe",
+      "role": "Head of Platform",
+      "email": "taylor@retool.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 270 layoffs at Retool by proposing support.",
+  "scoring_notes": "Verify Retool mention and absence of 'bench' jargon."
+}

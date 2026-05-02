@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1020",
+  "authoring_notes": "Programmatic variation 20 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Canva",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Canva demonstrates early-stage progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-10",
+        "laid_off_count": 202,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jessica Chen",
+      "role": "Engineering Manager",
+      "email": "jessica@canva.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 202 layoffs at Canva by proposing support.",
+  "scoring_notes": "Verify Canva mention and absence of 'bench' jargon."
+}

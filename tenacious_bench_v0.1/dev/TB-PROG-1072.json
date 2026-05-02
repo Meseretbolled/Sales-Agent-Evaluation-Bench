@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1072",
+  "authoring_notes": "Programmatic variation 72 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "MongoDB",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "MongoDB demonstrates significant progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-24",
+        "laid_off_count": 466,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Taylor Smith",
+      "role": "Engineering Manager",
+      "email": "taylor@mongodb.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 466 layoffs at MongoDB by proposing support.",
+  "scoring_notes": "Verify MongoDB mention and absence of 'bench' jargon."
+}

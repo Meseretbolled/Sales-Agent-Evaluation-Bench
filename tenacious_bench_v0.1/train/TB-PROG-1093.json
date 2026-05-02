@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1093",
+  "authoring_notes": "Programmatic variation 93 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Rippling",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Rippling demonstrates early-stage progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-10",
+        "laid_off_count": 440,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "James Chen",
+      "role": "VP of Engineering",
+      "email": "james@rippling.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 440 layoffs at Rippling by proposing support.",
+  "scoring_notes": "Verify Rippling mention and absence of 'bench' jargon."
+}

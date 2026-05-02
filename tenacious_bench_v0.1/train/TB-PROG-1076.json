@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1076",
+  "authoring_notes": "Programmatic variation 76 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Clerk",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Clerk demonstrates limited progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-16",
+        "laid_off_count": 465,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Doe",
+      "role": "Head of Platform",
+      "email": "chris@clerk.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 465 layoffs at Clerk by proposing support.",
+  "scoring_notes": "Verify Clerk mention and absence of 'bench' jargon."
+}

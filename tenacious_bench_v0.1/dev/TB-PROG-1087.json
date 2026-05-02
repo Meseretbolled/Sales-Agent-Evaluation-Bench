@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1087",
+  "authoring_notes": "Programmatic variation 87 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Snowflake",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Snowflake demonstrates limited progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-19",
+        "laid_off_count": 131,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jordan Doe",
+      "role": "CTO",
+      "email": "jordan@snowflake.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 131 layoffs at Snowflake by proposing support.",
+  "scoring_notes": "Verify Snowflake mention and absence of 'bench' jargon."
+}

@@ -1,0 +1,24 @@
+{
+  "project": "Tenacious-Bench Week 11",
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "trained_model_id": "Tenacious-Qwen-DPO-Stable",
+  "ablation_metrics": {
+    "delta_a": {
+      "metric": "Tone & Signal Accuracy",
+      "base_score": 1.2,
+      "trained_score": 4.1,
+      "improvement": "+241%",
+      "notes": "Base model failed on hallucination (hallucinated 7 devs) and technical tone mis-alignment."
+    },
+    "delta_b": {
+      "metric": "Trained vs Prompt-Engineered",
+      "status": "Inconclusive - Training shows better consistency in jargon reduction.",
+      "notes": "Training successfully killed 'world-class/a-player' jargon that prompt-injection alone struggled to suppress."
+    }
+  },
+  "held_out_stats": {
+    "total_tasks": 17,
+    "successful_passes": 14,
+    "hallucination_rate": "0.0%"
+  }
+}

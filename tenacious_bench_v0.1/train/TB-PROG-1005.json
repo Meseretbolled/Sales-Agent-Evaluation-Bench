@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1005",
+  "authoring_notes": "Programmatic variation 5 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Datadog",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Datadog demonstrates advanced progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-16",
+        "laid_off_count": 133,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jessica Smith",
+      "role": "CTO",
+      "email": "jessica@datadog.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 133 layoffs at Datadog by proposing support.",
+  "scoring_notes": "Verify Datadog mention and absence of 'bench' jargon."
+}

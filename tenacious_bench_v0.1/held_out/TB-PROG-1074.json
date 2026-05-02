@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1074",
+  "authoring_notes": "Programmatic variation 74 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Figma",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Figma demonstrates early-stage progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-19",
+        "laid_off_count": 387,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jordan Doe",
+      "role": "Director of IT",
+      "email": "jordan@figma.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 387 layoffs at Figma by proposing support.",
+  "scoring_notes": "Verify Figma mention and absence of 'bench' jargon."
+}

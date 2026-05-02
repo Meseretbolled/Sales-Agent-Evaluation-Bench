@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1093",
+  "authoring_notes": "Programmatic variation 93 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Cloudflare",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Cloudflare demonstrates moderate progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-10",
+        "laid_off_count": 383,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Smith",
+      "role": "Head of Platform",
+      "email": "chris@cloudflare.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 383 layoffs at Cloudflare by proposing support.",
+  "scoring_notes": "Verify Cloudflare mention and absence of 'bench' jargon."
+}

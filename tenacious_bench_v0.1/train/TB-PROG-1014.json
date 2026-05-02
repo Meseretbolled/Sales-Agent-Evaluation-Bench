@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1014",
+  "authoring_notes": "Programmatic variation 14 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Clerk",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Clerk demonstrates significant progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-10",
+        "laid_off_count": 444,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Michael Smith",
+      "role": "Engineering Manager",
+      "email": "michael@clerk.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 444 layoffs at Clerk by proposing support.",
+  "scoring_notes": "Verify Clerk mention and absence of 'bench' jargon."
+}

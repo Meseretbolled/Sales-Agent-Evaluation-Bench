@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1098",
+  "authoring_notes": "Programmatic variation 98 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Datadog",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Datadog demonstrates significant progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-23",
+        "laid_off_count": 334,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Michael Doe",
+      "role": "Engineering Manager",
+      "email": "michael@datadog.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 334 layoffs at Datadog by proposing support.",
+  "scoring_notes": "Verify Datadog mention and absence of 'bench' jargon."
+}

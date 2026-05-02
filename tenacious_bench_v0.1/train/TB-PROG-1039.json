@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1039",
+  "authoring_notes": "Programmatic variation 39 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Notion",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Notion demonstrates early-stage progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-14",
+        "laid_off_count": 135,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Taylor Smith",
+      "role": "Engineering Manager",
+      "email": "taylor@notion.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 135 layoffs at Notion by proposing support.",
+  "scoring_notes": "Verify Notion mention and absence of 'bench' jargon."
+}

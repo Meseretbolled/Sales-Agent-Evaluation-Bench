@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1073",
+  "authoring_notes": "Programmatic variation 73 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Retool",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Retool demonstrates early-stage progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-12",
+        "laid_off_count": 208,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jessica Lee",
+      "role": "Head of Platform",
+      "email": "jessica@retool.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 208 layoffs at Retool by proposing support.",
+  "scoring_notes": "Verify Retool mention and absence of 'bench' jargon."
+}

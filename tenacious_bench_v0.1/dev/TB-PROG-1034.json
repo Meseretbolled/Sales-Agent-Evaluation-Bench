@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1034",
+  "authoring_notes": "Programmatic variation 34 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Gusto",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Gusto demonstrates early-stage progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-11",
+        "laid_off_count": 282,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Elena Doe",
+      "role": "Head of Platform",
+      "email": "elena@gusto.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 282 layoffs at Gusto by proposing support.",
+  "scoring_notes": "Verify Gusto mention and absence of 'bench' jargon."
+}

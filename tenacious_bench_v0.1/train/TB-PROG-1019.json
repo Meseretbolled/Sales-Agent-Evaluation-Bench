@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1019",
+  "authoring_notes": "Programmatic variation 19 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Rippling",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Rippling demonstrates advanced progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-11",
+        "laid_off_count": 380,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "James Doe",
+      "role": "Head of Platform",
+      "email": "james@rippling.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 380 layoffs at Rippling by proposing support.",
+  "scoring_notes": "Verify Rippling mention and absence of 'bench' jargon."
+}

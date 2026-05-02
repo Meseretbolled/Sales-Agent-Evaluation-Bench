@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1038",
+  "authoring_notes": "Programmatic variation 38 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Plaid",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Plaid demonstrates limited progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-23",
+        "laid_off_count": 357,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "James Garcia",
+      "role": "Director of IT",
+      "email": "james@plaid.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 357 layoffs at Plaid by proposing support.",
+  "scoring_notes": "Verify Plaid mention and absence of 'bench' jargon."
+}

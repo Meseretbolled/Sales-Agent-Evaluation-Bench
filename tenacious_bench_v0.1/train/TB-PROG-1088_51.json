@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1088",
+  "authoring_notes": "Programmatic variation 88 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Zoom",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Zoom demonstrates significant progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-14",
+        "laid_off_count": 358,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Lee",
+      "role": "CTO",
+      "email": "david@zoom.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 358 layoffs at Zoom by proposing support.",
+  "scoring_notes": "Verify Zoom mention and absence of 'bench' jargon."
+}

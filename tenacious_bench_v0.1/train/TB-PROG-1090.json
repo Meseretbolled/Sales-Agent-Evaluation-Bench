@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1090",
+  "authoring_notes": "Programmatic variation 90 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Gusto",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Gusto demonstrates limited progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-24",
+        "laid_off_count": 421,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jordan Garcia",
+      "role": "VP of Engineering",
+      "email": "jordan@gusto.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 421 layoffs at Gusto by proposing support.",
+  "scoring_notes": "Verify Gusto mention and absence of 'bench' jargon."
+}

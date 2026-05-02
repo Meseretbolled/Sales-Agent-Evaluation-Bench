@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1054",
+  "authoring_notes": "Programmatic variation 54 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Navan",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Navan demonstrates limited progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-17",
+        "laid_off_count": 378,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Elena Lee",
+      "role": "Head of Platform",
+      "email": "elena@navan.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 378 layoffs at Navan by proposing support.",
+  "scoring_notes": "Verify Navan mention and absence of 'bench' jargon."
+}

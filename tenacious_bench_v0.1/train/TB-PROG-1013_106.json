@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1013",
+  "authoring_notes": "Programmatic variation 13 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Miro",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Miro demonstrates moderate progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-13",
+        "laid_off_count": 312,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Sarah Smith",
+      "role": "CTO",
+      "email": "sarah@miro.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 312 layoffs at Miro by proposing support.",
+  "scoring_notes": "Verify Miro mention and absence of 'bench' jargon."
+}

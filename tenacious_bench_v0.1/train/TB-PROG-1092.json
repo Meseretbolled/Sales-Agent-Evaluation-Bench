@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1092",
+  "authoring_notes": "Programmatic variation 92 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "MongoDB",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "MongoDB demonstrates limited progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-12",
+        "laid_off_count": 240,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jessica Garcia",
+      "role": "Director of IT",
+      "email": "jessica@mongodb.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 240 layoffs at MongoDB by proposing support.",
+  "scoring_notes": "Verify MongoDB mention and absence of 'bench' jargon."
+}

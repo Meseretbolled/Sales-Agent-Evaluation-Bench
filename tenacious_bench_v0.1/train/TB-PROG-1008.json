@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1008",
+  "authoring_notes": "Programmatic variation 8 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Gusto",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Gusto demonstrates significant progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-14",
+        "laid_off_count": 96,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Taylor Garcia",
+      "role": "Director of IT",
+      "email": "taylor@gusto.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 96 layoffs at Gusto by proposing support.",
+  "scoring_notes": "Verify Gusto mention and absence of 'bench' jargon."
+}

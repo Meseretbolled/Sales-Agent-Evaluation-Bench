@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1037",
+  "authoring_notes": "Programmatic variation 37 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Linear",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Linear demonstrates moderate progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-23",
+        "laid_off_count": 70,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Smith",
+      "role": "Head of Platform",
+      "email": "david@linear.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 70 layoffs at Linear by proposing support.",
+  "scoring_notes": "Verify Linear mention and absence of 'bench' jargon."
+}

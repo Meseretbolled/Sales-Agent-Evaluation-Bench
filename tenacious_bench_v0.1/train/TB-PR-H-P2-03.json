@@ -15,7 +15,7 @@
   "input": {
     "hiring_signal_brief": {
       "company": "Oracle",
-      "generated_at": "2026-04-29T13:42:05Z",
+      "generated_at": "2026-05-01T18:56:36Z",
       "layoff_signal": {
         "within_120_days": true,
         "laid_off_count": 30000,
@@ -58,10 +58,10 @@
       "fullstack_nestjs": 2
     },
     "prospect_context": {
-      "name": "Maria Santos",
+      "name": "Priya Sharma",
       "title": "VP Engineering",
       "company": "Oracle",
-      "email": "maria.santos@oracle.com"
+      "email": "priya.sharma@oracle.com"
     },
     "conversation_history": []
   },

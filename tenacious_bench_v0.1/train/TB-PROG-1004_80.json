@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1004",
+  "authoring_notes": "Programmatic variation 4 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Linear",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Linear demonstrates significant progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-11",
+        "laid_off_count": 335,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jordan Garcia",
+      "role": "VP of Engineering",
+      "email": "jordan@linear.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 335 layoffs at Linear by proposing support.",
+  "scoring_notes": "Verify Linear mention and absence of 'bench' jargon."
+}

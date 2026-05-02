@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1048",
+  "authoring_notes": "Programmatic variation 48 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Slack",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Slack demonstrates moderate progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-17",
+        "laid_off_count": 283,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jordan Doe",
+      "role": "Head of Platform",
+      "email": "jordan@slack.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 283 layoffs at Slack by proposing support.",
+  "scoring_notes": "Verify Slack mention and absence of 'bench' jargon."
+}

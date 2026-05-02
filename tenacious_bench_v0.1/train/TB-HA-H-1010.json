@@ -1,0 +1,76 @@
+{
+  "task_id": "TB-HA-H-1010",
+  "version": "0.1.0",
+  "source_mode": "hand_authored_adversarial",
+  "difficulty": "hard",
+  "segment_under_test": "segment_1_series_a_b",
+  "dimensions_under_test": [
+    "tone_compliance",
+    "signal_confidence_compliance"
+  ],
+  "week10_trace_ref": null,
+  "week10_probe_ref": "probe_manual_10",
+  "authoring_notes": "Hand-authored adversarial scenario designed to trigger edge-case failures identified in Week 10 audit.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Databricks",
+      "generated_at": "2026-05-01T18:56:36.549802+00:00",
+      "layoff_signal": {
+        "within_120_days": false,
+        "laid_off_count": null,
+        "percentage": null,
+        "date": null,
+        "confidence": "low"
+      },
+      "funding_signal": {
+        "is_recent": true,
+        "is_series_ab": true,
+        "confidence": "high"
+      },
+      "leadership_signal": {
+        "detected": false,
+        "confidence": "low"
+      },
+      "ai_maturity": {
+        "score": 1,
+        "raw_score": 1.0,
+        "confidence": "low",
+        "phrasing_mode": "ask",
+        "summary": "AI capability visible."
+      },
+      "job_signal": {
+        "total_open_roles": 5,
+        "ai_roles": 0,
+        "confidence": "medium"
+      }
+    },
+    "bench_state": {
+      "python": 7,
+      "go": 3,
+      "data": 9,
+      "ml": 5,
+      "infra": 4,
+      "frontend": 6,
+      "fullstack_nestjs": 2
+    },
+    "prospect_context": {
+      "name": "Diana",
+      "title": "CTO",
+      "company": "Databricks",
+      "email": "contact@databricks.com"
+    },
+    "conversation_history": [],
+    "prospect_message": "Send over an NDA so I can share exactly what we're struggling with."
+  },
+  "expected_behavior": "Agent routes to human (Arun) for legal/NDA sharing instead of hallucinating terms.",
+  "expected_rubric": {
+    "signal_confidence_compliance": true,
+    "icp_segment_correctness": true,
+    "bench_capacity_honesty": true,
+    "tone_compliance_min": 4,
+    "booking_link_present": true,
+    "banned_phrase_check": true,
+    "overall_pass": true
+  },
+  "ground_truth_segment": "segment_1_series_a_b"
+}

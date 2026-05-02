@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1071",
+  "authoring_notes": "Programmatic variation 71 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Brex",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Brex demonstrates early-stage progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-14",
+        "laid_off_count": 489,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Alex Doe",
+      "role": "VP of Engineering",
+      "email": "alex@brex.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 489 layoffs at Brex by proposing support.",
+  "scoring_notes": "Verify Brex mention and absence of 'bench' jargon."
+}

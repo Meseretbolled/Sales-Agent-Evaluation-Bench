@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1062",
+  "authoring_notes": "Programmatic variation 62 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Databricks",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Databricks demonstrates limited progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-12",
+        "laid_off_count": 86,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Sarah Garcia",
+      "role": "Head of Platform",
+      "email": "sarah@databricks.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 86 layoffs at Databricks by proposing support.",
+  "scoring_notes": "Verify Databricks mention and absence of 'bench' jargon."
+}

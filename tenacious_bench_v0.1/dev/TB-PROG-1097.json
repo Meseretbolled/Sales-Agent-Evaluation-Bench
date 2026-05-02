@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1097",
+  "authoring_notes": "Programmatic variation 97 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Datadog",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Datadog demonstrates limited progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-16",
+        "laid_off_count": 139,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Taylor Doe",
+      "role": "Director of IT",
+      "email": "taylor@datadog.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 139 layoffs at Datadog by proposing support.",
+  "scoring_notes": "Verify Datadog mention and absence of 'bench' jargon."
+}

@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1041",
+  "authoring_notes": "Programmatic variation 41 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Confluent",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Confluent demonstrates early-stage progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-21",
+        "laid_off_count": 279,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Alex Lee",
+      "role": "CTO",
+      "email": "alex@confluent.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 279 layoffs at Confluent by proposing support.",
+  "scoring_notes": "Verify Confluent mention and absence of 'bench' jargon."
+}

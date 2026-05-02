@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1011",
+  "authoring_notes": "Programmatic variation 11 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Databricks",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Databricks demonstrates limited progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-21",
+        "laid_off_count": 277,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Doe",
+      "role": "VP of Engineering",
+      "email": "david@databricks.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 277 layoffs at Databricks by proposing support.",
+  "scoring_notes": "Verify Databricks mention and absence of 'bench' jargon."
+}

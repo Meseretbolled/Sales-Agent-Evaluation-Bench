@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1034",
+  "authoring_notes": "Programmatic variation 34 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Checkr",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Checkr demonstrates limited progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-11",
+        "laid_off_count": 235,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Elena Lee",
+      "role": "Engineering Manager",
+      "email": "elena@checkr.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 235 layoffs at Checkr by proposing support.",
+  "scoring_notes": "Verify Checkr mention and absence of 'bench' jargon."
+}

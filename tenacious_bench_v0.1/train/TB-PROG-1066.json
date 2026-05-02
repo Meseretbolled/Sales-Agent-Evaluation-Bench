@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1066",
+  "authoring_notes": "Programmatic variation 66 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Crowdstrike",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Crowdstrike demonstrates significant progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-23",
+        "laid_off_count": 129,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Alex Doe",
+      "role": "CTO",
+      "email": "alex@crowdstrike.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 129 layoffs at Crowdstrike by proposing support.",
+  "scoring_notes": "Verify Crowdstrike mention and absence of 'bench' jargon."
+}

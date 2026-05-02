@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1007",
+  "authoring_notes": "Programmatic variation 7 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Clerk",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Clerk demonstrates limited progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-15",
+        "laid_off_count": 90,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Sarah Chen",
+      "role": "CTO",
+      "email": "sarah@clerk.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 90 layoffs at Clerk by proposing support.",
+  "scoring_notes": "Verify Clerk mention and absence of 'bench' jargon."
+}

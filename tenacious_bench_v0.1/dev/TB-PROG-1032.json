@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1032",
+  "authoring_notes": "Programmatic variation 32 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Supabase",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Supabase demonstrates significant progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-15",
+        "laid_off_count": 351,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Michael Garcia",
+      "role": "VP of Engineering",
+      "email": "michael@supabase.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 351 layoffs at Supabase by proposing support.",
+  "scoring_notes": "Verify Supabase mention and absence of 'bench' jargon."
+}

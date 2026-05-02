@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1032",
+  "authoring_notes": "Programmatic variation 32 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Hashicorp",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Hashicorp demonstrates significant progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-23",
+        "laid_off_count": 89,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Taylor Lee",
+      "role": "VP of Engineering",
+      "email": "taylor@hashicorp.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 89 layoffs at Hashicorp by proposing support.",
+  "scoring_notes": "Verify Hashicorp mention and absence of 'bench' jargon."
+}

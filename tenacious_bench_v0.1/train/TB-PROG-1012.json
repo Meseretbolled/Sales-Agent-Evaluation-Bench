@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1012",
+  "authoring_notes": "Programmatic variation 12 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "PagerDuty",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "PagerDuty demonstrates significant progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-20",
+        "laid_off_count": 134,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Sarah Chen",
+      "role": "Engineering Manager",
+      "email": "sarah@pagerduty.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 134 layoffs at PagerDuty by proposing support.",
+  "scoring_notes": "Verify PagerDuty mention and absence of 'bench' jargon."
+}

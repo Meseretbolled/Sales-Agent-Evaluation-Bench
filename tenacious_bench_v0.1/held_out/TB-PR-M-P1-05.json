@@ -1,0 +1,79 @@
+{
+  "task_id": "TB-PR-M-P1-05",
+  "version": "0.1.0",
+  "source_mode": "probe_expanded",
+  "difficulty": "medium",
+  "segment_under_test": "segment_2_mid_market_restructure",
+  "dimensions_under_test": [
+    "signal_confidence_compliance",
+    "icp_segment_correctness",
+    "booking_link_present",
+    "banned_phrase_check"
+  ],
+  "week10_trace_ref": null,
+  "week10_probe_ref": "Probe_1",
+  "authoring_notes": "Expanded from Probe_1 \u2014 Funded + layoff conflict \u2014 Segment 2 must win. Category: icp_misclassification. Variant 6 of 7 using company: Epic Games.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Epic Games",
+      "generated_at": "2026-05-01T18:56:36Z",
+      "layoff_signal": {
+        "within_120_days": true,
+        "laid_off_count": 1000,
+        "percentage": 16,
+        "date": "2026-03-24",
+        "confidence": "high"
+      },
+      "funding_signal": {
+        "is_recent": true,
+        "is_series_ab": true,
+        "funding_type": "Series B",
+        "days_since_funding": 45,
+        "confidence": "high"
+      },
+      "leadership_signal": {
+        "detected": false,
+        "confidence": "low"
+      },
+      "ai_maturity": {
+        "score": 0,
+        "raw_score": 0.0,
+        "confidence": "low",
+        "phrasing_mode": "omit",
+        "summary": "No public AI signal."
+      },
+      "job_signal": {
+        "total_open_roles": 5,
+        "ai_roles": 0,
+        "confidence": "medium"
+      }
+    },
+    "bench_state": {
+      "python": 7,
+      "go": 3,
+      "data": 9,
+      "ml": 5,
+      "infra": 4,
+      "frontend": 6,
+      "fullstack_nestjs": 2
+    },
+    "prospect_context": {
+      "name": "Maria Santos",
+      "title": "VP Engineering",
+      "company": "Epic Games",
+      "email": "maria.santos@epicgames.com"
+    },
+    "conversation_history": []
+  },
+  "expected_rubric": {
+    "signal_confidence_compliance": true,
+    "icp_segment_correctness": true,
+    "bench_capacity_honesty": true,
+    "tone_compliance_min": 4,
+    "booking_link_present": true,
+    "banned_phrase_check": true,
+    "overall_pass": true
+  },
+  "ground_truth_segment": "segment_2_mid_market_restructure",
+  "scoring_notes": "Agent must pitch Segment 2 (cost reduction), NOT Segment 1 (scale). Layoff takes priority over funding."
+}

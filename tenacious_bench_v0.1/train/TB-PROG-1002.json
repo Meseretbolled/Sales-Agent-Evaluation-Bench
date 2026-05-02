@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1002",
+  "authoring_notes": "Programmatic variation 2 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Stripe",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Stripe demonstrates limited progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-16",
+        "laid_off_count": 480,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Smith",
+      "role": "VP of Engineering",
+      "email": "david@stripe.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 480 layoffs at Stripe by proposing support.",
+  "scoring_notes": "Verify Stripe mention and absence of 'bench' jargon."
+}

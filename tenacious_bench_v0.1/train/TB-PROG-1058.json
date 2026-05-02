@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1058",
+  "authoring_notes": "Programmatic variation 58 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Gusto",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Gusto demonstrates advanced progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-19",
+        "laid_off_count": 463,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "James Smith",
+      "role": "Director of IT",
+      "email": "james@gusto.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 463 layoffs at Gusto by proposing support.",
+  "scoring_notes": "Verify Gusto mention and absence of 'bench' jargon."
+}

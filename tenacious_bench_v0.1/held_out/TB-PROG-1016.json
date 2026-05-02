@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1016",
+  "authoring_notes": "Programmatic variation 16 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "MongoDB",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "MongoDB demonstrates early-stage progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-25",
+        "laid_off_count": 380,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Doe",
+      "role": "Head of Platform",
+      "email": "chris@mongodb.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 380 layoffs at MongoDB by proposing support.",
+  "scoring_notes": "Verify MongoDB mention and absence of 'bench' jargon."
+}

@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1086",
+  "authoring_notes": "Programmatic variation 86 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Mercury",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Mercury demonstrates early-stage progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-13",
+        "laid_off_count": 85,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jessica Lee",
+      "role": "Director of IT",
+      "email": "jessica@mercury.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 85 layoffs at Mercury by proposing support.",
+  "scoring_notes": "Verify Mercury mention and absence of 'bench' jargon."
+}

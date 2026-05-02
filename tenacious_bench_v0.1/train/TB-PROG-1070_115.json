@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1070",
+  "authoring_notes": "Programmatic variation 70 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Canva",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Canva demonstrates limited progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-18",
+        "laid_off_count": 216,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jordan Garcia",
+      "role": "VP of Engineering",
+      "email": "jordan@canva.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 216 layoffs at Canva by proposing support.",
+  "scoring_notes": "Verify Canva mention and absence of 'bench' jargon."
+}

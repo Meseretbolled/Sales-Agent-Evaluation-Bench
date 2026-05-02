@@ -16,7 +16,7 @@
   "input": {
     "hiring_signal_brief": {
       "company": "Meta Platforms",
-      "generated_at": "2026-04-29T16:10:16Z",
+      "generated_at": "2026-05-01T18:56:36Z",
       "layoff_signal": {
         "within_120_days": true,
         "laid_off_count": 200,
@@ -57,10 +57,10 @@
       "fullstack_nestjs": 2
     },
     "prospect_context": {
-      "name": "Alex Chen",
-      "title": "VP Engineering",
+      "name": "David Park",
+      "title": "CTO",
       "company": "Meta Platforms",
-      "email": "alex.chen@metaplatforms.com"
+      "email": "david.park@metaplatforms.com"
     },
     "conversation_history": []
   },

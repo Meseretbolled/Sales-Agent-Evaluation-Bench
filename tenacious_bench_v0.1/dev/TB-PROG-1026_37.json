@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1026",
+  "authoring_notes": "Programmatic variation 26 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Stripe",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Stripe demonstrates significant progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-13",
+        "laid_off_count": 156,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Doe",
+      "role": "Engineering Manager",
+      "email": "david@stripe.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 156 layoffs at Stripe by proposing support.",
+  "scoring_notes": "Verify Stripe mention and absence of 'bench' jargon."
+}

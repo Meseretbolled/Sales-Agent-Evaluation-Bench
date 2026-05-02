@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1049",
+  "authoring_notes": "Programmatic variation 49 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Supabase",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Supabase demonstrates moderate progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-22",
+        "laid_off_count": 438,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Alex Garcia",
+      "role": "VP of Engineering",
+      "email": "alex@supabase.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 438 layoffs at Supabase by proposing support.",
+  "scoring_notes": "Verify Supabase mention and absence of 'bench' jargon."
+}

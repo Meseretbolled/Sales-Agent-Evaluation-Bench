@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1061",
+  "authoring_notes": "Programmatic variation 61 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Checkr",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Checkr demonstrates limited progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-10",
+        "laid_off_count": 173,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Doe",
+      "role": "VP of Engineering",
+      "email": "chris@checkr.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 173 layoffs at Checkr by proposing support.",
+  "scoring_notes": "Verify Checkr mention and absence of 'bench' jargon."
+}

@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1019",
+  "authoring_notes": "Programmatic variation 19 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "MongoDB",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "MongoDB demonstrates significant progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-23",
+        "laid_off_count": 324,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Chen",
+      "role": "Director of IT",
+      "email": "chris@mongodb.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 324 layoffs at MongoDB by proposing support.",
+  "scoring_notes": "Verify MongoDB mention and absence of 'bench' jargon."
+}

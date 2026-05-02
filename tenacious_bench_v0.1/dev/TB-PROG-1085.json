@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1085",
+  "authoring_notes": "Programmatic variation 85 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Gusto",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Gusto demonstrates early-stage progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-25",
+        "laid_off_count": 313,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Chen",
+      "role": "VP of Engineering",
+      "email": "david@gusto.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 313 layoffs at Gusto by proposing support.",
+  "scoring_notes": "Verify Gusto mention and absence of 'bench' jargon."
+}

@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1080",
+  "authoring_notes": "Programmatic variation 80 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Clerk",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Clerk demonstrates significant progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-23",
+        "laid_off_count": 220,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Elena Doe",
+      "role": "Director of IT",
+      "email": "elena@clerk.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 220 layoffs at Clerk by proposing support.",
+  "scoring_notes": "Verify Clerk mention and absence of 'bench' jargon."
+}

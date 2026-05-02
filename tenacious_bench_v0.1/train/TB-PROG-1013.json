@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1013",
+  "authoring_notes": "Programmatic variation 13 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Cloudflare",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Cloudflare demonstrates limited progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-19",
+        "laid_off_count": 133,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Sarah Garcia",
+      "role": "Engineering Manager",
+      "email": "sarah@cloudflare.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 133 layoffs at Cloudflare by proposing support.",
+  "scoring_notes": "Verify Cloudflare mention and absence of 'bench' jargon."
+}

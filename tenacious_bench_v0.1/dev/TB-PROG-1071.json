@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1071",
+  "authoring_notes": "Programmatic variation 71 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Navan",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Navan demonstrates early-stage progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-11",
+        "laid_off_count": 107,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "James Garcia",
+      "role": "VP of Engineering",
+      "email": "james@navan.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 107 layoffs at Navan by proposing support.",
+  "scoring_notes": "Verify Navan mention and absence of 'bench' jargon."
+}

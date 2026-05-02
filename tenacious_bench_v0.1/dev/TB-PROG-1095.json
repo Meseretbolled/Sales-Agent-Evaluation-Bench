@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1095",
+  "authoring_notes": "Programmatic variation 95 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Navan",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Navan demonstrates moderate progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-13",
+        "laid_off_count": 345,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Garcia",
+      "role": "Head of Platform",
+      "email": "chris@navan.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 345 layoffs at Navan by proposing support.",
+  "scoring_notes": "Verify Navan mention and absence of 'bench' jargon."
+}

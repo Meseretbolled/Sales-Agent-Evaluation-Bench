@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1047",
+  "authoring_notes": "Programmatic variation 47 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Hashicorp",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Hashicorp demonstrates advanced progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-21",
+        "laid_off_count": 96,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Garcia",
+      "role": "CTO",
+      "email": "chris@hashicorp.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 96 layoffs at Hashicorp by proposing support.",
+  "scoring_notes": "Verify Hashicorp mention and absence of 'bench' jargon."
+}

@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1015",
+  "authoring_notes": "Programmatic variation 15 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Slack",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Slack demonstrates limited progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-24",
+        "laid_off_count": 185,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Smith",
+      "role": "Director of IT",
+      "email": "chris@slack.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 185 layoffs at Slack by proposing support.",
+  "scoring_notes": "Verify Slack mention and absence of 'bench' jargon."
+}

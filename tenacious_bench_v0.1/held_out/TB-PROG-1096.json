@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1096",
+  "authoring_notes": "Programmatic variation 96 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Stripe",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Stripe demonstrates advanced progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-23",
+        "laid_off_count": 60,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "James Smith",
+      "role": "Head of Platform",
+      "email": "james@stripe.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 60 layoffs at Stripe by proposing support.",
+  "scoring_notes": "Verify Stripe mention and absence of 'bench' jargon."
+}

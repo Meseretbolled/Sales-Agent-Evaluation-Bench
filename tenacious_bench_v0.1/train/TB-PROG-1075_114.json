@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1075",
+  "authoring_notes": "Programmatic variation 75 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Vercel",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Vercel demonstrates limited progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-16",
+        "laid_off_count": 237,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Alex Garcia",
+      "role": "VP of Engineering",
+      "email": "alex@vercel.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 237 layoffs at Vercel by proposing support.",
+  "scoring_notes": "Verify Vercel mention and absence of 'bench' jargon."
+}

@@ -289,20 +289,26 @@ def judge_task(task: dict, api_key: str) -> bool:
     if not raw:
         return False
 
-coherence = result.get("coherence", 0)
-verifiability = result.get("verifiability", 0)
-rubric_clarity = result.get("rubric_clarity", 0)
+    result = parse_json_response(raw)
+    if not result:
+        return False
 
-# Explicit threshold policy (Week 11 requirement)
-accept = (
-    coherence >= 4 and
-    verifiability >= 4 and
-    rubric_clarity >= 4
-)
+    coherence = result.get("coherence", 0)
+    verifiability = result.get("verifiability", 0)
+    rubric_clarity = result.get("rubric_clarity", 0)
 
-logger.info(
-    f"Judge scores — C:{coherence} V:{verifiability} R:{rubric_clarity} → {'ACCEPT' if accept else 'REJECT'}"
-)
+    # Explicit threshold policy (Week 11 requirement)
+    accept = (
+        coherence >= 4 and
+        verifiability >= 4 and
+        rubric_clarity >= 4
+    )
+
+    logger.info(
+        f"Judge scores — C:{coherence} V:{verifiability} R:{rubric_clarity} → {'ACCEPT' if accept else 'REJECT'}"
+    )
+    return accept
+
 
 def synthesize(
     output_dir: str,

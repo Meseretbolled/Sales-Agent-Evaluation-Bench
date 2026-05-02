@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1017",
+  "authoring_notes": "Programmatic variation 17 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Vercel",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Vercel demonstrates early-stage progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-18",
+        "laid_off_count": 435,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jessica Chen",
+      "role": "VP of Engineering",
+      "email": "jessica@vercel.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 435 layoffs at Vercel by proposing support.",
+  "scoring_notes": "Verify Vercel mention and absence of 'bench' jargon."
+}

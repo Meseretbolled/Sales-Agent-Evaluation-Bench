@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1084",
+  "authoring_notes": "Programmatic variation 84 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Snowflake",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Snowflake demonstrates moderate progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-17",
+        "laid_off_count": 399,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jessica Lee",
+      "role": "Director of IT",
+      "email": "jessica@snowflake.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 399 layoffs at Snowflake by proposing support.",
+  "scoring_notes": "Verify Snowflake mention and absence of 'bench' jargon."
+}

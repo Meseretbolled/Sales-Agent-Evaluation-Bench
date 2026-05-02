@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1009",
+  "authoring_notes": "Programmatic variation 9 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Hashicorp",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Hashicorp demonstrates moderate progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-16",
+        "laid_off_count": 177,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Sarah Lee",
+      "role": "Head of Platform",
+      "email": "sarah@hashicorp.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 177 layoffs at Hashicorp by proposing support.",
+  "scoring_notes": "Verify Hashicorp mention and absence of 'bench' jargon."
+}

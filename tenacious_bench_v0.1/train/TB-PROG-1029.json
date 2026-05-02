@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1029",
+  "authoring_notes": "Programmatic variation 29 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Confluent",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Confluent demonstrates advanced progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-22",
+        "laid_off_count": 213,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Sarah Smith",
+      "role": "Engineering Manager",
+      "email": "sarah@confluent.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 213 layoffs at Confluent by proposing support.",
+  "scoring_notes": "Verify Confluent mention and absence of 'bench' jargon."
+}

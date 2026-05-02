@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1052",
+  "authoring_notes": "Programmatic variation 52 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Zoom",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Zoom demonstrates advanced progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-25",
+        "laid_off_count": 475,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Chen",
+      "role": "Head of Platform",
+      "email": "david@zoom.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 475 layoffs at Zoom by proposing support.",
+  "scoring_notes": "Verify Zoom mention and absence of 'bench' jargon."
+}

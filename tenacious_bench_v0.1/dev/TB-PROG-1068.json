@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1068",
+  "authoring_notes": "Programmatic variation 68 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Snowflake",
+      "ai_maturity": {
+        "score": 4,
+        "summary": "Snowflake demonstrates significant progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-22",
+        "laid_off_count": 272,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Elena Doe",
+      "role": "VP of Engineering",
+      "email": "elena@snowflake.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 272 layoffs at Snowflake by proposing support.",
+  "scoring_notes": "Verify Snowflake mention and absence of 'bench' jargon."
+}

@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1026",
+  "authoring_notes": "Programmatic variation 26 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Datadog",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Datadog demonstrates limited progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-19",
+        "laid_off_count": 287,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Jessica Chen",
+      "role": "VP of Engineering",
+      "email": "jessica@datadog.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 287 layoffs at Datadog by proposing support.",
+  "scoring_notes": "Verify Datadog mention and absence of 'bench' jargon."
+}

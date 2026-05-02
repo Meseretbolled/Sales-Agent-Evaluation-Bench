@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1067",
+  "authoring_notes": "Programmatic variation 67 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Mercury",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Mercury demonstrates advanced progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-21",
+        "laid_off_count": 439,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Garcia",
+      "role": "Head of Platform",
+      "email": "chris@mercury.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 439 layoffs at Mercury by proposing support.",
+  "scoring_notes": "Verify Mercury mention and absence of 'bench' jargon."
+}

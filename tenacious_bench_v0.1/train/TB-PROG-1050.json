@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1050",
+  "authoring_notes": "Programmatic variation 50 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Deel",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Deel demonstrates significant progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-25",
+        "laid_off_count": 257,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Lee",
+      "role": "Engineering Manager",
+      "email": "david@deel.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 257 layoffs at Deel by proposing support.",
+  "scoring_notes": "Verify Deel mention and absence of 'bench' jargon."
+}

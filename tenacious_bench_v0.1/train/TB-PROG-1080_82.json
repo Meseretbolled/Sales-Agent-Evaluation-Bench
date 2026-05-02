@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1080",
+  "authoring_notes": "Programmatic variation 80 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Lattice",
+      "ai_maturity": {
+        "score": 2,
+        "summary": "Lattice demonstrates advanced progress using SaaS platforms for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-12",
+        "laid_off_count": 234,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Chris Doe",
+      "role": "CTO",
+      "email": "chris@lattice.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 234 layoffs at Lattice by proposing support.",
+  "scoring_notes": "Verify Lattice mention and absence of 'bench' jargon."
+}

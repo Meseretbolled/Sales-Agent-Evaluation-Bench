@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1046",
+  "authoring_notes": "Programmatic variation 46 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Databricks",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Databricks demonstrates early-stage progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-17",
+        "laid_off_count": 342,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Elena Smith",
+      "role": "VP of Engineering",
+      "email": "elena@databricks.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 342 layoffs at Databricks by proposing support.",
+  "scoring_notes": "Verify Databricks mention and absence of 'bench' jargon."
+}

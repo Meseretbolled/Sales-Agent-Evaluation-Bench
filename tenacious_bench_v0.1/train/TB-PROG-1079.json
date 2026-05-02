@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1079",
+  "authoring_notes": "Programmatic variation 79 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Figma",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Figma demonstrates significant progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-11",
+        "laid_off_count": 154,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Taylor Lee",
+      "role": "Head of Platform",
+      "email": "taylor@figma.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 154 layoffs at Figma by proposing support.",
+  "scoring_notes": "Verify Figma mention and absence of 'bench' jargon."
+}

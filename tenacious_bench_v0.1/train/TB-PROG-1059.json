@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1059",
+  "authoring_notes": "Programmatic variation 59 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Navan",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Navan demonstrates moderate progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-16",
+        "laid_off_count": 346,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Taylor Garcia",
+      "role": "VP of Engineering",
+      "email": "taylor@navan.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 346 layoffs at Navan by proposing support.",
+  "scoring_notes": "Verify Navan mention and absence of 'bench' jargon."
+}

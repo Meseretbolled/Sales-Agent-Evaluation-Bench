@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1096",
+  "authoring_notes": "Programmatic variation 96 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Brex",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Brex demonstrates early-stage progress using custom ML models for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-16",
+        "laid_off_count": 305,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Garcia",
+      "role": "Head of Platform",
+      "email": "david@brex.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 305 layoffs at Brex by proposing support.",
+  "scoring_notes": "Verify Brex mention and absence of 'bench' jargon."
+}

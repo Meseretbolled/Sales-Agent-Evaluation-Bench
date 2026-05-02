@@ -14,7 +14,7 @@
   "input": {
     "hiring_signal_brief": {
       "company": "Perplexity",
-      "generated_at": "2026-04-29T16:10:16Z",
+      "generated_at": "2026-05-01T18:56:36Z",
       "layoff_signal": {
         "within_120_days": false,
         "confidence": "low"
@@ -53,10 +53,10 @@
       "fullstack_nestjs": 2
     },
     "prospect_context": {
-      "name": "Sarah Kim",
+      "name": "David Park",
       "title": "CTO",
       "company": "Perplexity",
-      "email": "sarah.kim@perplexity.com"
+      "email": "david.park@perplexity.com"
     },
     "conversation_history": []
   },

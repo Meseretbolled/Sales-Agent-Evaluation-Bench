@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1058",
+  "authoring_notes": "Programmatic variation 58 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Confluent",
+      "ai_maturity": {
+        "score": 3,
+        "summary": "Confluent demonstrates significant progress using internal tools for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-20",
+        "laid_off_count": 415,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "Alex Smith",
+      "role": "CTO",
+      "email": "alex@confluent.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 415 layoffs at Confluent by proposing support.",
+  "scoring_notes": "Verify Confluent mention and absence of 'bench' jargon."
+}

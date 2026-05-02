@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1075",
+  "authoring_notes": "Programmatic variation 75 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Checkr",
+      "ai_maturity": {
+        "score": 5,
+        "summary": "Checkr demonstrates limited progress using legacy systems for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-19",
+        "laid_off_count": 222,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "James Garcia",
+      "role": "Director of IT",
+      "email": "james@checkr.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 222 layoffs at Checkr by proposing support.",
+  "scoring_notes": "Verify Checkr mention and absence of 'bench' jargon."
+}

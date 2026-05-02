@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1095",
+  "authoring_notes": "Programmatic variation 95 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Slack",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Slack demonstrates limited progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-11",
+        "laid_off_count": 373,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Smith",
+      "role": "Engineering Manager",
+      "email": "david@slack.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 373 layoffs at Slack by proposing support.",
+  "scoring_notes": "Verify Slack mention and absence of 'bench' jargon."
+}

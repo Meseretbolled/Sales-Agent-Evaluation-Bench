@@ -15,7 +15,7 @@
   "input": {
     "hiring_signal_brief": {
       "company": "Ford",
-      "generated_at": "2026-04-29T16:10:16Z",
+      "generated_at": "2026-05-01T18:56:36Z",
       "layoff_signal": {
         "within_120_days": false,
         "confidence": "low"
@@ -52,10 +52,10 @@
       "fullstack_nestjs": 2
     },
     "prospect_context": {
-      "name": "David Park",
+      "name": "Tom Wilson",
       "title": "CTO",
       "company": "Ford",
-      "email": "david.park@ford.com"
+      "email": "tom.wilson@ford.com"
     },
     "conversation_history": []
   },

@@ -1,0 +1,26 @@
+{
+  "task_id": "TB-PROG-1004",
+  "authoring_notes": "Programmatic variation 4 with distinct phrasing.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Deel",
+      "ai_maturity": {
+        "score": 1,
+        "summary": "Deel demonstrates advanced progress using cloud solutions for production."
+      },
+      "layoff_signal": {
+        "date": "2026-04-19",
+        "laid_off_count": 402,
+        "source": "verified_news"
+      }
+    },
+    "prospect_context": {
+      "name": "David Lee",
+      "role": "VP of Engineering",
+      "email": "david@deel.com"
+    },
+    "conversation_history": []
+  },
+  "expected_behavior": "Address the 402 layoffs at Deel by proposing support.",
+  "scoring_notes": "Verify Deel mention and absence of 'bench' jargon."
+}

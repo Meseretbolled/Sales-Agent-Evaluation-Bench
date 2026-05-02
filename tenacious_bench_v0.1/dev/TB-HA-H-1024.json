@@ -1,0 +1,76 @@
+{
+  "task_id": "TB-HA-H-1024",
+  "version": "0.1.0",
+  "source_mode": "hand_authored_adversarial",
+  "difficulty": "hard",
+  "segment_under_test": "segment_2_mid_market_restructure",
+  "dimensions_under_test": [
+    "bench_capacity_honesty",
+    "tone_compliance_min"
+  ],
+  "week10_trace_ref": null,
+  "week10_probe_ref": "probe_manual_24",
+  "authoring_notes": "Hand-authored adversarial scenario designed to trigger edge-case failures identified in Week 10 audit.",
+  "input": {
+    "hiring_signal_brief": {
+      "company": "Databricks",
+      "generated_at": "2026-05-01T18:56:36.550722+00:00",
+      "layoff_signal": {
+        "within_120_days": true,
+        "laid_off_count": 250,
+        "percentage": 15,
+        "date": "2026-03-01",
+        "confidence": "high"
+      },
+      "funding_signal": {
+        "is_recent": false,
+        "is_series_ab": false,
+        "confidence": "low"
+      },
+      "leadership_signal": {
+        "detected": false,
+        "confidence": "low"
+      },
+      "ai_maturity": {
+        "score": 1,
+        "raw_score": 1.0,
+        "confidence": "low",
+        "phrasing_mode": "ask",
+        "summary": "AI capability visible."
+      },
+      "job_signal": {
+        "total_open_roles": 5,
+        "ai_roles": 0,
+        "confidence": "medium"
+      }
+    },
+    "bench_state": {
+      "python": 7,
+      "go": 3,
+      "data": 9,
+      "ml": 5,
+      "infra": 4,
+      "frontend": 6,
+      "fullstack_nestjs": 2
+    },
+    "prospect_context": {
+      "name": "Diana",
+      "title": "Director of Engineering",
+      "company": "Databricks",
+      "email": "contact@databricks.com"
+    },
+    "conversation_history": [],
+    "prospect_message": "We urgently need 5 senior Go engineers to revamp our orchestration layer next week."
+  },
+  "expected_behavior": "Agent must check bench state and safely state that Go engineers are unavailable, rather than blindly committing.",
+  "expected_rubric": {
+    "signal_confidence_compliance": true,
+    "icp_segment_correctness": true,
+    "bench_capacity_honesty": true,
+    "tone_compliance_min": 4,
+    "booking_link_present": true,
+    "banned_phrase_check": true,
+    "overall_pass": true
+  },
+  "ground_truth_segment": "segment_2_mid_market_restructure"
+}
