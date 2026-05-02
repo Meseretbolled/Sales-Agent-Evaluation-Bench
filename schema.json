@@ -1,0 +1,236 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tenacious-Bench Task Schema v0.1",
+  "description": "Schema for every evaluation task in the Tenacious Sales Agent Evaluation Benchmark. Each task is a structured (input, expected_behavior, scoring_rubric) triple anchored to Tenacious-specific failure modes from the Week 10 probe library and failure taxonomy.",
+  "type": "object",
+  "required": [
+    "task_id",
+    "source_mode",
+    "icp_segment",
+    "difficulty",
+    "input",
+    "expected_behavior",
+    "scoring_notes"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "description": "Unique task identifier. Format encodes source mode and sequence.",
+      "examples": ["TB-TR-H-001", "TB-PR-M-P9-02", "TB-SY-H-1028", "TB-HA-H-1001", "TB-PROG-1047"]
+    },
+    "source_mode": {
+      "type": "string",
+      "enum": ["trace_derived", "probe_expanded", "llm_synthesized", "hand_authored", "programmatic"],
+      "description": "How this task was authored. trace_derived = from Week 10 trace_log.jsonl; probe_expanded = expanded from probe_library.md; llm_synthesized = multi-LLM synthesis pipeline; hand_authored = written by trainee; programmatic = parameter sweep."
+    },
+    "partition": {
+      "type": "string",
+      "enum": ["train", "dev", "held_out"],
+      "description": "Dataset split. train=50% (SFT/DPO training). dev=30% (public development). held_out=20% (sealed final evaluation). Held-out partition is gitignored from training scripts."
+    },
+    "icp_segment": {
+      "type": "string",
+      "enum": [
+        "segment_1_series_a_b",
+        "segment_2_mid_market_restructure",
+        "segment_3_leadership_transition",
+        "segment_4_specialized_capability",
+        "abstain"
+      ],
+      "description": "Tenacious ICP segment. 'abstain' means all signals are below confidence threshold — agent must not pitch any segment."
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["easy", "medium", "hard"],
+      "description": "Task difficulty. Hard tasks typically involve conflicting signals, near-miss capacity requests, or adversarial tone traps."
+    },
+    "authoring_notes": {
+      "type": "string",
+      "description": "Notes on how this task was created. Required for hand_authored tasks. Optional for others."
+    },
+    "input": {
+      "type": "object",
+      "required": ["hiring_signal_brief", "prospect_context"],
+      "description": "The full context passed to the agent.",
+      "properties": {
+        "hiring_signal_brief": {
+          "type": "object",
+          "description": "Structured hiring signal brief produced by the Week 10 conversion engine enrichment layer.",
+          "required": ["company"],
+          "properties": {
+            "company": {"type": "string"},
+            "generated_at": {"type": "string", "format": "date-time"},
+            "layoff_signal": {
+              "type": "object",
+              "properties": {
+                "within_120_days": {"type": "boolean"},
+                "laid_off_count": {"type": ["integer", "null"]},
+                "percentage": {"type": ["number", "null"]},
+                "date": {"type": ["string", "null"]},
+                "confidence": {"type": "string", "enum": ["high", "medium", "low"]}
+              }
+            },
+            "funding_signal": {
+              "type": "object",
+              "properties": {
+                "is_recent": {"type": "boolean"},
+                "is_series_ab": {"type": "boolean"},
+                "funding_type": {"type": ["string", "null"]},
+                "days_since_funding": {"type": ["integer", "null"]},
+                "confidence": {"type": "string", "enum": ["high", "medium", "low"]}
+              }
+            },
+            "leadership_signal": {
+              "type": "object",
+              "properties": {
+                "detected": {"type": "boolean"},
+                "title": {"type": ["string", "null"]},
+                "within_90_days": {"type": ["boolean", "null"]},
+                "days_since_appointment": {"type": ["integer", "null"]},
+                "confidence": {"type": "string", "enum": ["high", "medium", "low"]}
+              }
+            },
+            "ai_maturity": {
+              "type": "object",
+              "properties": {
+                "score": {"type": "integer", "minimum": 0, "maximum": 3},
+                "raw_score": {"type": "number"},
+                "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
+                "phrasing_mode": {
+                  "type": "string",
+                  "enum": ["assert", "observe", "ask", "omit"],
+                  "description": "How the agent should phrase AI maturity claims. Derived from score + confidence."
+                },
+                "summary": {"type": "string"}
+              }
+            },
+            "bench_state": {
+              "type": "object",
+              "description": "Available engineering capacity at task generation time, from bench_summary.json.",
+              "properties": {
+                "python": {"type": "integer"},
+                "go": {"type": "integer"},
+                "data": {"type": "integer"},
+                "ml": {"type": "integer"},
+                "infra": {"type": "integer"},
+                "frontend": {"type": "integer"},
+                "fullstack_nestjs": {"type": "integer"}
+              }
+            },
+            "icp_segment": {
+              "type": "string",
+              "description": "ICP segment assigned by the Week 10 ICP classifier."
+            },
+            "icp_confidence": {
+              "type": "string",
+              "enum": ["high", "medium", "low"]
+            }
+          }
+        },
+        "prospect_context": {
+          "type": "object",
+          "required": ["name", "role"],
+          "properties": {
+            "name": {"type": "string"},
+            "role": {"type": "string", "enum": ["CTO", "VP_Engineering", "Engineering_Director", "Founder_CEO", "COO"]},
+            "email": {"type": "string", "format": "email"},
+            "company_stage": {"type": "string"}
+          }
+        },
+        "conversation_history": {
+          "type": "array",
+          "description": "For warm-reply and re-engagement tasks: the prior message thread.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {"type": "string", "enum": ["agent", "prospect"]},
+              "content": {"type": "string"}
+            }
+          }
+        },
+        "capacity_request": {
+          "type": ["object", "null"],
+          "description": "If the prospect has requested specific headcount, the structured request. Used to test BCH dimension.",
+          "properties": {
+            "stack": {"type": "string"},
+            "count": {"type": "integer"},
+            "level": {"type": "string", "enum": ["senior", "mid", "junior"]}
+          }
+        }
+      }
+    },
+    "expected_behavior": {
+      "type": "string",
+      "description": "Natural language description of what a correct output must do. Written to be unambiguous enough to score manually and as a judge prompt anchor."
+    },
+    "scoring_notes": {
+      "type": "string",
+      "description": "Dimension-specific notes for the scoring evaluator. Calls out the specific pass/fail condition for each dimension relevant to this task."
+    },
+    "rubric": {
+      "type": "object",
+      "description": "Explicit rubric overrides for this task. If a dimension is absent here, the evaluator uses the default rule from scoring_evaluator.py.",
+      "properties": {
+        "signal_confidence_compliance": {
+          "type": "object",
+          "properties": {
+            "required_phrasing_mode": {"type": "string", "enum": ["assert", "observe", "ask", "omit"]},
+            "required_signal_references": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "At least one of these tokens must appear in the output."
+            }
+          }
+        },
+        "bench_capacity_honesty": {
+          "type": "object",
+          "properties": {
+            "max_commitments": {
+              "type": "object",
+              "description": "Maximum headcount the agent may commit by stack.",
+              "additionalProperties": {"type": "integer"}
+            },
+            "routing_required": {
+              "type": "boolean",
+              "description": "True if the correct answer is to route to a human rather than commit capacity."
+            }
+          }
+        },
+        "icp_segment_correctness": {
+          "type": "object",
+          "properties": {
+            "required_keywords": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "forbidden_keywords": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "For abstain tasks: words that indicate the agent wrongly pitched a segment."
+            }
+          }
+        }
+      }
+    },
+    "contamination_metadata": {
+      "type": "object",
+      "properties": {
+        "ngram_checked": {"type": "boolean"},
+        "embedding_checked": {"type": "boolean"},
+        "time_shift_verified": {"type": "boolean"},
+        "week10_trace_id": {"type": ["string", "null"]},
+        "probe_id": {"type": ["string", "null"]},
+        "authored_by_model": {"type": ["string", "null"]},
+        "judge_model": {"type": ["string", "null"]},
+        "judge_scores": {
+          "type": "object",
+          "properties": {
+            "input_coherence": {"type": "number"},
+            "ground_truth_verifiability": {"type": "number"},
+            "rubric_clarity": {"type": "number"}
+          }
+        }
+      }
+    }
+  }
+}
