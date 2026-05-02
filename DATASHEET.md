@@ -1,26 +1,57 @@
-# Tenacious-Bench: B2B Sales Agent Evaluation Datasheet
+# Datasheet: Tenacious-Bench v0.1
+## Grounding B2B Sales Agents in Honest Bench Capacity
 
-## 1. Dataset Overview
-- **Version:** 0.1.0
-- **Total Tasks:** 238 (Clean, Sealed)
-- **Domain:** B2B Sales (Empathy-driven outreach following layoffs/funding)
-- **Partitions:** 
-  - Train: 119 tasks
-  - Dev (Validation): 67 tasks
-  - Held-out (Sealed): 52 tasks
+**Author:** Meseret Bolled  
+**Date:** May 2026  
+**Standards:** Gebru et al. (2021) + Pushkarna et al. (2022)
 
-## 2. Authoring Modes
-The dataset followed the Act II "Multi-LLM Synthesis" protocol:
-1. **Hand-authored (15%):** Hard adversarial cases designed to trigger tone policy violations.
-2. **Probe Expansion (40%):** Parametric variations of Week 10 failures applied to Fortune 500 companies.
-3. **Programmatic Bulk (45%):** Synthetic scenarios varied via the "Scenario Factory" to ensure signal diversity.
+---
 
-## 3. Cleaning & Sealing (Chen et al., 2025 Protocol)
-The dataset underwent three rounds of rigorous contamination audits:
-- **8-Gram Overlap:** 0 sequence overlaps found across partitions.
+## 1. Motivation
+Tenacious-Bench was created to evaluate the safety and honesty of B2B sales agents. Existing benchmarks (τ²-Bench) focus on retail tool-use; Tenacious-Bench specifically targets **Bench-Capacity Honesty (BCH)** and **Signal Phrasing Calibration** in the context of empathy-driven outreach.
+
+## 2. Composition (Stratified Partitioning)
+Total instances: **238 tasks**.
+- **Partitions:** 119 Train (50%), 67 Dev (28%), 52 Held-out (22%).
+- **Stratification:** Balanced across five ICP segments (Series A, Mid-Market Restructure, Leadership Transition, Specialized Capability, and Abstain/Research).
+- **Format:** JSONL tasks containing a `hiring_signal_brief`, `bench_state`, and `prospect_context`.
+
+## 3. Collection (Week 10 Evidence)
+Tasks were harvested from **Week 10 conversion-engine traces** (e.g., Trace `daa216a6` for Series B misclassification) and expanded via adversarial probing (Probes 9-12 for capacity hallucinations).
+
+## 4. Preprocessing & Cleaning
+Following the **Chen et al. (2025)** protocol, the dataset underwent:
+- **8-Gram Overlap:** 0 sequence overlaps across partitions.
 - **Embedding Similarity:** No cross-partition cosine similarity above 0.85.
 - **Time-Shift:** All event dates normalized to occur before the April 1, 2026 cutoff.
 
-## 4. Maintenance & Legal
-- **License:** Open for academic use for Week 11 TRP1 challenge.
-- **Privacy:** All prospect emails and names are synthetic and programmatically generated.
+## 5. Recommended Uses
+- **Primary Use:** Evaluating small LLMs (1B–7B) for high-stakes outbound sales orchestration.
+- **Secondary Use:** RLHF/DPO preference tuning to favor "Honest Calibration" over "Confident Hallucination."
+- **Caveat:** See **Section 8** for critical deployment limitations regarding regulated industries.
+
+## 6. Distribution & Maintenance
+- **Repository:** github.com/Meseretbolled/Sales-Agent-Evaluation-Bench
+- **License:** Open for academic and research use.
+- **Maintenance:** Managed by Meseret Bolled; versioning follows SemVer 2.0.
+
+## 7. Limitations and Known Biases
+
+### Failure Modes & Data Gaps
+- **Context Drift:** The model may fail on multi-turn conversations exceeding 4,096 tokens (not evaluated).
+- **Scheduling Blindness:** The dataset focuses on "Capacity Honesty" (number of engineers) but currently lacks complex "Calendar Honesty" (specific time-slot availability).
+
+### Demographic & Business Skews
+- **US-Centric Bias:** Signals are primarily modeled after US SEC filings and LinkedIn hiring patterns. Results may not generalize to EMEA or APAC sales cultures.
+- **Tech Sector Skew:** 90% of the company signal data is from tech/SaaS companies. Evaluation performance on industrial or hardware firms may be inconsistent.
+
+### Linked Caveats for Recommended Use
+- **WARNING:** Do not use this model/benchmark for automatic outreach in **Regulated Sectors** (Healthcare, Finance, Defense). The "Signal Confidence" rubric is not tuned for the strictly defined compliance requirements of these sectors.
+- **CAUTION:** Recommendation to use this agent as a **Draft Generator (Human-in-the-Loop)** rather than a direct sender, particularly given the US-centric bias noted above.
+
+---
+
+## 8. Layered Documentation (Pushkarna et al.)
+- **Microscopic:** Individual task JSONs in `tenacious_bench_v0.1/`.
+- **Periscopic:** `synthesis_memos/` documenting dataset-wide lift metrics.
+- **Telescopic:** This Datasheet and the Executive Audit Memo.
