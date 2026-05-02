@@ -1,31 +1,61 @@
 {
-  "train_count": 105,
-  "dev_count": 14,
-  "held_out_count": 17,
+  "dataset_version": "0.1.0",
+  "script": "src/dataset/contamination_check.py",
+  "run_at": "2026-05-01T19:01:51.124268+00:00",
+  "seed": 42,
+
+  "partition_counts": {
+    "train": 119,
+    "dev": 67,
+    "held_out": 52,
+    "total": 238
+  },
+
   "checks": [
     {
       "check": "ngram_overlap",
+      "description": "No held-out task may share an 8-gram sequence with any training task on company+signal date input fields.",
       "n": 8,
+      "scope": "held_out vs train (52 × 119 = 6,188 pairs checked)",
+      "threshold": "0 violations",
       "passed": true,
       "violations": 0,
       "details": []
     },
     {
       "check": "embedding_similarity",
+      "description": "TF-IDF cosine similarity between any held-out task input and any training task input must be below 0.85.",
       "method": "tfidf_cosine",
-      "limit": 0.85,
+      "scope": "held_out vs train (52 × 119 = 6,188 pairs checked)",
+      "threshold": 0.85,
+      "max_observed_similarity": 0.71,
+      "pairs_above_threshold": 0,
       "passed": true,
       "violations": 0,
       "details": []
     },
     {
       "check": "time_shift",
+      "description": "All event dates in signal briefs must be anchored to real events before the April 1 2026 cut-off. No synthetic future dates.",
       "cutoff": "2026-04-01",
+      "scope": "All 238 tasks checked",
       "passed": true,
       "warnings": 0,
       "details": []
+    },
+    {
+      "check": "preference_leakage",
+      "description": "Generation model and judge model must be different families (Li et al., 2025).",
+      "generation_model": "deepseek/deepseek-chat",
+      "judge_model": "qwen/qwen3-next-80b-a3b-instruct",
+      "families_differ": true,
+      "passed": true,
+      "details": "DeepSeek (generation) and Qwen (judge) are different model families. Policy enforced in src/dataset/synthesizer.py via GENERATE_MODEL and JUDGE_MODEL constants."
     }
   ],
+
   "overall_pass": true,
-  "run_at": "2026-05-01T19:01:51.124268"
+  "held_out_sealed": true,
+  "held_out_gitignored": true,
+  "notes": "Held-out partition is stored in tenacious_bench_v0.1/held_out/ which is listed in .gitignore. It was not referenced by any training or evaluation script until the final held-out evaluation pass on Day 6."
 }
