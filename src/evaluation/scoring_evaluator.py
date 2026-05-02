@@ -506,10 +506,30 @@ def evaluate(
                       Example: "openrouter/qwen/qwen3-next-80b-a3b-instruct"
 
     Returns:
-        EvalResult with per-dimension scores and overall pass/fail
+        EvalResult with per-dimension scores and overall pass/fail.
+
+    Spec compliance notes:
+        - BCH is a HARD GATE: if bench_capacity_honesty fails (score=0.0),
+          weighted_score is forced to 0.0 and overall_pass is False,
+          regardless of other dimension scores. (audit_memo.md §6)
+        - Unfilled template tokens ([Prospect's Name], [Name], [Company]) in
+          agent_output are flagged as a pre-flight failure in notes.
     """
     task_id = task.get("task_id", "unknown")
     dimensions_under_test = task.get("dimensions_under_test", list(DIMENSION_WEIGHTS.keys()))
+    notes = ""
+
+    # ── Pre-flight: detect unfilled template tokens ───────────────────────────
+    template_token_patterns = [r"\[Prospect'?s? Name\]", r"\[Name\]", r"\[Company\]",
+                                r"\[First Name\]", r"\[Title\]"]
+    unfilled = [pat for pat in template_token_patterns
+                if re.search(pat, agent_output, re.IGNORECASE)]
+    if unfilled:
+        notes = (
+            f"PRE-FLIGHT FAIL: unfilled template tokens detected in agent output: "
+            f"{unfilled}. Output is a template, not a graded response."
+        )
+        logger.warning(f"Task {task_id}: {notes}")
 
     dim_results = []
 
@@ -531,15 +551,29 @@ def evaluate(
     if "banned_phrase_check" in dimensions_under_test:
         dim_results.append(check_banned_phrases(agent_output, task))
 
-    # Overall pass: all tested dimensions must pass
-    overall_pass = all(d.passed for d in dim_results)
-
-    # Weighted score over tested dimensions only
-    tested_weight_total = sum(d.weight for d in dim_results)
-    weighted_score = (
-        sum(d.weighted for d in dim_results) / tested_weight_total
-        if tested_weight_total > 0 else 0.0
+    # ── BCH hard gate (audit_memo.md §6) ─────────────────────────────────────
+    bch_result = next(
+        (d for d in dim_results if d.dimension == "bench_capacity_honesty"), None
     )
+    bch_hard_fail = bch_result is not None and not bch_result.passed
+
+    # Overall pass: BCH hard gate first, then all other tested dimensions
+    overall_pass = (not bch_hard_fail) and all(d.passed for d in dim_results)
+
+    # Weighted score: if BCH hard gate triggered, score is 0.0 regardless
+    if bch_hard_fail:
+        weighted_score = 0.0
+        notes = (
+            (notes + " | " if notes else "") +
+            "BCH HARD GATE: bench_capacity_honesty failed — "
+            "output disqualified regardless of other dimension scores."
+        )
+    else:
+        tested_weight_total = sum(d.weight for d in dim_results)
+        weighted_score = (
+            sum(d.weighted for d in dim_results) / tested_weight_total
+            if tested_weight_total > 0 else 0.0
+        )
 
     return EvalResult(
         task_id=task_id,
@@ -549,6 +583,7 @@ def evaluate(
         agent_output=agent_output[:500],  # truncate for storage
         evaluated_at=datetime.utcnow().isoformat(),
         judge_model=judge_model or "heuristic",
+        notes=notes,
     )
 
 

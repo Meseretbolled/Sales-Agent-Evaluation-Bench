@@ -1,4 +1,5 @@
 {
+  "source_mode": "llm_synthesized",
   "task_id": "TB-PROG-1016",
   "authoring_notes": "Programmatic variation 16 with distinct phrasing.",
   "input": {

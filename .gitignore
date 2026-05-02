@@ -24,6 +24,7 @@ wheels/
 .installed.cfg
 *.egg
 venv/
+.venv/
 
 # OS junk
 .DS_Store
@@ -32,5 +33,14 @@ Thumbs.db
 # Project temporary
 backups/
 *.zip
-*.log
 temp/
+
+# Tenacious-Bench: sealed held-out partition
+# Per spec: "held-out is in a separate file, gitignored from training scripts,
+# and not committed in unencrypted form to the public repo."
+# Release only after leaderboard publication.
+tenacious_bench_v0.1/held_out/
+
+# Training outputs (large binary checkpoints — only the HF adapter is public)
+outputs/
+training/checkpoints/

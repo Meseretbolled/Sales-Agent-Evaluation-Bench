@@ -57,7 +57,7 @@ def train():
     dpo_config = DPOConfig(
         output_dir=OUTPUT_DIR,
         beta=0.1,  # Standard DPO temperature
-        learning_rate=5e-5,
+        learning_rate=1e-4,
         per_device_train_batch_size=2,
         gradient_accumulation_steps=4,
         max_prompt_length=512,
@@ -79,7 +79,6 @@ def train():
         model=model,
         ref_model=None,  # DPOTrainer will handle reference model if passed None
         args=dpo_config,
-        beta=0.1,
         train_dataset=dataset["train"],
         eval_dataset=dataset["test"],
         tokenizer=tokenizer,
@@ -88,7 +87,9 @@ def train():
 
     # 7. Start Training
     print("Starting DPO training...")
-    trainer.train()
+    train_result = trainer.train()
+    trainer.log_metrics("train", train_result.metrics)
+    trainer.save_metrics("train", train_result.metrics)
 
     # 8. Save final LoRA Adapter
     print(f"Saving final adapter to {OUTPUT_DIR}...")

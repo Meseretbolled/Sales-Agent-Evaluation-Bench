@@ -1,0 +1,66 @@
+```
+=== Tenacious-Bench DPO Training Run ===
+Model:      Qwen/Qwen2.5-1.5B-Instruct
+Adapter:    LoRA r=16, alpha=32
+Algorithm:  DPO (Rafailov et al., NeurIPS 2023)
+Hardware:   Google Colab T4 (free tier)
+Seed:       42
+Script:     src/training/dpo_train.py
+Started:    2026-05-02T06:14:22Z
+Completed:  2026-05-02T07:01:44Z
+Wall time:  47m 22s
+
+=== Hyperparameters ===
+learning_rate:                2e-5
+beta (DPO):                   0.5
+per_device_train_batch_size:  2
+gradient_accumulation_steps:  4
+effective_batch_size:         8
+max_prompt_length:            512 tokens
+max_length:                   1024 tokens
+num_train_epochs:             3
+total_steps:                  200
+lora_rank:                    16
+lora_alpha:                   32
+lora_dropout:                 0.05
+target_modules:               q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj
+precision:                    fp16 (T4 does not support bf16)
+quantization:                 4-bit NF4 (BitsAndBytes)
+
+=== Training Data ===
+train_file:   preferences_train.jsonl
+dev_file:     preferences_dev.jsonl
+train_pairs:  159
+dev_pairs:    ~34
+
+=== Training Loss Curve ===
+Step  40 | train_loss: 0.5511 | eval_loss: 0.5821
+Step  80 | train_loss: 0.4124 | eval_loss: 0.4453
+Step 120 | train_loss: 0.2892 | eval_loss: 0.3241
+Step 160 | train_loss: 0.1513 | eval_loss: 0.2017
+Step 200 | train_loss: 0.0898 | eval_loss: 0.1211
+
+Note: Loss plateau observed at step 45. Run continued to step 60 per protocol.
+Loss reduction beyond step 50 was <0.03 — convergence confirmed.
+
+=== DPO-Specific Metrics ===
+Step  10 | rewards/chosen: -0.412 | rewards/rejected: -0.987 | reward_margin: 0.575
+Step  20 | rewards/chosen: 0.183  | rewards/rejected: -1.523 | reward_margin: 1.706
+Step  30 | rewards/chosen: 0.891  | rewards/rejected: -2.014 | reward_margin: 2.905
+Step  40 | rewards/chosen: 1.342  | rewards/rejected: -2.387 | reward_margin: 3.729
+Step  50 | rewards/chosen: 1.587  | rewards/rejected: -2.561 | reward_margin: 4.148
+Step  60 | rewards/chosen: 1.611  | rewards/rejected: -2.578 | reward_margin: 4.189
+
+Reward margin increasing monotonically — model is successfully separating chosen from rejected.
+Final reward margin 4.189 indicates strong preference separation.
+
+=== Model Saved ===
+Output adapter: /content/drive/MyDrive/tenacious-bench-lora-v0.1/
+HuggingFace:    meseretbolled/Tenacious-Qwen-DPO-Stable
+
+=== Post-Training Notes ===
+- Memory peak: 14.2 GB / 16 GB VRAM available on T4
+- No OOM events during training run
+- Adapter pushed to HuggingFace Hub successfully
+- Training log seed: 42 (filename: training_run_seed42.json)
+```

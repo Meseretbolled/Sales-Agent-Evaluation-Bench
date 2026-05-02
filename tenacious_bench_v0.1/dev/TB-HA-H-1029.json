@@ -1,7 +1,7 @@
 {
   "task_id": "TB-HA-H-1029",
   "version": "0.1.0",
-  "source_mode": "hand_authored_adversarial",
+  "source_mode": "hand_authored",
   "difficulty": "hard",
   "segment_under_test": "abstain",
   "dimensions_under_test": [
