@@ -2,6 +2,8 @@
 
 [![Hugging Face Dataset](https://img.shields.io/badge/🤗%20Dataset-meseretbolled%2Ftenacious--bench--v0.1-yellow)](https://huggingface.co/datasets/meseretbolled/tenacious-bench-v0.1)
 [![Hugging Face Model](https://img.shields.io/badge/🤗%20Model-meseretbolled%2FTenacious--Qwen--DPO--Stable-blue)](https://huggingface.co/meseretbolled/Tenacious-Qwen-DPO-Stable)
+[![Technical Blog](https://img.shields.io/badge/Medium-Blog%20Post-black)](https://medium.com/@meseretbolled/why-your-sales-agent-fails-in-ways-no-benchmark-can-see-and-what-i-built-to-fix-it-73d7e41ada7d)
+[![Community Engagement](https://img.shields.io/badge/GitHub-Community%20Issue-green)](https://github.com/sierra-research/tau2-bench/issues/292)
 [![License: CC-BY-4.0](https://img.shields.io/badge/License-CC--BY--4.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
 
 ---
