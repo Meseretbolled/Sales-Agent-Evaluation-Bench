@@ -79,7 +79,7 @@ The following failures were observed in the Week 10 conversion engine trace log 
 
 ---
 
-## 5. The Five Scoring Dimensions
+## 5. The Six Scoring Dimensions
 
 From the three gap findings above, Tenacious-Bench v0.1 covers six scoring dimensions:
 

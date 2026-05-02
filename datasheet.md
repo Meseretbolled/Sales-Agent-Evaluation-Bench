@@ -170,7 +170,26 @@ Yes. v0.1.0 will remain available on HuggingFace under a versioned tag after v0.
 238 B2B sales agent evaluation tasks covering 5 ICP segments, 4 authoring modes, and 6 scoring dimensions. Built from Week 10 conversion engine traces and the Tenacious probe library. Released CC-BY-4.0.
 
 ### Periscopic (medium detail)
-Tasks are structured as (hiring_signal_brief, prospect_context, expected_behavior, scoring_notes) triples. Signal briefs are grounded in real public company events with synthetic prospect contacts. Scoring is machine-verifiable on 5 of 6 dimensions; tone compliance uses an LLM judge from a different model family. Inter-rater agreement: Cohen's Kappa 0.80 overall.
+Tasks are structured as (hiring_signal_brief, prospect_context, expected_behavior, scoring_notes) triples. Signal briefs are grounded in real public company events with synthetic prospect contacts. Scoring is machine-verifiable on 5 of 6 dimensions; tone compliance uses an LLM judge from a different model family than the agent under evaluation. Inter-rater agreement: Cohen's Kappa 0.80 overall.
 
 ### Microscopic (full detail)
 See schema.json for the complete JSON schema. See src/evaluation/scoring_evaluator.py for the exact scoring implementation. See contamination_report.json for the three-check contamination audit results. See inter_rater_agreement.md for per-dimension Kappa values and rubric amendments.
+
+---
+
+## Section 8: Limitations and Known Biases
+
+**What are the known failure modes of the dataset?**
+* **Context Drift in Multi-Turn Conversations:** The dataset currently focuses on the first 1-3 turns of outreach. It does not comprehensively measure "Context Drift" or "Tone Mirroring" failure modes (e.g., Probes 13–15) observed in Week 10 traces.
+* **Scheduling Logic:** While "Bench Capacity" is a hard gate, the dataset lacks complexity in "Holiday Conflict" and "Timezone Overlap" (Probes 22–24) which are prominent in international B2B sales.
+* **Regulated Sector Knowledge:** The agent's knowledge of medical (Probe 23) and legal (Probe 21) compliance is limited to "human handoff" triggers and should not be used as a source of truth for these domains.
+
+**What are the known biases?**
+* **Demographic Skew:** Most company signals are derived from US-centric tech hubs (Silicon Valley, NY) and East African hubs (Addis Ababa). Outreach to the EU or APAC regions may suffer from tone-mismatch due to different cultural norms in professional emails.
+* **Business Type Bias:** The ICP rules are strictly optimized for Tier 1 Enterprise Engineering Leaders. The "Grounded" tone might be perceived as overly formal for B2C or high-volume small-business sales.
+
+**Link back to Recommended Uses:**
+These limitations mirror the caveats in **Section 5**. Specifically:
+1. Because of the **Regulated Sector Gaps**, the dataset should **NOT** be used to train agents for final contract negotiations or legal advisory.
+2. Because of the **Context Drift limitation**, models evaluated here should only be deployed for **initial outreach drafting**, with a human-in-the-loop for long-running thread management.
+3. Because of the **Demographic Skew**, agents should be re-calibrated against a localized voice-guide before being used in non-US/non-East African markets.
