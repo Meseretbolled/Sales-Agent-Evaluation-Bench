@@ -1,5 +1,5 @@
 {
-  "source_mode": "llm_synthesized",
+  "source_mode": "programmatic",
   "task_id": "TB-PROG-1080",
   "authoring_notes": "Programmatic variation 80 with distinct phrasing.",
   "input": {
