@@ -166,7 +166,13 @@ Source: [github.com/Meseretbolled/conversion-engine](https://github.com/Meseretb
 - [x] Act II — 238 tasks, contamination checks, partitioned, datasheet
 - [x] Act III — Path B declared, 159 DPO pairs, methodology_rationale
 - [x] Act IV — DPO training on Colab T4, Delta A +0.1904 (p=0.0000)
-- [x] Act V — Model on HuggingFace, community engagement (τ²-Bench issue)
+- [x] Act V — Model on HuggingFace, community engagement (τ²-Bench issue), blog post published
+
+---
+
+## Blog Post
+
+[Why Your Sales Agent Fails in Ways No Benchmark Can See — And What I Built to Fix It](https://medium.com/@meseretbolled/why-your-sales-agent-fails-in-ways-no-benchmark-can-see-and-what-i-built-to-fix-it-73d7e41ada7d)
 
 ---
 
