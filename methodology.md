@@ -11,7 +11,7 @@
 
 **Chosen path: Path B — DPO/SimPO preference-tuned judge or critic**
 
-**Backbone:** Qwen/Qwen2.5-1.5B-Instruct  
+**Backbone:** unsloth/Qwen3-1.7B (fp16, 16-bit LoRA — QLoRA 4-bit not used per spec)  
 **Algorithm:** Direct Preference Optimization (DPO) as defined in **Rafailov et al. (§3.2, 2023)**.  
 
 ---
