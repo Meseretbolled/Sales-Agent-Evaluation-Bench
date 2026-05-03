@@ -33,6 +33,7 @@ traces and adversarial probes, scored automatically on six rubric dimensions.
 | Final DPO loss | 0.1035 |
 
 **Model adapter:** [meseretbolled/Tenacious-Qwen3-DPO-v01](https://huggingface.co/meseretbolled/Tenacious-Qwen3-DPO-v01)
+**Dataset:** [meseretbolled/tenacious-bench-v0.1](https://huggingface.co/datasets/meseretbolled/tenacious-bench-v0.1)
 
 ---
 
