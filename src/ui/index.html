@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenacious-Bench | Evaluation Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --glass: rgba(30, 41, 59, 0.7);
+            --border: rgba(255, 255, 255, 0.1);
+            --accent: #38bdf8;
+            --success: #22c55e;
+            --failure: #ef4444;
+            --neon: #c084fc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: white;
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        h1 { font-weight: 800; font-size: 2.5rem; letter-spacing: -2px; }
+        .accent-text { color: var(--accent); }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 0 2rem 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h2 { font-size: 1.25rem; margin-bottom: 1.5rem; color: #94a3b8; }
+
+        select, textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: white;
+            padding: 1rem;
+            font-family: inherit;
+            margin-bottom: 1rem;
+        }
+
+        textarea { height: 250px; resize: none; font-size: 0.9rem; line-height: 1.5; }
+
+        button {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        button:hover { transform: scale(1.02); background: white; }
+
+        /* Scoring Displays */
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 8px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .status-pill {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .pass { background: rgba(34, 197, 94, 0.2); color: var(--success); border: 1px solid var(--success); }
+        .fail { background: rgba(239, 68, 68, 0.2); color: var(--failure); border: 1px solid var(--failure); border-radius: 100px; }
+
+        .rubric-list { display: flex; flex-direction: column; gap: 1rem; }
+        .rubric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .bch-alert {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid var(--failure);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            text-align: center;
+            color: var(--failure);
+            font-weight: 700;
+            display: none;
+        }
+
+        loading-spinner {
+            display: none;
+            width: 20px; height: 20px; border: 2px solid white; border-top-color: transparent; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TENACIOUS<span class="accent-text">-BENCH</span></h1>
+        <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.5rem;">V0.1 Evaluation Dashboard | B2B Sales Integrity</p>
+    </header>
+
+    <div class="container">
+        <!-- Input Section -->
+        <div class="card">
+            <h2>Scenario Evaluation</h2>
+            <select id="scenario-select">
+                <option value="">Select a Task...</option>
+            </select>
+            
+            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.5rem;">Agent Response</p>
+            <textarea id="agent-output" placeholder="Paste agent output here..."></textarea>
+            
+            <button id="evaluate-btn">Run Engine Scoring</button>
+        </div>
+
+        <!-- Result Section -->
+        <div class="card" id="results-card" style="opacity: 0.3;">
+            <div id="score-display" class="score-circle">--</div>
+            
+            <div style="text-align: center;">
+                <div id="overall-status" class="status-pill">Awaiting Evaluation</div>
+            </div>
+
+            <div class="bch-alert" id="bch-alert">🚨 BCH HARD-GATE TRIGGERED: Capacity Hallucination Detected</div>
+
+            <div class="rubric-list">
+                <div class="rubric-item"><span>Signal Confidence</span> <span id="dim-0">--</span></div>
+                <div class="rubric-item"><span>ICP Alignment</span> <span id="dim-1">--</span></div>
+                <div class="rubric-item"><span>Bench Capacity (BCH)</span> <span id="dim-2">--</span></div>
+                <div class="rubric-item"><span>Tone Compliance</span> <span id="dim-3">--</span></div>
+                <div class="rubric-item"><span>Booking Link</span> <span id="dim-4">--</span></div>
+                <div class="rubric-item"><span>Banned Phrases</span> <span id="dim-5">--</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scenarioSelect = document.getElementById('scenario-select');
+        const evaluateBtn = document.getElementById('evaluate-btn');
+        const agentOutput = document.getElementById('agent-output');
+        const resultsCard = document.getElementById('results-card');
+
+        // Load scenarios
+        fetch('/api/scenarios')
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s.path;
+                    opt.textContent = s.id;
+                    scenarioSelect.appendChild(opt);
+                });
+            });
+
+        function resetUI() {
+            document.getElementById('score-display').textContent = '--';
+            document.getElementById('score-display').style.color = 'white';
+            const status = document.getElementById('overall-status');
+            status.textContent = 'Awaiting Evaluation';
+            status.className = 'status-pill';
+            document.getElementById('bch-alert').style.display = 'none';
+            for(let i=0; i<6; i++) {
+                const el = document.getElementById(`dim-${i}`);
+                el.textContent = '--';
+                el.style.color = '#64748b';
+            }
+            resultsCard.style.opacity = '0.3';
+        }
+
+        scenarioSelect.addEventListener('change', resetUI);
+
+        evaluateBtn.addEventListener('click', async () => {
+            const output = agentOutput.value.trim();
+            if (!scenarioSelect.value) return alert('Select a scenario first');
+            if (!output) return alert('Paste the agent response first');
+            
+            resetUI();
+            resultsCard.style.opacity = '1';
+            evaluateBtn.disabled = true;
+            evaluateBtn.textContent = 'Analyzing...';
+
+            try {
+                const resp = await fetch('/api/evaluate', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        task_path: scenarioSelect.value,
+                        agent_output: output
+                    })
+                });
+
+                const result = await resp.json();
+                
+                // Update Score
+                const displayScore = result.bch_failure ? 0 : result.score;
+                document.getElementById('score-display').textContent = displayScore;
+                document.getElementById('score-display').style.color = 
+                    result.bch_failure ? 'var(--failure)' : 
+                    (result.score >= 0.8 ? 'var(--success)' : (result.score >= 0.5 ? 'var(--accent)' : 'var(--failure)'));
+                
+                // Update Status
+                const status = document.getElementById('overall-status');
+                status.textContent = result.bch_failure ? 'BCH TERMINATED' : (result.score >= 0.8 ? 'PASSED CALIBRATION' : 'FLAGS DETECTED');
+                status.className = 'status-pill ' + (result.score >= 0.8 && !result.bch_failure ? 'pass' : 'fail');
+
+                // Update Alert
+                document.getElementById('bch-alert').style.display = result.bch_failure ? 'block' : 'none';
+
+                // Update Rubrics
+                result.rubric.forEach((dim, i) => {
+                    const el = document.getElementById(`dim-${i}`);
+                    el.textContent = dim.score === 1 ? '✅ PASS' : '❌ FAIL';
+                    el.style.color = dim.score === 1 ? 'var(--success)' : 'var(--failure)';
+                });
+            } catch (e) {
+                alert('Evaluation Error: ' + e.message);
+            } finally {
+                evaluateBtn.disabled = false;
+                evaluateBtn.textContent = 'Run Engine Scoring';
+            }
+        });
+    </script>
+</body>
+</html>

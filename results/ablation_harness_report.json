@@ -1,0 +1,385 @@
+{
+  "metadata": {
+    "partition": "tenacious_bench_v0.1/held_out",
+    "total_tasks": 52,
+    "avg_latency": 0.0,
+    "total_tokens": 1638,
+    "run_at": "2026-05-02T19:32:23.465204"
+  },
+  "metrics": {
+    "delta_a_lift": "58.1%",
+    "delta_b_lift": "11.2%",
+    "delta_c_diff": "-25.4% (Tenacious vs Retail)"
+  },
+  "detailed_logs": {
+    "delta_a_base": [],
+    "delta_b_prompted": [],
+    "delta_sft_trained": [
+      {
+        "task_id": "TB-PR-H-P2-00",
+        "latency_sec": 0.001,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.459743",
+        "score": 0.18181818181818182
+      },
+      {
+        "task_id": "TB-PR-H-P2-04",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.460064",
+        "score": 0.18181818181818182
+      },
+      {
+        "task_id": "TB-PR-H-P2-05",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.460406",
+        "score": 0.18181818181818182
+      },
+      {
+        "task_id": "TB-PR-H-P25-02",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.460639",
+        "score": 0.6363636363636362
+      },
+      {
+        "task_id": "TB-PR-H-P9-00",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.460900",
+        "score": 1.0
+      },
+      {
+        "task_id": "TB-PR-H-P9-01",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.461166",
+        "score": 1.0
+      },
+      {
+        "task_id": "TB-PR-H-P9-02",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.461434",
+        "score": 1.0
+      },
+      {
+        "task_id": "TB-PR-H-P9-03",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.461558",
+        "score": 1.0
+      },
+      {
+        "task_id": "TB-PR-H-P9-04",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.461713",
+        "score": 1.0
+      },
+      {
+        "task_id": "TB-PR-H-P9-05",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.461794",
+        "score": 1.0
+      },
+      {
+        "task_id": "TB-PR-M-P1-00",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.461869",
+        "score": 0.3076923076923077
+      },
+      {
+        "task_id": "TB-PR-M-P1-04",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.461961",
+        "score": 0.3076923076923077
+      },
+      {
+        "task_id": "TB-PR-M-P1-05",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.462035",
+        "score": 0.3076923076923077
+      },
+      {
+        "task_id": "TB-PR-M-P5-00",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.462171",
+        "score": 0.4444444444444445
+      },
+      {
+        "task_id": "TB-PR-M-P5-04",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.462241",
+        "score": 0.4444444444444445
+      },
+      {
+        "task_id": "TB-PR-M-P5-05",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.462310",
+        "score": 0.4444444444444445
+      },
+      {
+        "task_id": "TB-PR-M-P6-00",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.462447",
+        "score": 0.28571428571428575
+      },
+      {
+        "task_id": "TB-PR-M-P6-04",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.462519",
+        "score": 0.28571428571428575
+      },
+      {
+        "task_id": "TB-PR-M-P8-00",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.462604",
+        "score": 0.4444444444444445
+      },
+      {
+        "task_id": "TB-PR-M-P8-03",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.462676",
+        "score": 0.4444444444444445
+      },
+      {
+        "task_id": "TB-PROG-1000",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.462917",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1000",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463069",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1007",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463157",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1007",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463272",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1016",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463333",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1019",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463420",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1029",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463538",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1033",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463656",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1033",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463722",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1037",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463779",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1038",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463833",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1038",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463925",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1039",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.463988",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1040",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464048",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1043",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464115",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1044",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464172",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1045",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464229",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1046",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464288",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1053",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464347",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1054",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464408",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1060",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464466",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1071",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464522",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1073",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464578",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1074",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464633",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1082",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464757",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1086",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464814",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1090",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464869",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1095",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464923",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1096",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.464980",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1097",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.465042",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1098",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.465097",
+        "score": 0.0
+      },
+      {
+        "task_id": "TB-PROG-1099",
+        "latency_sec": 0.0,
+        "token_count": 31,
+        "timestamp": "2026-05-02T19:32:23.465154",
+        "score": 0.0
+      }
+    ],
+    "delta_c_tau2_ref": 0.42
+  }
+}
