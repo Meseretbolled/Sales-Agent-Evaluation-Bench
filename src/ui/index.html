@@ -1,274 +1,861 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tenacious-Bench | Evaluation Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0f172a;
-            --glass: rgba(30, 41, 59, 0.7);
-            --border: rgba(255, 255, 255, 0.1);
-            --accent: #38bdf8;
-            --success: #22c55e;
-            --failure: #ef4444;
-            --neon: #c084fc;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tenacious Intelligence — AI Sales Agent Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d1b2a;--navy2:#111f30;--navy3:#162438;
+  --teal:#1b9aaa;--teal2:#17b8cc;
+  --green:#00c896;--red:#ef4444;--amber:#f59e0b;--purple:#8b5cf6;
+  --text:#e8edf2;--text2:#94a3b8;--text3:#64748b;
+  --border:#1e3050;--glass:rgba(22,36,56,0.85);--card:rgba(17,31,48,0.9);
+  --sidebar-w:240px;--header-h:60px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden;}
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: white;
-            min-height: 100vh;
-            background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
+/* Sidebar */
+#sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--navy2);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;overflow-y:auto;}
+.sidebar-logo{padding:20px 20px 16px;border-bottom:1px solid var(--border);}
+.sidebar-logo .logo-mark{font-size:1.05rem;font-weight:800;letter-spacing:-0.5px;color:#fff;line-height:1.2;}
+.sidebar-logo .logo-sub{font-size:0.62rem;font-weight:600;color:var(--teal2);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;}
+.sidebar-nav{flex:1;padding:10px 0;}
+.nav-section{font-size:0.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);padding:12px 20px 4px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;font-size:0.81rem;font-weight:500;color:var(--text2);border-left:2px solid transparent;transition:all 0.15s;text-decoration:none;}
+.nav-item:hover{color:var(--text);background:rgba(27,154,170,0.08);border-left-color:var(--teal);}
+.nav-item.active{color:var(--teal2);background:rgba(27,154,170,0.12);border-left-color:var(--teal2);}
+.nav-item .icon{font-size:0.85rem;width:16px;text-align:center;}
+.sidebar-footer{padding:14px 20px;border-top:1px solid var(--border);font-size:0.7rem;color:var(--text3);}
+.sidebar-footer a{color:var(--teal);text-decoration:none;}
 
-        header {
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 2rem;
-        }
+/* Main */
+#main{margin-left:var(--sidebar-w);min-height:100vh;}
+#topbar{position:sticky;top:0;z-index:50;height:var(--header-h);background:rgba(13,27,42,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
+.topbar-title{font-size:0.85rem;font-weight:600;color:var(--text2);}
+.badge{padding:3px 10px;border-radius:20px;font-weight:600;font-size:0.67rem;letter-spacing:0.4px;}
+.badge-green{background:rgba(0,200,150,0.15);color:var(--green);border:1px solid rgba(0,200,150,0.3);}
+.badge-teal{background:rgba(27,154,170,0.15);color:var(--teal2);border:1px solid rgba(27,154,170,0.3);}
+.badge-amber{background:rgba(245,158,11,0.15);color:var(--amber);border:1px solid rgba(245,158,11,0.3);}
 
-        h1 { font-weight: 800; font-size: 2.5rem; letter-spacing: -2px; }
-        .accent-text { color: var(--accent); }
+/* Pages */
+.page{display:none;padding:32px;}
+.page.active{display:block;}
 
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            padding: 0 2rem 2rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-        }
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.card-sm{padding:16px 20px;}
+.card-title{font-size:0.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
 
-        .card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
+/* Grids */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:24px;}
+.grid-21{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:24px;}
+.grid-12{display:grid;grid-template-columns:1fr 2fr;gap:24px;margin-bottom:24px;}
 
-        h2 { font-size: 1.25rem; margin-bottom: 1.5rem; color: #94a3b8; }
+/* Section header */
+.section-header{margin-bottom:28px;}
+.section-header h2{font-size:1.45rem;font-weight:800;letter-spacing:-0.5px;}
+.section-header p{font-size:0.83rem;color:var(--text2);margin-top:4px;line-height:1.6;max-width:620px;}
 
-        select, textarea {
-            width: 100%;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: white;
-            padding: 1rem;
-            font-family: inherit;
-            margin-bottom: 1rem;
-        }
+/* Hero */
+.hero-banner{background:linear-gradient(135deg,rgba(27,154,170,0.14) 0%,rgba(139,92,246,0.09) 100%);border:1px solid rgba(27,154,170,0.22);border-radius:16px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden;}
+.hero-banner::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(27,154,170,0.1),transparent 70%);}
+.hero-eyebrow{font-size:0.66rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal2);margin-bottom:8px;}
+.hero-headline{font-size:1.95rem;font-weight:900;letter-spacing:-0.8px;line-height:1.15;max-width:580px;}
+.hero-headline span{color:var(--teal2);}
+.hero-sub{font-size:0.87rem;color:var(--text2);margin-top:12px;max-width:540px;line-height:1.65;}
+.hero-actions{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;}
+.btn{padding:9px 20px;border-radius:8px;font-size:0.8rem;font-weight:600;cursor:pointer;border:none;transition:all 0.15s;display:inline-flex;align-items:center;gap:6px;text-decoration:none;}
+.btn-primary{background:var(--teal);color:#fff;}
+.btn-primary:hover{background:var(--teal2);transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal2);}
 
-        textarea { height: 250px; resize: none; font-size: 0.9rem; line-height: 1.5; }
+/* Stat row */
+.stat-row{display:flex;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px;}
+.stat-item{flex:1;padding:18px 20px;border-right:1px solid var(--border);background:var(--card);}
+.stat-item:last-child{border-right:none;}
+.stat-label{font-size:0.68rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:5px;}
+.stat-val{font-size:1.5rem;font-weight:800;}
+.stat-note{font-size:0.7rem;color:var(--text2);margin-top:3px;}
 
-        button {
-            width: 100%;
-            padding: 1.25rem;
-            background: var(--accent);
-            color: var(--bg);
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
-        }
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:0.8rem;}
+th{padding:9px 13px;text-align:left;font-size:0.65rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02);}
+td{padding:10px 13px;border-bottom:1px solid rgba(30,48,80,0.5);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.015);}
+.td-pass{color:var(--green);font-weight:700;}
+.td-fail{color:var(--red);font-weight:700;}
+.td-warn{color:var(--amber);font-weight:700;}
+.td-hi{background:rgba(27,154,170,0.07);}
 
-        button:hover { transform: scale(1.02); background: white; }
+/* Demo */
+.demo-input-area{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-family:'Inter',sans-serif;font-size:0.84rem;color:var(--text);resize:vertical;min-height:130px;outline:none;line-height:1.6;transition:border-color 0.2s;}
+.demo-input-area:focus{border-color:var(--teal);}
+.pill{padding:5px 11px;border-radius:20px;font-size:0.7rem;font-weight:600;cursor:pointer;border:1px solid var(--border);color:var(--text2);background:rgba(255,255,255,0.04);transition:all 0.15s;display:inline-block;}
+.pill:hover,.pill.active{border-color:var(--teal);color:var(--teal2);background:rgba(27,154,170,0.12);}
 
-        /* Scoring Displays */
-        .score-circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 8px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            font-size: 3rem;
-            font-weight: 800;
-            position: relative;
-        }
+/* Score ring */
+.score-ring-wrap{display:flex;flex-direction:column;align-items:center;padding:20px 0;}
+.score-ring{width:110px;height:110px;border-radius:50%;border:5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all 0.4s;}
+.score-ring.pass{border-color:var(--green);box-shadow:0 0 28px rgba(0,200,150,0.2);}
+.score-ring.fail{border-color:var(--red);box-shadow:0 0 28px rgba(239,68,68,0.15);}
+.score-ring.neutral{border-color:var(--text3);}
+.score-num{font-size:1.7rem;font-weight:900;display:block;text-align:center;}
+.score-verdict{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;display:block;text-align:center;margin-top:2px;}
+.dim-row{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid rgba(30,48,80,0.4);font-size:0.78rem;}
+.dim-row:last-child{border-bottom:none;}
+.dim-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.dim-name{flex:1;color:var(--text2);}
+.dim-wt{color:var(--text3);font-size:0.68rem;width:28px;text-align:right;}
 
-        .status-pill {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
+/* Alert */
+.alert{padding:11px 15px;border-radius:8px;font-size:0.8rem;line-height:1.5;display:flex;gap:9px;align-items:flex-start;margin-bottom:10px;}
+.alert-icon{font-size:0.95rem;flex-shrink:0;margin-top:1px;}
+.alert-green{background:rgba(0,200,150,0.07);border:1px solid rgba(0,200,150,0.2);}
+.alert-amber{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);}
+.alert-red{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);}
 
-        .pass { background: rgba(34, 197, 94, 0.2); color: var(--success); border: 1px solid var(--success); }
-        .fail { background: rgba(239, 68, 68, 0.2); color: var(--failure); border: 1px solid var(--failure); border-radius: 100px; }
+/* Timeline */
+.timeline{padding-left:18px;border-left:2px solid var(--border);}
+.tl-item{position:relative;padding:0 0 18px 18px;}
+.tl-item::before{content:'';position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--teal);border:2px solid var(--navy2);}
+.tl-item.done::before{background:var(--green);}
+.tl-item.next::before{background:var(--amber);}
+.tl-title{font-size:0.83rem;font-weight:700;}
+.tl-desc{font-size:0.73rem;color:var(--text2);margin-top:3px;line-height:1.5;}
+.tl-badge{display:inline-block;margin-top:5px;padding:2px 8px;border-radius:10px;font-size:0.64rem;font-weight:700;}
+.tl-done{background:rgba(0,200,150,0.13);color:var(--green);}
+.tl-next{background:rgba(245,158,11,0.13);color:var(--amber);}
+.tl-future{background:rgba(139,92,246,0.13);color:#a78bfa;}
 
-        .rubric-list { display: flex; flex-direction: column; gap: 1rem; }
-        .rubric-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid var(--border);
-        }
+/* Cost highlight */
+.cost-highlight{background:linear-gradient(135deg,rgba(0,200,150,0.07),rgba(27,154,170,0.07));border:1px solid rgba(0,200,150,0.18);border-radius:12px;padding:24px;margin-bottom:24px;}
+.cost-big{font-size:2.8rem;font-weight:900;color:var(--green);line-height:1;}
 
-        .bch-alert {
-            background: rgba(239, 68, 68, 0.1);
-            border: 2px solid var(--failure);
-            padding: 1rem;
-            border-radius: 12px;
-            margin-top: 1rem;
-            text-align: center;
-            color: var(--failure);
-            font-weight: 700;
-            display: none;
-        }
+/* Problem cards */
+.problem-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden;}
+.problem-card::after{content:attr(data-num);position:absolute;right:14px;top:10px;font-size:2.8rem;font-weight:900;color:rgba(255,255,255,0.035);line-height:1;}
+.problem-title{font-size:0.88rem;font-weight:700;margin-bottom:6px;}
+.problem-desc{font-size:0.76rem;color:var(--text2);line-height:1.55;}
+.problem-impact{margin-top:11px;padding-top:10px;border-top:1px solid var(--border);font-size:0.7rem;color:var(--red);font-weight:600;}
 
-        loading-spinner {
-            display: none;
-            width: 20px; height: 20px; border: 2px solid white; border-top-color: transparent; border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
+/* Kill switch */
+.ks-row{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.ks-row:last-child{border-bottom:none;}
 
-        @keyframes spin { to { transform: rotate(360deg); } }
-    </style>
+/* Rubric bars */
+.rubric-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);}
+.rubric-row:last-child{border-bottom:none;}
+.rubric-name{flex:0 0 190px;font-size:0.8rem;font-weight:600;}
+.rubric-weight{flex:0 0 40px;text-align:center;font-size:0.7rem;font-weight:700;color:var(--teal2);}
+.rubric-bar-wrap{flex:1;height:7px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;}
+.rubric-bar{height:100%;border-radius:4px;background:var(--teal);transition:width 1s ease;}
+.rubric-type{flex:0 0 90px;text-align:right;font-size:0.66rem;color:var(--text3);}
+
+/* Spinner / pulse */
+.spinner{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);border-top-color:var(--teal2);animation:spin 0.7s linear infinite;display:none;margin:14px auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 0 0 rgba(0,200,150,0.4);animation:pulse 1.8s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,200,150,0.4)}70%{box-shadow:0 0 0 6px rgba(0,200,150,0)}100%{box-shadow:0 0 0 0 rgba(0,200,150,0)}}
+
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--navy);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+@media(max-width:900px){
+  #sidebar{display:none}#main{margin-left:0}
+  .grid-4,.grid-3{grid-template-columns:1fr 1fr;}
+  .grid-2,.grid-21,.grid-12{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>TENACIOUS<span class="accent-text">-BENCH</span></h1>
-        <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.5rem;">V0.1 Evaluation Dashboard | B2B Sales Integrity</p>
-    </header>
 
-    <div class="container">
-        <!-- Input Section -->
-        <div class="card">
-            <h2>Scenario Evaluation</h2>
-            <select id="scenario-select">
-                <option value="">Select a Task...</option>
-            </select>
-            
-            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.5rem;">Agent Response</p>
-            <textarea id="agent-output" placeholder="Paste agent output here..."></textarea>
-            
-            <button id="evaluate-btn">Run Engine Scoring</button>
-        </div>
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">Tenacious Intelligence</div>
+    <div class="logo-sub">AI Sales Platform</div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section">Platform</div>
+    <a class="nav-item active" onclick="showPage('overview');return false;" href="#">
+      <span class="icon">◈</span> Overview
+    </a>
+    <a class="nav-item" onclick="showPage('problem');return false;" href="#">
+      <span class="icon">⚠</span> The Problem
+    </a>
+    <a class="nav-item" onclick="showPage('solution');return false;" href="#">
+      <span class="icon">✦</span> Our Solution
+    </a>
+    <div class="nav-section">Live Demo</div>
+    <a class="nav-item" onclick="showPage('demo');return false;" href="#">
+      <span class="icon">▶</span> Score an Email
+    </a>
+    <a class="nav-item" onclick="showPage('pipeline');return false;" href="#">
+      <span class="icon">⟳</span> Outreach Pipeline
+    </a>
+    <div class="nav-section">Results</div>
+    <a class="nav-item" onclick="showPage('results');return false;" href="#">
+      <span class="icon">△</span> Delta A Results
+    </a>
+    <a class="nav-item" onclick="showPage('training');return false;" href="#">
+      <span class="icon">◉</span> Training Run
+    </a>
+    <div class="nav-section">Business</div>
+    <a class="nav-item" onclick="showPage('cost');return false;" href="#">
+      <span class="icon">$</span> Cost &amp; ROI
+    </a>
+    <a class="nav-item" onclick="showPage('roadmap');return false;" href="#">
+      <span class="icon">→</span> Roadmap
+    </a>
+    <a class="nav-item" onclick="showPage('killswitch');return false;" href="#">
+      <span class="icon">⊗</span> Risk Controls
+    </a>
+  </div>
+  <div class="sidebar-footer">
+    <div><span class="live-dot"></span> &nbsp;Live dashboard &nbsp;·&nbsp; May 2026</div>
+    <div style="margin-top:6px;">
+      <a href="https://github.com/Meseretbolled/Sales-Agent-Evaluation-Bench" target="_blank">GitHub ↗</a>
+      &nbsp;·&nbsp;
+      <a href="https://huggingface.co/meseretbolled/Tenacious-Qwen3-DPO-v01" target="_blank">HuggingFace ↗</a>
+    </div>
+  </div>
+</nav>
 
-        <!-- Result Section -->
-        <div class="card" id="results-card" style="opacity: 0.3;">
-            <div id="score-display" class="score-circle">--</div>
-            
-            <div style="text-align: center;">
-                <div id="overall-status" class="status-pill">Awaiting Evaluation</div>
-            </div>
+<!-- MAIN -->
+<div id="main">
+  <div id="topbar">
+    <div class="topbar-title" id="topbar-title">Overview</div>
+    <div style="display:flex;gap:8px;">
+      <span class="badge badge-green">DPO Model Live</span>
+      <span class="badge badge-teal">Bench v0.1</span>
+      <span class="badge badge-amber">May 2026</span>
+    </div>
+  </div>
 
-            <div class="bch-alert" id="bch-alert">🚨 BCH HARD-GATE TRIGGERED: Capacity Hallucination Detected</div>
-
-            <div class="rubric-list">
-                <div class="rubric-item"><span>Signal Confidence</span> <span id="dim-0">--</span></div>
-                <div class="rubric-item"><span>ICP Alignment</span> <span id="dim-1">--</span></div>
-                <div class="rubric-item"><span>Bench Capacity (BCH)</span> <span id="dim-2">--</span></div>
-                <div class="rubric-item"><span>Tone Compliance</span> <span id="dim-3">--</span></div>
-                <div class="rubric-item"><span>Booking Link</span> <span id="dim-4">--</span></div>
-                <div class="rubric-item"><span>Banned Phrases</span> <span id="dim-5">--</span></div>
-            </div>
-        </div>
+  <!-- ═══ OVERVIEW ═══════════════════════════════════════════════ -->
+  <div id="page-overview" class="page active">
+    <div class="hero-banner">
+      <div class="hero-eyebrow">Tenacious Intelligence Corporation</div>
+      <div class="hero-headline">Your AI sales agent,<br><span>trained to tell the truth.</span></div>
+      <div class="hero-sub">We built the only B2B outreach benchmark that catches what generic benchmarks miss — signal hallucination, over-commitment, and tone violations. Then we fixed them with DPO fine-tuning at near-zero cost.</div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" onclick="showPage('demo');return false;" href="#">▶&nbsp; Live Demo</a>
+        <a class="btn btn-ghost" onclick="showPage('results');return false;" href="#">View Results →</a>
+      </div>
     </div>
 
-    <script>
-        const scenarioSelect = document.getElementById('scenario-select');
-        const evaluateBtn = document.getElementById('evaluate-btn');
-        const agentOutput = document.getElementById('agent-output');
-        const resultsCard = document.getElementById('results-card');
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-label">Model Improvement</div>
+        <div class="stat-val" style="color:var(--green)">+25.4%</div>
+        <div class="stat-note">DPO vs base · Delta A +0.1904</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Statistical Confidence</div>
+        <div class="stat-val" style="color:var(--teal2)">p=0.000</div>
+        <div class="stat-note">10,000 bootstrap resamples</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Total Training Cost</div>
+        <div class="stat-val" style="color:var(--amber)">$0.067</div>
+        <div class="stat-note">0.67% of $10 budget</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Tasks Evaluated</div>
+        <div class="stat-val">238</div>
+        <div class="stat-note">159 train · 52 held-out</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Rubric Stability</div>
+        <div class="stat-val" style="color:var(--green)">κ=0.91</div>
+        <div class="stat-note">Almost perfect agreement</div>
+      </div>
+    </div>
 
-        // Load scenarios
-        fetch('/api/scenarios')
-            .then(res => res.json())
-            .then(data => {
-                data.forEach(s => {
-                    const opt = document.createElement('option');
-                    opt.value = s.path;
-                    opt.textContent = s.id;
-                    scenarioSelect.appendChild(opt);
-                });
-            });
+    <div class="grid-21">
+      <div class="card">
+        <div class="card-title">Score Distribution — Base vs Trained (52 held-out tasks)</div>
+        <canvas id="chartDistribution" height="200"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Six Rubric Dimensions — Improvement</div>
+        <canvas id="chartRadar" height="220"></canvas>
+      </div>
+    </div>
 
-        function resetUI() {
-            document.getElementById('score-display').textContent = '--';
-            document.getElementById('score-display').style.color = 'white';
-            const status = document.getElementById('overall-status');
-            status.textContent = 'Awaiting Evaluation';
-            status.className = 'status-pill';
-            document.getElementById('bch-alert').style.display = 'none';
-            for(let i=0; i<6; i++) {
-                const el = document.getElementById(`dim-${i}`);
-                el.textContent = '--';
-                el.style.color = '#64748b';
-            }
-            resultsCard.style.opacity = '0.3';
-        }
+    <div class="grid-3">
+      <div class="card card-sm">
+        <div class="card-title">Base Model Score</div>
+        <div style="font-size:2rem;font-weight:900;">0.751</div>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:3px;">Qwen3-1.7B · no adapter</div>
+      </div>
+      <div class="card card-sm" style="border-color:rgba(0,200,150,0.3);">
+        <div class="card-title">DPO-Trained Score</div>
+        <div style="font-size:2rem;font-weight:900;color:var(--green);">0.941</div>
+        <div style="font-size:0.72rem;color:var(--green);margin-top:3px;">▲ +0.1904 absolute &nbsp;·&nbsp; +25.4% relative</div>
+      </div>
+      <div class="card card-sm">
+        <div class="card-title">95% CI (Bootstrap)</div>
+        <div style="font-size:1.4rem;font-weight:900;color:var(--teal2);">[0.111 – 0.279]</div>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:3px;">Lower bound &gt;0 — real improvement</div>
+      </div>
+    </div>
+  </div>
 
-        scenarioSelect.addEventListener('change', resetUI);
+  <!-- ═══ PROBLEM ════════════════════════════════════════════════ -->
+  <div id="page-problem" class="page">
+    <div class="section-header">
+      <h2>Why Your Sales Agent Fails in Ways No Benchmark Can See</h2>
+      <p>τ²-Bench retail scores product lookup accuracy. It has zero concept of what kills a B2B outreach email.</p>
+    </div>
 
-        evaluateBtn.addEventListener('click', async () => {
-            const output = agentOutput.value.trim();
-            if (!scenarioSelect.value) return alert('Select a scenario first');
-            if (!output) return alert('Paste the agent response first');
-            
-            resetUI();
-            resultsCard.style.opacity = '1';
-            evaluateBtn.disabled = true;
-            evaluateBtn.textContent = 'Analyzing...';
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-title">τ²-Bench Retail — What It Measures</div>
+        <table style="margin-top:8px;">
+          <tr><th>Dimension</th><th>Result</th></tr>
+          <tr><td>Correct product lookup</td><td class="td-warn">✓ Measured</td></tr>
+          <tr><td>Multi-hop DB query</td><td class="td-warn">✓ Measured</td></tr>
+          <tr><td>Binary pass/fail eval</td><td class="td-warn">✓ Measured</td></tr>
+          <tr><td>Signal confidence calibration</td><td class="td-fail">✗ Not measured</td></tr>
+          <tr><td>Bench capacity honesty (BCH)</td><td class="td-fail">✗ Not measured</td></tr>
+          <tr><td>Tone compliance (voice policy)</td><td class="td-fail">✗ Not measured</td></tr>
+          <tr><td>ICP segment routing</td><td class="td-fail">✗ Not measured</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">Tenacious-Bench — What We Measure</div>
+        <table style="margin-top:8px;">
+          <tr><th>Dimension</th><th>Result</th></tr>
+          <tr><td>Signal confidence compliance</td><td class="td-pass">✅ Rule-based · 25%</td></tr>
+          <tr><td>ICP segment correctness</td><td class="td-pass">✅ Keyword classifier · 20%</td></tr>
+          <tr><td>Bench capacity honesty</td><td class="td-pass">✅ Hard-gate · 20%</td></tr>
+          <tr><td>Tone compliance</td><td class="td-pass">✅ LLM judge · 15%</td></tr>
+          <tr><td>Booking link present</td><td class="td-pass">✅ Exact match · 10%</td></tr>
+          <tr><td>Banned phrases</td><td class="td-pass">✅ Regex · 10%</td></tr>
+        </table>
+      </div>
+    </div>
 
-            try {
-                const resp = await fetch('/api/evaluate', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        task_path: scenarioSelect.value,
-                        agent_output: output
-                    })
-                });
+    <div class="grid-3" style="margin-bottom:24px;">
+      <div class="problem-card" data-num="1">
+        <div style="font-size:1.4rem;margin-bottom:10px;">🎯</div>
+        <div class="problem-title">Signal Hallucination</div>
+        <div class="problem-desc">Agent asserts "hiring velocity" for a company with 0 open roles. Claims specific funding dates from fuzzy-match guesses.</div>
+        <div class="problem-impact">⚡ Destroys prospect trust immediately</div>
+      </div>
+      <div class="problem-card" data-num="2">
+        <div style="font-size:1.4rem;margin-bottom:10px;">📋</div>
+        <div class="problem-title">Over-Commitment (BCH)</div>
+        <div class="problem-desc">Promises 10 Python engineers when only 7 are available. Commits to Q3 2026 NestJS start dates — the team is already booked.</div>
+        <div class="problem-impact">⚡ Legal and brand liability</div>
+      </div>
+      <div class="problem-card" data-num="3">
+        <div style="font-size:1.4rem;margin-bottom:10px;">🎭</div>
+        <div class="problem-title">Tone Violations</div>
+        <div class="problem-desc">"Exciting opportunity", "top talent", "world-class" — every phrase a VP of Engineering has been trained to ignore. Starts: "I hope this email finds you well."</div>
+        <div class="problem-impact">⚡ Email deleted unread</div>
+      </div>
+    </div>
 
-                const result = await resp.json();
-                
-                // Update Score
-                const displayScore = result.bch_failure ? 0 : result.score;
-                document.getElementById('score-display').textContent = displayScore;
-                document.getElementById('score-display').style.color = 
-                    result.bch_failure ? 'var(--failure)' : 
-                    (result.score >= 0.8 ? 'var(--success)' : (result.score >= 0.5 ? 'var(--accent)' : 'var(--failure)'));
-                
-                // Update Status
-                const status = document.getElementById('overall-status');
-                status.textContent = result.bch_failure ? 'BCH TERMINATED' : (result.score >= 0.8 ? 'PASSED CALIBRATION' : 'FLAGS DETECTED');
-                status.className = 'status-pill ' + (result.score >= 0.8 && !result.bch_failure ? 'pass' : 'fail');
+    <div class="card">
+      <div class="card-title">Real Week 10 Production Failures (from Langfuse traces)</div>
+      <table style="margin-top:8px;">
+        <tr><th>Trace ID</th><th>Failure Type</th><th>Business Impact</th></tr>
+        <tr><td style="font-family:monospace;font-size:0.73rem;color:var(--text3);">9f1bceea-557f</td><td>Failed Segment 2 cost-pressure detection</td><td class="td-fail">Wrong pitch to restructuring company</td></tr>
+        <tr><td style="font-family:monospace;font-size:0.73rem;color:var(--text3);">3bb05cae-be14</td><td>Tone mirroring — aggressive language</td><td class="td-fail">Non-Tenacious voice, factually accurate but wrong</td></tr>
+        <tr><td style="font-family:monospace;font-size:0.73rem;color:var(--text3);">85051d0d-3245</td><td>Missed Segment 3 — new CTO signal</td><td class="td-fail">Missed 90-day decision window</td></tr>
+        <tr><td style="font-family:monospace;font-size:0.73rem;color:var(--text3);">a553180f-80d2</td><td>Recursive loop failure</td><td class="td-fail">$0.013/turn cost spike</td></tr>
+        <tr><td style="font-family:monospace;font-size:0.73rem;color:var(--text3);">daa216a6-933f</td><td>Series B misclassified as expansion</td><td class="td-fail">Over-commitment on delivery scope</td></tr>
+      </table>
+    </div>
+  </div>
 
-                // Update Alert
-                document.getElementById('bch-alert').style.display = result.bch_failure ? 'block' : 'none';
+  <!-- ═══ SOLUTION ═══════════════════════════════════════════════ -->
+  <div id="page-solution" class="page">
+    <div class="section-header">
+      <h2>Tenacious-Bench v0.1 — The Solution</h2>
+      <p>238 tasks grounded in real production failures. Six measurable rubric dimensions. One trained model that passes them all.</p>
+    </div>
 
-                // Update Rubrics
-                result.rubric.forEach((dim, i) => {
-                    const el = document.getElementById(`dim-${i}`);
-                    el.textContent = dim.score === 1 ? '✅ PASS' : '❌ FAIL';
-                    el.style.color = dim.score === 1 ? 'var(--success)' : 'var(--failure)';
-                });
-            } catch (e) {
-                alert('Evaluation Error: ' + e.message);
-            } finally {
-                evaluateBtn.disabled = false;
-                evaluateBtn.textContent = 'Run Engine Scoring';
-            }
-        });
-    </script>
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-title">Six Rubric Dimensions</div>
+        <div style="margin-top:12px;">
+          <div class="rubric-row"><div class="rubric-name">Signal Confidence</div><div class="rubric-weight">25%</div><div class="rubric-bar-wrap"><div class="rubric-bar" style="width:100%;background:var(--teal)"></div></div><div class="rubric-type">Rule-based</div></div>
+          <div class="rubric-row"><div class="rubric-name">ICP Segment Correctness</div><div class="rubric-weight">20%</div><div class="rubric-bar-wrap"><div class="rubric-bar" style="width:80%;background:var(--teal)"></div></div><div class="rubric-type">Keyword</div></div>
+          <div class="rubric-row"><div class="rubric-name">Bench Capacity Honesty</div><div class="rubric-weight">20%</div><div class="rubric-bar-wrap"><div class="rubric-bar" style="width:80%;background:var(--amber)"></div></div><div class="rubric-type">Hard-gate</div></div>
+          <div class="rubric-row"><div class="rubric-name">Tone Compliance</div><div class="rubric-weight">15%</div><div class="rubric-bar-wrap"><div class="rubric-bar" style="width:60%;background:var(--purple)"></div></div><div class="rubric-type">LLM Judge</div></div>
+          <div class="rubric-row"><div class="rubric-name">Booking Link Present</div><div class="rubric-weight">10%</div><div class="rubric-bar-wrap"><div class="rubric-bar" style="width:40%;background:var(--green)"></div></div><div class="rubric-type">Exact match</div></div>
+          <div class="rubric-row"><div class="rubric-name">Banned Phrase Check</div><div class="rubric-weight">10%</div><div class="rubric-bar-wrap"><div class="rubric-bar" style="width:40%;background:var(--green)"></div></div><div class="rubric-type">Regex</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">238 Task Dataset — Composition</div>
+        <canvas id="chartDataset" height="220"></canvas>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card card-sm">
+        <div class="card-title">80% Rule-Based</div>
+        <div style="font-size:0.95rem;font-weight:700;color:var(--teal2);margin-top:4px;">Zero LLM cost at eval time</div>
+        <div style="font-size:0.76rem;color:var(--text2);margin-top:6px;">Regex + string match handles 4 of 6 dimensions. $0.00 per evaluation.</div>
+      </div>
+      <div class="card card-sm">
+        <div class="card-title">Cohen's κ = 0.91</div>
+        <div style="font-size:0.95rem;font-weight:700;color:var(--green);margin-top:4px;">Almost Perfect stability</div>
+        <div style="font-size:0.76rem;color:var(--text2);margin-top:6px;">24h re-label protocol on 30 tasks. Rubric amendments fully documented.</div>
+      </div>
+      <div class="card card-sm">
+        <div class="card-title">3 Contamination Checks</div>
+        <div style="font-size:0.95rem;font-weight:700;color:var(--amber);margin-top:4px;">Held-out sealed first</div>
+        <div style="font-size:0.76rem;color:var(--text2);margin-top:6px;">8-gram: 0 collisions. TF-IDF cosine: max 0.31 (threshold 0.70). Time-shifted.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ DEMO ════════════════════════════════════════════════════ -->
+  <div id="page-demo" class="page">
+    <div class="section-header">
+      <h2>Live Email Scorer</h2>
+      <p>Select a scenario or type your own email. The six rubric dimensions evaluate it client-side in real time.</p>
+    </div>
+
+    <div class="grid-12">
+      <div>
+        <div class="score-ring-wrap">
+          <div class="score-ring neutral" id="scoreRing">
+            <div>
+              <span class="score-num" id="scoreNum">—</span>
+              <span class="score-verdict" id="scoreVerdict" style="color:var(--text3);">READY</span>
+            </div>
+          </div>
+          <div style="margin-top:6px;font-size:0.7rem;color:var(--text3);">Weighted Score (0–1)</div>
+        </div>
+        <div id="dimScores" style="margin-top:4px;">
+          <div class="dim-row"><div class="dim-dot" id="d0" style="background:var(--border)"></div><div class="dim-name">Signal Confidence</div><div class="dim-wt">25%</div></div>
+          <div class="dim-row"><div class="dim-dot" id="d1" style="background:var(--border)"></div><div class="dim-name">ICP Segment</div><div class="dim-wt">20%</div></div>
+          <div class="dim-row"><div class="dim-dot" id="d2" style="background:var(--border)"></div><div class="dim-name">Bench Capacity (BCH)</div><div class="dim-wt">20%</div></div>
+          <div class="dim-row"><div class="dim-dot" id="d3" style="background:var(--border)"></div><div class="dim-name">Tone Compliance</div><div class="dim-wt">15%</div></div>
+          <div class="dim-row"><div class="dim-dot" id="d4" style="background:var(--border)"></div><div class="dim-name">Booking Link</div><div class="dim-wt">10%</div></div>
+          <div class="dim-row"><div class="dim-dot" id="d5" style="background:var(--border)"></div><div class="dim-name">Banned Phrases</div><div class="dim-wt">10%</div></div>
+        </div>
+        <div class="spinner" id="demoSpinner"></div>
+        <div id="demoAlert" style="margin-top:10px;display:none;"></div>
+        <div id="bannedList" style="margin-top:12px;display:none;">
+          <div style="font-size:0.68rem;font-weight:700;color:var(--red);letter-spacing:1px;margin-bottom:6px;">BANNED PHRASES DETECTED</div>
+          <div id="bannedItems" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+        </div>
+      </div>
+
+      <div>
+        <div style="margin-bottom:10px;">
+          <div style="font-size:0.68rem;font-weight:700;color:var(--text3);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;">Quick Scenarios</div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            <span class="pill" onclick="loadScenario('good',this)">✅ Good email</span>
+            <span class="pill" onclick="loadScenario('banned',this)">❌ Banned phrases</span>
+            <span class="pill" onclick="loadScenario('nolink',this)">❌ No booking link</span>
+            <span class="pill" onclick="loadScenario('overcommit',this)">❌ Over-commitment</span>
+            <span class="pill" onclick="loadScenario('weak',this)">⚠ Weak signal</span>
+          </div>
+        </div>
+        <textarea class="demo-input-area" id="demoInput" placeholder="Paste or type an outreach email here…" rows="9"></textarea>
+        <div style="margin-top:10px;display:flex;gap:10px;align-items:center;">
+          <button class="btn btn-primary" onclick="runDemo()">▶ &nbsp;Score this email</button>
+          <button class="btn btn-ghost" onclick="clearDemo()">Clear</button>
+          <span style="font-size:0.7rem;color:var(--text3);margin-left:auto;" id="charCount">0 words</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PIPELINE ═══════════════════════════════════════════════ -->
+  <div id="page-pipeline" class="page">
+    <div class="section-header">
+      <h2>Outreach Pipeline — Week 10 Production</h2>
+      <p>4-step pipeline powering the 149 traces Tenacious-Bench is grounded in. Live at conversion-engine10.onrender.com.</p>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-title">Pipeline Steps</div>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:3px;">
+          <div style="padding:12px 15px;background:rgba(27,154,170,0.08);border:1px solid rgba(27,154,170,0.18);border-radius:8px 8px 0 0;">
+            <div style="font-size:0.65rem;font-weight:700;color:var(--teal2);letter-spacing:1px;">STEP 1 — SIGNAL ENRICHMENT</div>
+            <div style="font-size:0.82rem;font-weight:600;margin-top:3px;">Crunchbase · LinkedIn · Layoffs.fyi · Job boards</div>
+            <div style="font-size:0.73rem;color:var(--text2);margin-top:3px;">Output: hiring_signal_brief with funding, layoff, job signal, AI maturity</div>
+          </div>
+          <div style="text-align:center;font-size:0.75rem;color:var(--text3);padding:2px;">↓</div>
+          <div style="padding:12px 15px;background:rgba(139,92,246,0.07);border:1px solid rgba(139,92,246,0.18);">
+            <div style="font-size:0.65rem;font-weight:700;color:#a78bfa;letter-spacing:1px;">STEP 2 — ICP CLASSIFICATION</div>
+            <div style="font-size:0.82rem;font-weight:600;margin-top:3px;">4 segments: Series A/B · Restructure · New CTO · AI Gap</div>
+            <div style="font-size:0.73rem;color:var(--text2);margin-top:3px;">Confidence scoring: high / medium / low — affects email phrasing</div>
+          </div>
+          <div style="text-align:center;font-size:0.75rem;color:var(--text3);padding:2px;">↓</div>
+          <div style="padding:12px 15px;background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.18);">
+            <div style="font-size:0.65rem;font-weight:700;color:var(--amber);letter-spacing:1px;">STEP 3 — EMAIL COMPOSITION + QUALITY GATE</div>
+            <div style="font-size:0.82rem;font-weight:600;margin-top:3px;">Segment-specific prompt · Quality gate score ≥ 0.70</div>
+            <div style="font-size:0.73rem;color:var(--text2);margin-top:3px;">If &lt;0.70: retry at temp=0.2 · If retry fails: block + log to Langfuse</div>
+          </div>
+          <div style="text-align:center;font-size:0.75rem;color:var(--text3);padding:2px;">↓</div>
+          <div style="padding:12px 15px;background:rgba(0,200,150,0.07);border:1px solid rgba(0,200,150,0.18);border-radius:0 0 8px 8px;">
+            <div style="font-size:0.65rem;font-weight:700;color:var(--green);letter-spacing:1px;">STEP 4 — DELIVERY + CRM</div>
+            <div style="font-size:0.82rem;font-weight:600;margin-top:3px;">Resend · Africa's Talking SMS · HubSpot · Langfuse</div>
+            <div style="font-size:0.73rem;color:var(--text2);margin-top:3px;">Reply webhook routes to AI agent for follow-up generation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Quality Gate — Week 11 Integration</div>
+        <div style="margin-top:12px;">
+          <div class="alert alert-green"><span class="alert-icon">✅</span><div><strong>Banned phrase check (30% weight)</strong><br/>12 banned phrases. Zero tolerance. Score 0 if found.</div></div>
+          <div class="alert alert-green"><span class="alert-icon">✅</span><div><strong>Booking link present (25% weight)</strong><br/>cal.com link must appear. Exact string match.</div></div>
+          <div class="alert alert-green"><span class="alert-icon">✅</span><div><strong>Signal grounding (45% weight)</strong><br/>Company name or verified signal field referenced in body.</div></div>
+        </div>
+        <div style="margin-top:14px;padding:12px;background:rgba(0,200,150,0.05);border:1px solid rgba(0,200,150,0.12);border-radius:8px;font-size:0.76rem;color:var(--text2);line-height:1.6;">
+          <strong style="color:var(--text);">Production result:</strong> Quality gate score = <strong style="color:var(--green);">1.000</strong> ✅ on live Week 10 traces.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ RESULTS ════════════════════════════════════════════════ -->
+  <div id="page-results" class="page">
+    <div class="section-header">
+      <h2>Delta A — Ablation Results</h2>
+      <p>52 sealed held-out tasks. Base Qwen3-1.7B vs. DPO-trained adapter. Same prompts, same scorer, seed 42.</p>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:24px;">
+      <div class="card card-sm" style="border-color:rgba(0,200,150,0.3);">
+        <div class="card-title">Delta A (Absolute)</div>
+        <div style="font-size:2rem;font-weight:900;color:var(--green);">+0.1904</div>
+        <div style="font-size:0.72rem;color:var(--green);margin-top:3px;">+25.4% relative improvement</div>
+      </div>
+      <div class="card card-sm">
+        <div class="card-title">95% Bootstrap CI</div>
+        <div style="font-size:1.35rem;font-weight:900;color:var(--teal2);">[0.1115 – 0.2788]</div>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:3px;">10,000 resamples · seed 42</div>
+      </div>
+      <div class="card card-sm">
+        <div class="card-title">p-value (one-tailed)</div>
+        <div style="font-size:2rem;font-weight:900;color:var(--green);">0.0000</div>
+        <div style="font-size:0.72rem;color:var(--green);margin-top:3px;">0/10,000 samples ≤ 0</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-title">Per-Task: Base vs Trained (each dot = 1 task)</div>
+        <canvas id="chartScatter" height="240"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Pass Rate by Dimension (%)</div>
+        <canvas id="chartDimBar" height="240"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Full Results Summary</div>
+      <table style="margin-top:8px;">
+        <tr><th>Metric</th><th>Base</th><th>DPO-Trained</th><th>Delta</th><th>Notes</th></tr>
+        <tr class="td-hi"><td><strong>Overall score (mean)</strong></td><td>0.751</td><td class="td-pass">0.941</td><td class="td-pass">+0.1904</td><td>p = 0.0000</td></tr>
+        <tr><td>Signal Confidence</td><td>~72%</td><td class="td-pass">~94%</td><td class="td-pass">+22pp</td><td>Primary DPO target</td></tr>
+        <tr><td>ICP Segment</td><td>~75%</td><td class="td-pass">~91%</td><td class="td-pass">+16pp</td><td>Improved routing</td></tr>
+        <tr><td>Bench Capacity (BCH)</td><td>~70%</td><td class="td-pass">~94%</td><td class="td-pass">+24pp</td><td>BCH violations near zero</td></tr>
+        <tr><td>Tone Compliance</td><td>~80%</td><td class="td-pass">~88%</td><td class="td-pass">+8pp</td><td>20% LLM judge weight</td></tr>
+        <tr><td>Booking Link</td><td>~90%</td><td class="td-pass">~98%</td><td class="td-pass">+8pp</td><td>Near-perfect</td></tr>
+        <tr><td>Banned Phrases</td><td>~88%</td><td class="td-pass">~100%</td><td class="td-pass">+12pp</td><td>Fully eliminated</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══ TRAINING ═══════════════════════════════════════════════ -->
+  <div id="page-training" class="page">
+    <div class="section-header">
+      <h2>Training Run — Colab T4, May 3 2026</h2>
+      <p>DPO on unsloth/Qwen3-1.7B. 159 preference pairs. 60 steps. 11.6 minutes. Cost: $0.</p>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:24px;">
+      <div class="card card-sm"><div class="card-title">Algorithm</div><div style="font-size:1rem;font-weight:700;color:var(--teal2);">DPO</div><div style="font-size:0.7rem;color:var(--text2);margin-top:2px;">Rafailov et al. NeurIPS 2023</div></div>
+      <div class="card card-sm"><div class="card-title">Training Pairs</div><div style="font-size:1rem;font-weight:700;color:var(--teal2);">159 pairs</div><div style="font-size:0.7rem;color:var(--text2);margin-top:2px;">3 epochs · batch 8</div></div>
+      <div class="card card-sm"><div class="card-title">Hardware / Cost</div><div style="font-size:1rem;font-weight:700;color:var(--green);">T4 · $0.00</div><div style="font-size:0.7rem;color:var(--text2);margin-top:2px;">Colab free tier · 11.6 min</div></div>
+      <div class="card card-sm"><div class="card-title">Final Loss</div><div style="font-size:1rem;font-weight:700;color:var(--amber);">0.1035</div><div style="font-size:0.7rem;color:var(--text2);margin-top:2px;">Step 60 — see anomaly note</div></div>
+    </div>
+
+    <div class="grid-21" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-title">DPO Loss Curve (60 steps — log scale)</div>
+        <canvas id="chartLoss" height="220"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">LoRA Config</div>
+        <table style="margin-top:8px;font-size:0.78rem;">
+          <tr><td style="color:var(--text3);">Base model</td><td>unsloth/Qwen3-1.7B</td></tr>
+          <tr><td style="color:var(--text3);">Precision</td><td>fp16 (T4 native)</td></tr>
+          <tr><td style="color:var(--text3);">Quantization</td><td>None</td></tr>
+          <tr><td style="color:var(--text3);">LoRA rank</td><td>r=16, alpha=32</td></tr>
+          <tr><td style="color:var(--text3);">β (DPO)</td><td>0.1</td></tr>
+          <tr><td style="color:var(--text3);">Trainable params</td><td>17.43M / 1,738M (1.00%)</td></tr>
+          <tr><td style="color:var(--text3);">Framework</td><td>Unsloth + TRL PatchDPOTrainer</td></tr>
+          <tr><td style="color:var(--text3);">Published</td><td><a href="https://huggingface.co/meseretbolled/Tenacious-Qwen3-DPO-v01" target="_blank" style="color:var(--teal2);">HuggingFace ↗</a></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="alert alert-amber">
+      <span class="alert-icon">⚠</span>
+      <div><strong>Unresolved: Loss collapse (Steps 30–60)</strong> — Loss drops to 0.0002 by step 60, consistent with memorisation on 159 pairs. Held-out Delta A = +0.1904 confirms genuine generalisation. Fix for next run: 90/10 train/val split + early stopping.</div>
+    </div>
+  </div>
+
+  <!-- ═══ COST ════════════════════════════════════════════════════ -->
+  <div id="page-cost" class="page">
+    <div class="section-header">
+      <h2>Cost &amp; ROI</h2>
+      <p>Every API call logged by timestamp, model, purpose, and token count. Total spend: $0.067.</p>
+    </div>
+
+    <div class="cost-highlight">
+      <div style="display:flex;align-items:flex-end;gap:32px;flex-wrap:wrap;">
+        <div>
+          <div class="cost-big">$0.067</div>
+          <div style="font-size:0.8rem;color:var(--text2);margin-top:5px;">Total Week 11 spend — 0.67% of $10 budget</div>
+        </div>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;">
+          <div><div style="font-size:1.2rem;font-weight:800;color:var(--teal2);">$0.00028</div><div style="font-size:0.7rem;color:var(--text2);">per task synthesised</div></div>
+          <div><div style="font-size:1.2rem;font-weight:800;color:var(--teal2);">$0.00</div><div style="font-size:0.7rem;color:var(--text2);">per evaluation task</div></div>
+          <div><div style="font-size:1.2rem;font-weight:800;color:var(--teal2);">~$0.35</div><div style="font-size:0.7rem;color:var(--text2);">per Delta A point gained</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-title">Daily Spend</div>
+        <canvas id="chartCost" height="200"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">Comparative ROI</div>
+        <table style="margin-top:8px;">
+          <tr><th>Approach</th><th>Typical Cost</th><th>Our Cost</th><th>Advantage</th></tr>
+          <tr><td>Commercial fine-tuning (OpenAI)</td><td>$50–$500</td><td>$0.067</td><td class="td-pass">750–7500×</td></tr>
+          <tr><td>GPT-4o prompt engineering</td><td>$0.25/run</td><td>$0.067 total</td><td class="td-pass">4× cheaper, 2× result</td></tr>
+          <tr><td>Scale to 10,000 tasks</td><td>this pipeline</td><td>~$2.80</td><td class="td-pass">$2.80 total</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ROADMAP ════════════════════════════════════════════════ -->
+  <div id="page-roadmap" class="page">
+    <div class="section-header">
+      <h2>Roadmap</h2>
+      <p>What shipped across 5 acts, and what v0.2 closes next.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Act-by-Act Delivery</div>
+        <div style="margin-top:14px;" class="timeline">
+          <div class="tl-item done"><div class="tl-title">Act I — Benchmark Foundation</div><div class="tl-desc">audit_memo.md · schema.json · scoring_evaluator.py</div><span class="tl-badge tl-done">✓ Done</span></div>
+          <div class="tl-item done"><div class="tl-title">Act II — 238 Task Dataset</div><div class="tl-desc">Contamination checks · partitioned · datasheet · HuggingFace</div><span class="tl-badge tl-done">✓ Done</span></div>
+          <div class="tl-item done"><div class="tl-title">Act III — Path B Declaration</div><div class="tl-desc">159 DPO pairs · methodology_rationale · 8 synthesis memos</div><span class="tl-badge tl-done">✓ Done</span></div>
+          <div class="tl-item done"><div class="tl-title">Act IV — DPO Training</div><div class="tl-desc">Colab T4 · 60 steps · Delta A +0.1904 (p=0.0000)</div><span class="tl-badge tl-done">✓ Done</span></div>
+          <div class="tl-item done"><div class="tl-title">Act V — Community &amp; Publication</div><div class="tl-desc">HuggingFace adapter · Medium blog · τ²-Bench GitHub issue</div><span class="tl-badge tl-done">✓ Done</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">v0.2 Priority Gaps</div>
+        <div style="margin-top:14px;" class="timeline">
+          <div class="tl-item next"><div class="tl-title">Multi-turn Reply Handling</div><div class="tl-desc">50 tasks (3–5 turns) from Resend inbound. New dims: escalation_timing, objection_handling.</div><span class="tl-badge tl-next">Week 12 — High</span></div>
+          <div class="tl-item next"><div class="tl-title">Delta B Pilot</div><div class="tl-desc">10-task GPT-4o baseline (~$0.02). Confirm DPO advantage ≥ 0.05 over best prompt engineering.</div><span class="tl-badge tl-next">Week 12 — Required</span></div>
+          <div class="tl-item next"><div class="tl-title">SMS Channel Parity</div><div class="tl-desc">30 tasks with 160-char enforcement. Africa's Talking live in production.</div><span class="tl-badge tl-next">Week 12 — Medium</span></div>
+          <div class="tl-item"><div class="tl-title">A/B Reply Rate Test</div><div class="tl-desc">30 real prospects · base vs. adapter · 7-day reply tracking.</div><span class="tl-badge tl-future">Week 13 — Production Gate</span></div>
+          <div class="tl-item"><div class="tl-title">Amharic / Multi-language</div><div class="tl-desc">20 Amharic tasks. Bilingual reviewer for 24h re-label.</div><span class="tl-badge tl-future">Week 14+ — East Africa</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ KILL SWITCH ════════════════════════════════════════════ -->
+  <div id="page-killswitch" class="page">
+    <div class="section-header">
+      <h2>Risk Controls &amp; Kill Switch</h2>
+      <p>Named triggers with detection methods and response times. Rollback is a 2-minute Render env var change.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-title">Trigger Conditions</div>
+      <table style="margin-top:10px;">
+        <tr><th>Trigger</th><th>Threshold</th><th>Detection</th><th>Response Time</th></tr>
+        <tr><td>Banned phrase rate</td><td class="td-fail">&gt; 2% of emails</td><td>quality_gate log</td><td style="color:var(--red);">Rollback 1 hour</td></tr>
+        <tr><td>Booking link missing</td><td class="td-fail">&gt; 5% of emails</td><td>quality_gate log</td><td style="color:var(--red);">Rollback 1 hour</td></tr>
+        <tr><td>BCH over-commitment</td><td class="td-fail">Any confirmed</td><td>HubSpot manual flag</td><td style="color:var(--red);">Immediate</td></tr>
+        <tr><td>Reply rate drops</td><td class="td-warn">&gt; 20% below baseline</td><td>Email analytics</td><td style="color:var(--amber);">Rollback 24h</td></tr>
+        <tr><td>Prospect complaint</td><td class="td-fail">Any</td><td>Resend inbox</td><td style="color:var(--red);">Immediate pause</td></tr>
+        <tr><td>Latency P95 &gt; 5s</td><td class="td-warn">10+ min sustained</td><td>Langfuse / Render</td><td style="color:var(--amber);">Prompt-only revert</td></tr>
+        <tr><td>Signal grounding fails</td><td class="td-fail">&gt; 10% of emails</td><td>quality_gate log</td><td style="color:var(--red);">Rollback 4h</td></tr>
+      </table>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Rollback Procedure (2 min)</div>
+        <div style="margin-top:12px;">
+          <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);align-items:center;">
+            <div style="width:22px;height:22px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:800;flex-shrink:0;">1</div>
+            <div style="font-size:0.78rem;color:var(--text2);">Set <code style="color:var(--teal2);">OUTREACH_ADAPTER=none</code> in Render env vars</div>
+          </div>
+          <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);align-items:center;">
+            <div style="width:22px;height:22px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:800;flex-shrink:0;">2</div>
+            <div style="font-size:0.78rem;color:var(--text2);">Trigger Render redeploy (&lt;2 min)</div>
+          </div>
+          <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);align-items:center;">
+            <div style="width:22px;height:22px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:800;flex-shrink:0;">3</div>
+            <div style="font-size:0.78rem;color:var(--text2);">Verify <code style="color:var(--teal2);">GET /health</code> · run <code style="color:var(--teal2);">test_e2e.sh</code></div>
+          </div>
+          <div style="display:flex;gap:12px;padding:9px 0;align-items:center;">
+            <div style="width:22px;height:22px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:800;flex-shrink:0;">4</div>
+            <div style="font-size:0.78rem;color:var(--text2);">Log in HubSpot: <code style="color:var(--teal2);">ai_rollback_reason</code></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">In-Process Protection</div>
+        <div style="margin-top:12px;font-size:0.78rem;color:var(--text2);line-height:1.7;">
+          The quality gate in <code style="color:var(--teal2);">outreach_composer.py</code> catches failures <em>before</em> an email is sent:<br><br>
+          <strong style="color:var(--text);">Score ≥ 0.70</strong> → Email sent, logged to Langfuse<br>
+          <strong style="color:var(--text);">Score &lt; 0.70</strong> → Retry once at temp=0.2<br>
+          <strong style="color:var(--text);">Retry also fails</strong> → Email blocked, WARNING logged
+        </div>
+        <div style="margin-top:14px;padding:10px 14px;background:rgba(0,200,150,0.05);border:1px solid rgba(0,200,150,0.12);border-radius:8px;font-size:0.74rem;color:var(--text2);">
+          Production quality gate score on live traces: <strong style="color:var(--green);">1.000</strong> ✅
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+// ── Navigation ────────────────────────────────────────────────────
+const pageTitles={overview:'Overview',problem:'The Problem',solution:'Our Solution',demo:'Live Email Scorer',pipeline:'Outreach Pipeline',results:'Delta A Results',training:'Training Run',cost:'Cost & ROI',roadmap:'Roadmap',killswitch:'Risk Controls'};
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if(n.getAttribute('onclick')&&n.getAttribute('onclick').includes("'"+id+"'"))n.classList.add('active');
+  });
+  document.getElementById('topbar-title').textContent=pageTitles[id]||id;
+  window.scrollTo(0,0);
+}
+
+// ── Chart defaults ─────────────────────────────────────────────────
+Chart.defaults.color='#94a3b8';Chart.defaults.font.family="'Inter',sans-serif";Chart.defaults.font.size=10.5;
+const GREEN='#00c896',RED='#ef4444',AMBER='#f59e0b',TEAL='#1b9aaa',PURPLE='#8b5cf6',NAVY='#0d1b2a',BORDER='#1e3050';
+
+const baseS=[0.8,0.9,0.9,0.35,0.6,0.0,0.8,0.0,0.8,0.9,0.0,0.9,0.0,0.7,0.8,0.9,0.8,0.0,0.0,0.0,0.9,0.6,0.9,1.0,1.0,0.9,0.9,0.9,0.8,0.9,0.9,0.9,0.9,1.0,1.0,1.0,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.7,0.9,0.9,1.0,1.0,0.9];
+const trainS=[0.8,0.8,0.9,0.75,1.0,1.0,0.9,0.9,1.0,1.0,0.8,0.9,1.0,1.0,0.8,1.0,1.0,1.0,0.9,0.9,1.0,0.9,0.9,0.9,1.0,1.0,1.0,0.9,0.9,1.0,1.0,1.0,1.0,0.9,1.0,0.9,1.0,0.9,1.0,0.9,1.0,1.0,0.9,0.9,0.9,1.0,1.0,0.9,1.0,1.0,1.0,0.9];
+
+function bins(arr){const b=new Array(11).fill(0);arr.forEach(s=>b[Math.min(Math.round(s*10),10)]++);return b;}
+const lbls=['0.0','0.1','0.2','0.3','0.4','0.5','0.6','0.7','0.8','0.9','1.0'];
+
+new Chart(document.getElementById('chartDistribution'),{type:'bar',data:{labels:lbls,datasets:[{label:'Base',data:bins(baseS),backgroundColor:'rgba(139,92,246,0.5)',borderColor:PURPLE,borderWidth:1},{label:'DPO Trained',data:bins(trainS),backgroundColor:'rgba(0,200,150,0.5)',borderColor:GREEN,borderWidth:1}]},options:{responsive:true,plugins:{legend:{labels:{boxWidth:9}}},scales:{x:{grid:{color:'rgba(255,255,255,0.04)'}},y:{grid:{color:'rgba(255,255,255,0.04)'},beginAtZero:true}}}});
+
+new Chart(document.getElementById('chartRadar'),{type:'radar',data:{labels:['Signal','ICP','BCH','Tone','Booking','Banned'],datasets:[{label:'Base',data:[72,75,70,80,90,88],fill:true,backgroundColor:'rgba(139,92,246,0.1)',borderColor:PURPLE,borderWidth:1.5,pointRadius:3},{label:'Trained',data:[94,91,94,88,98,100],fill:true,backgroundColor:'rgba(0,200,150,0.13)',borderColor:GREEN,borderWidth:1.5,pointRadius:3}]},options:{responsive:true,plugins:{legend:{labels:{boxWidth:9}}},scales:{r:{grid:{color:'rgba(255,255,255,0.07)'},pointLabels:{font:{size:9}},ticks:{display:false},suggestedMin:60,suggestedMax:100}}}});
+
+new Chart(document.getElementById('chartDataset'),{type:'doughnut',data:{labels:['Trace-derived 30%','Probe-expanded 30%','LLM-synthesised 30%','Hand-authored 10%'],datasets:[{data:[72,71,71,24],backgroundColor:['rgba(27,154,170,0.8)','rgba(139,92,246,0.8)','rgba(0,200,150,0.8)','rgba(245,158,11,0.8)'],borderColor:NAVY,borderWidth:2}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:9,padding:9}}}}});
+
+new Chart(document.getElementById('chartScatter'),{type:'scatter',data:{datasets:[{label:'Tasks',data:baseS.map((b,i)=>({x:b,y:trainS[i]})),backgroundColor:trainS.map((t,i)=>t>baseS[i]?'rgba(0,200,150,0.7)':t<baseS[i]?'rgba(239,68,68,0.7)':'rgba(100,116,139,0.5)'),pointRadius:5},{label:'No change',data:[{x:0,y:0},{x:1,y:1}],type:'line',borderColor:'rgba(255,255,255,0.12)',borderDash:[4,4],borderWidth:1,pointRadius:0,showLine:true,fill:false}]},options:{responsive:true,plugins:{legend:{labels:{boxWidth:9}}},scales:{x:{grid:{color:'rgba(255,255,255,0.04)'},title:{display:true,text:'Base score'},min:0,max:1},y:{grid:{color:'rgba(255,255,255,0.04)'},title:{display:true,text:'Trained score'},min:0,max:1}}}});
+
+new Chart(document.getElementById('chartDimBar'),{type:'bar',data:{labels:['Signal','ICP','BCH','Tone','Booking','Banned'],datasets:[{label:'Base',data:[72,75,70,80,90,88],backgroundColor:'rgba(139,92,246,0.6)',borderRadius:4},{label:'Trained',data:[94,91,94,88,98,100],backgroundColor:'rgba(0,200,150,0.7)',borderRadius:4}]},options:{responsive:true,indexAxis:'y',plugins:{legend:{labels:{boxWidth:9}}},scales:{x:{grid:{color:'rgba(255,255,255,0.04)'},min:60,max:100},y:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('chartLoss'),{type:'line',data:{labels:[10,20,30,40,50,60],datasets:[{label:'DPO Train Loss',data:[0.5342,0.0807,0.0045,0.0007,0.0004,0.0002],borderColor:AMBER,backgroundColor:'rgba(245,158,11,0.1)',fill:true,tension:0.4,borderWidth:2,pointBackgroundColor:AMBER,pointRadius:4}]},options:{responsive:true,plugins:{legend:{labels:{boxWidth:9}}},scales:{x:{grid:{color:'rgba(255,255,255,0.04)'},title:{display:true,text:'Step'}},y:{grid:{color:'rgba(255,255,255,0.04)'},type:'logarithmic',title:{display:true,text:'Loss'}}}}});
+
+new Chart(document.getElementById('chartCost'),{type:'bar',data:{labels:['Apr 28','Apr 29','Apr 30','May 1','May 3','May 3-4'],datasets:[{label:'$ Spend',data:[0,0.036,0.031,0,0,0],backgroundColor:['rgba(100,116,139,0.3)','rgba(27,154,170,0.7)','rgba(27,154,170,0.5)','rgba(100,116,139,0.3)','rgba(100,116,139,0.3)','rgba(100,116,139,0.3)'],borderRadius:5}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:'rgba(255,255,255,0.04)'},beginAtZero:true,title:{display:true,text:'$ USD'}}}}});
+
+// ── Demo ───────────────────────────────────────────────────────────
+const BANNED=['top talent','world-class','a-players','rockstar','ninja','exciting opportunity','leverage','synergies','i hope this email finds you well','following up again','circling back','aggressive hiring'];
+const SCENARIOS={
+  good:`Hi Alex,\n\nBlock posted 8 AI engineering roles since January while cutting total headcount by 12%. That combination usually signals a consolidation of engineering capacity around specific AI functions.\n\nTenacious has placed 4 AI infrastructure engineers in comparable restructuring situations in the last 6 months. If you're mapping out what that team looks like at Block, I'd value 15 minutes.\n\nhttps://cal.com/meseret-bolled-pxprep/tenacious-discovery-call\n\nMeseret\nResearch Partner | Tenacious Intelligence Corporation`,
+  banned:`Hi there,\n\nI hope this email finds you well! We have world-class top talent and rockstar engineers excited about this exciting opportunity to leverage synergies with your team. Our a-players are ready. Circling back on this.\n\nBest,\nSales Team`,
+  nolink:`Hi Alex,\n\nBlock reduced headcount by 12% while increasing AI engineering roles. This pattern appears across 6 other Series B companies this quarter.\n\nTenacious helps engineering leaders build AI teams during transitions. Would love to connect.\n\nThanks`,
+  overcommit:`Hi Alex,\n\nGreat news — we can provide 15 Python engineers immediately. We guarantee 20 NestJS specialists starting Q2 and can commit to full delivery within 30 days no matter what. Unlimited capacity.\n\nhttps://cal.com/meseret-bolled-pxprep/tenacious-discovery-call`,
+  weak:`Hi Alex,\n\nWanted to reach out because we work with tech companies. Block might be growing and you might need engineering support possibly.\n\nIf you're maybe interested, feel free to reach out.\n\nThanks`
+};
+
+function loadScenario(key,el){
+  document.getElementById('demoInput').value=SCENARIOS[key];
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  updateWords();
+  setTimeout(runDemo,80);
+}
+function updateWords(){
+  const w=document.getElementById('demoInput').value.trim().split(/\s+/).filter(x=>x).length;
+  document.getElementById('charCount').textContent=w+' words';
+}
+document.getElementById('demoInput').addEventListener('input',updateWords);
+function clearDemo(){document.getElementById('demoInput').value='';document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));resetUI();}
+function resetUI(){
+  const r=document.getElementById('scoreRing');r.className='score-ring neutral';
+  document.getElementById('scoreNum').textContent='—';document.getElementById('scoreNum').style.color='';
+  document.getElementById('scoreVerdict').textContent='READY';document.getElementById('scoreVerdict').style.color='var(--text3)';
+  for(let i=0;i<6;i++){const d=document.getElementById('d'+i);d.style.background='var(--border)';}
+  document.getElementById('demoAlert').style.display='none';
+  document.getElementById('bannedList').style.display='none';
+}
+function scoreLocally(text){
+  const lo=text.toLowerCase();
+  const found=BANNED.filter(p=>lo.includes(p));
+  const d0=(text.match(/\b(block|stripe|meta|google|amazon|netflix|series [ab]|layoff|funding|engineers?|roles?|headcount|cto)\b/i)||[])[0]!=null;
+  const d1=d0;
+  const d2=!/(unlimited|guarantee|immediately|any size|no matter what|fully operational|100 engineers)/i.test(text);
+  const d3=!/(great news|amazing|excited about|best regards|sincerely)/i.test(text);
+  const d4=text.toLowerCase().includes('cal.com');
+  const d5=found.length===0;
+  const dims=[{p:d0,w:0.25},{p:d1,w:0.20},{p:d2,w:0.20},{p:d3,w:0.15},{p:d4,w:0.10},{p:d5,w:0.10}];
+  const score=dims.reduce((s,d)=>s+(d.p?d.w:0),0);
+  return{score:Math.round(score*1000)/1000,dims,found};
+}
+function runDemo(){
+  const text=document.getElementById('demoInput').value.trim();if(!text)return;
+  const sp=document.getElementById('demoSpinner');sp.style.display='block';
+  setTimeout(()=>{sp.style.display='none';render(scoreLocally(text));},380);
+}
+function render(r){
+  const pass=r.score>=0.70;
+  const ring=document.getElementById('scoreRing');
+  ring.className='score-ring '+(pass?'pass':'fail');
+  const num=document.getElementById('scoreNum');
+  num.textContent=r.score.toFixed(3);num.style.color=pass?'var(--green)':'var(--red)';
+  const v=document.getElementById('scoreVerdict');
+  v.textContent=pass?'PASS':'FAIL';v.style.color=pass?'var(--green)':'var(--red)';
+  r.dims.forEach((d,i)=>{document.getElementById('d'+i).style.background=d.p?'var(--green)':'var(--red)';});
+  if(r.found.length){
+    document.getElementById('bannedList').style.display='block';
+    document.getElementById('bannedItems').innerHTML=r.found.map(p=>`<span style="padding:3px 8px;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.28);border-radius:4px;font-size:0.7rem;color:var(--red);">${p}</span>`).join('');
+  }else{document.getElementById('bannedList').style.display='none';}
+  const al=document.getElementById('demoAlert');al.style.display='block';
+  al.className='alert '+(pass?'alert-green':'alert-red');
+  al.innerHTML=`<span class="alert-icon">${pass?'✅':'❌'}</span><div>Score <strong>${r.score.toFixed(3)}</strong> — ${pass?'Meets Tenacious quality threshold. Ready to send.':'Below 0.70. In production: retry once at temp=0.2, then block send.'}</div>`;
+}
+</script>
 </body>
 </html>

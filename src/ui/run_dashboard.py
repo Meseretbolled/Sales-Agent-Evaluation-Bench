@@ -2,11 +2,15 @@ import http.server
 import socketserver
 import json
 import os
+import sys
 from pathlib import Path
-from src.evaluation.scoring_evaluator import evaluate
+
+# Allow running from any directory
+ROOT = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(ROOT))
 
 PORT = 8008
-DIRECTORY = "src/ui"
+DIRECTORY = str(ROOT / "src" / "ui")
 
 class DashboardHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -67,8 +71,9 @@ class DashboardHandler(http.server.SimpleHTTPRequestHandler):
                 self.wfile.write(str(e).encode())
 
 if __name__ == "__main__":
-    os.makedirs(DIRECTORY, exist_ok=True)
+    os.chdir(ROOT)
     with socketserver.TCPServer(("", PORT), DashboardHandler) as httpd:
-        print(f"🚀 Tenacious-Bench Dashboard live at http://localhost:{PORT}")
-        print("Shift-Click the link above to open (or open in your browser)")
+        print(f"\n🚀  Tenacious-Bench Dashboard  →  http://localhost:{PORT}\n")
+        print("    Open in your browser to present.")
+        print("    Ctrl-C to stop.\n")
         httpd.serve_forever()
