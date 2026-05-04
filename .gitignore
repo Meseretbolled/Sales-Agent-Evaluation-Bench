@@ -44,3 +44,4 @@ tenacious_bench_v0.1/held_out/
 # Training outputs (large binary checkpoints — only the HF adapter is public)
 outputs/
 training/checkpoints/
+presentation_script.md
