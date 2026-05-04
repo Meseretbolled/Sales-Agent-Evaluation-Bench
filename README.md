@@ -8,6 +8,97 @@ Built on top of Week 10: [github.com/Meseretbolled/conversion-engine](https://gi
 
 ---
 
+## Architecture
+
+```mermaid
+flowchart TD
+    %% ── Layer 0: Production Source ──────────────────────────────────────────
+    subgraph W10["Week 10 — Conversion Engine (Production)"]
+        CE["Outreach Pipeline\nFastAPI + LLM"]
+        TL["149 Langfuse Traces\ntrace_log.jsonl"]
+        PL["30 Adversarial Probes\nprobe_library.md"]
+        FT["Failure Taxonomy\n10 categories\nfailure_taxonomy.md"]
+        CE -->|runtime logs| TL
+        CE -->|manual injection| PL
+        TL -->|pattern analysis| FT
+        PL -->|pattern analysis| FT
+    end
+
+    %% ── Layer 1: Dataset Construction ───────────────────────────────────────
+    subgraph DS["Act II — Dataset Construction"]
+        TR["trace_restructurer.py\n72 trace-derived tasks"]
+        PE["probe_expander.py\n71 probe-expanded tasks"]
+        SY["synthesizer.py\nDeepSeek-Chat gen\nQwen3-8B judge\n71 llm-synthesized tasks"]
+        HA["24 hand-authored\nadversarial tasks"]
+        CC["contamination_check.py\n8-gram + TF-IDF + time-shift\n3 checks passed"]
+        PT["partitioner.py\nseeds held-out FIRST"]
+        BENCH["tenacious_bench_v0.1/\ntrain 159 · dev 57 · held_out 52"]
+
+        TR --> CC
+        PE --> CC
+        SY --> CC
+        HA --> CC
+        CC --> PT
+        PT --> BENCH
+    end
+
+    %% ── Layer 2: DPO Training ────────────────────────────────────────────────
+    subgraph TR2["Act IV — DPO Training (Path B)"]
+        PAIRS["preferences_train.jsonl\n159 chosen/rejected pairs"]
+        COLAB["Google Colab T4\nUnsloth + PatchDPOTrainer\nfp16 LoRA r=16 β=0.1\n60 steps · 11.6 min"]
+        ADAPTER["LoRA Adapter\nFinal loss: 0.1035"]
+        HF["HuggingFace Hub\nmeseretbolled/Tenacious-Qwen3-DPO-v01"]
+
+        PAIRS --> COLAB
+        COLAB --> ADAPTER
+        ADAPTER --> HF
+    end
+
+    %% ── Layer 3: Evaluation ──────────────────────────────────────────────────
+    subgraph EV["Act IV — Ablation Evaluation"]
+        HO["held_out/ (52 tasks)\nsealed before training"]
+        BASE["Base: Qwen3-1.7B\nno adapter\nScore: 0.751"]
+        TRAINED["Trained: Qwen3-1.7B\n+ DPO adapter\nScore: 0.941"]
+        SE["scoring_evaluator.py\n6 rubric dimensions\n80% rule-based · 20% LLM judge"]
+        AH["ablation_harness.py\n10k bootstrap CI\np-value: 0.0000"]
+        RESULT["Delta A: +0.1904\n95% CI [0.1115, 0.2788]"]
+
+        HO --> BASE & TRAINED
+        BASE & TRAINED --> SE
+        SE --> AH
+        AH --> RESULT
+    end
+
+    %% ── Layer 4: Production Integration ─────────────────────────────────────
+    subgraph PROD["Week 10 → Week 11 Production Integration"]
+        QG["Quality Gate\noutreach_composer.py\nbanned-phrase · booking-link · grounding"]
+        RENDER["Render Deployment\nconversion-engine10.onrender.com"]
+        QG --> RENDER
+    end
+
+    %% ── Cross-layer edges ────────────────────────────────────────────────────
+    FT -->|"failure modes\n→ rubric design"| DS
+    BENCH -->|"train partition\n→ DPO pairs"| TR2
+    BENCH -->|"held_out sealed\nbefore training"| EV
+    RESULT -->|"+25.4% relative lift\n→ deploy criteria met"| PROD
+    HF -->|"adapter available\nfor production swap"| PROD
+
+    %% ── Styling ──────────────────────────────────────────────────────────────
+    classDef prod fill:#1a1a2e,color:#e0e0ff,stroke:#4a4a8a
+    classDef data fill:#0d3b2e,color:#d4f5e9,stroke:#2d8a6a
+    classDef train fill:#2e1a0d,color:#f5e9d4,stroke:#8a5a2d
+    classDef eval fill:#1a0d2e,color:#e9d4f5,stroke:#6a2d8a
+    classDef integ fill:#2e0d1a,color:#f5d4e9,stroke:#8a2d5a
+
+    class W10,CE,TL,PL,FT prod
+    class DS,TR,PE,SY,HA,CC,PT,BENCH data
+    class TR2,PAIRS,COLAB,ADAPTER,HF train
+    class EV,HO,BASE,TRAINED,SE,AH,RESULT eval
+    class PROD,QG,RENDER integ
+```
+
+---
+
 ## What This Is
 
 τ²-Bench retail cannot grade Tenacious-specific failure modes — it scores retail
